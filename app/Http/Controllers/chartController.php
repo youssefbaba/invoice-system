@@ -17,6 +17,11 @@ class chartController extends Controller
 {
     // public $year = 2021;
 
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function myYear()
     {
         $year = Carbon::now()->format('Y');

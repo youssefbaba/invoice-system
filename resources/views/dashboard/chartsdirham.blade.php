@@ -1,6 +1,6 @@
 @extends('home')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dash.chartdirham') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
     <form action="#" method="POST">
@@ -17,7 +17,7 @@
 @section('contenu_inside')
 <div class="etat_div">
     <ul class="list-inline">
-        <li class="list-inline-item "><a href="{{route('dash.chartdirham')}}" class="active">STATISTIQUES</a></li>
+        <li class="list-inline-item "><a href="{{route('dashboard')}}" class="active">STATISTIQUES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}">CHIFFRE D'AFFAIRES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.debours') }}">DÉBOURS</a></li>
     </ul>
@@ -30,7 +30,7 @@
                   <select class="form-control" id="sampleSelect">
                     <option value="{{ route('dash.charteuro') }}" >Euro (€)</option>
                     <option value="{{ route('dash.chartdollar') }}">Dollar ($)</option>
-                    <option value="{{ route('dash.chartdirham') }}" selected >Dirham (DH)</option>
+                    <option value="{{ route('dashboard') }}" selected >Dirham (DH)</option>
                   </select>
                 </div>
             </form>

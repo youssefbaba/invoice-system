@@ -29,8 +29,15 @@ Route::get('/terms', function () {
 // Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::middleware(['auth', 'is.admin'])->group(function () {
+    Route::get('/admin', 'AdminController@index')->name('admin');
+    Route::get('editroleuser/{user_id}', 'AdminController@edit')->name('admin.edit');
+    Route::put('updateroleuser/{user_id}', 'AdminController@update')->name('admin.update');
+    Route::get('deleteuser/{user_id}', 'AdminController@deleteuser')->name('admin.delete');
+});
+Route::get('/dashboard', 'chartController@chartdirham')->name('dashboard');;
+
+
 
 
 
@@ -135,7 +142,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard/charteuro', 'chartController@charteuro')->name('dash.charteuro');
     Route::get('dashboard/chartdollar', 'chartController@chartdollar')->name('dash.chartdollar');
-    Route::get('dashboard', 'chartController@chartdirham')->name('dash.chartdirham');
+
+    // Route::get('/home', 'HomeController@index')->name('home');
     Route::get('dashboard/chiffre_affaire', 'chartController@chiffre_affaire')->name('dash.chiffre_affaire');
     Route::get('dashboard/debours', 'chartController@debours')->name('dash.debours');
 });

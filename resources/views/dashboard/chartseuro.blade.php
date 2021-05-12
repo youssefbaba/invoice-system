@@ -30,7 +30,7 @@
                   <select class="form-control" id="sampleSelect">
                     <option value="{{ route('dash.charteuro') }}" selected >Euro (€)</option>
                     <option value="{{ route('dash.chartdollar') }}">Dollar ($)</option>
-                    <option value="{{ route('dash.chartdirham') }}" >Dirham (DH)</option>
+                    <option value="{{ route('dashboard') }}" >Dirham (DH)</option>
                   </select>
                 </div>
             </form>

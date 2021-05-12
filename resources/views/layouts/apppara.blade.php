@@ -24,7 +24,7 @@
                 <a href="{{route('parametre')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><i class="fa fa-address-card">&nbsp;Coordonnées</i> </a>
                 <a href="{{route('parametre.compte')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><i class="fas fa-user">&nbsp;Compte</i></a>
                 <a href="{{route('parametre.delete')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><i class="fas fa-user-times">&nbsp;Supprimer mon compte</i></a>
-                <a href="{{route('dash.chartdirham')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><span style="float: right"><i class="fas fa-arrow-left"></i></span><span>Retour</span></a>
+                <a href="{{route('dashboard')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><span style="float: right"><i class="fas fa-arrow-left"></i></span><span>Retour</span></a>
               </div>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -42,7 +42,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link" href="{{route('dash.chartdirham')}}" style="color: white">Dashboard</a>
+                      <a class="nav-link" href="{{route('dashboard')}}" style="color: white">Dashboard</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{{route('deconnexion')}}" style="color: white">Déconnexion</a>

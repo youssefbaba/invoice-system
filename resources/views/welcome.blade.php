@@ -13,7 +13,7 @@
             <ul class="navbar-nav ml-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="{{route('dash.charteuro')}}">Home</a>
+                        <a class="nav-link text-center" href="{{route('dashboard')}}">Home</a>
                     </li>
                 @else
                     <li class="nav-item">

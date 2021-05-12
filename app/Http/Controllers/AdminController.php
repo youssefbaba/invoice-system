@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,8 +22,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        return view('admin.listuser')->with('user', $user);
+        $users = User::all();
+        return view('admin.listuser')->with('users', $users);
     }
     /**
      * Show the form for creating a new resource.
@@ -30,7 +32,6 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -63,7 +64,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.editroleuser')->with('user', $user);
     }
 
     /**
@@ -75,7 +77,10 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrfail($id);
+        $user->role = 1;
+        $user->save();
+        return redirect()->route('admin');
     }
 
     /**
@@ -84,8 +89,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteuser($user_id)
     {
-        //
+        $user = User::findOrfail($user_id);
+        $user->delete();
+        return redirect()->route('admin');
     }
 }

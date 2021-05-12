@@ -1,6 +1,6 @@
 @extends('home')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dash.chartdirham') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
     <form action="#" method="POST">
@@ -17,7 +17,7 @@
 @section('contenu_inside')
 <div class="etat_div">
     <ul class="list-inline">
-        <li class="list-inline-item "><a href="{{route('dash.chartdirham')}}">STATISTIQUES</a></li>
+        <li class="list-inline-item "><a href="{{route('dashboard')}}">STATISTIQUES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}" class="active">CHIFFRE D'AFFAIRES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.debours') }}" >DÉBOURS</a></li>
     </ul>
