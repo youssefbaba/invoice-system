@@ -1,0 +1,33 @@
+.voir_plus{
+    margin-top: 10px;
+}
+.voir_plus h2{
+    font-family: 'amiri' , sans-serif;
+    font-weight: bold;
+}
+.voir_plus hr{
+    margin: 0 !important;
+}
+.voir_plus div p:first-of-type{
+margin-right: 8px;
+}
+.voir_plus div a{
+    text-decoration: none;
+    color: black;
+}
+.voir_plus div a:hover{
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+.link-hover-focus:focus{
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+.link-hover-focus:hover{
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+.link-hover-focus{
+color: black;
+}
+

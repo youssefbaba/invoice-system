@@ -1,0 +1,89 @@
+form .inscrire_section{
+    margin: 0 auto;
+    background-color:#F7F7F7;
+    margin-top: 60px;
+    box-shadow: -3px -10px 30px rgba(0,0,0,0.3);
+    width: 400px;
+}
+form .inscrire_section h2{
+    font-family: 'amiri' , sans-serif;
+    padding:10px 0;
+    /* font-weight: bold; */
+    background-color: rgba(0,0,0,.03);
+    letter-spacing: -1px;
+}
+form .inscrire_section input[type=text], form .inscrire_section  input[type=password], form .inscrire_section  input[type=email] {
+    font-family: 'Poppins' , sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    border: 1px solid #707070;
+}
+form .label_image{
+    font-family: 'Poppins' , sans-serif;
+}
+form .inscrire_section  p{
+    font-family: 'amiri', sans-serif;
+    font-size: 15px;
+}
+form .inscrire_section span{
+    background-color: #337AB7;
+    color: white;
+    font-family: 'roboto';
+    font-weight: bold;
+    padding:5px 0;
+    outline: none;
+    border: none;
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+}
+.second{
+    height: 740px;
+    background-color:#F7F7F7;
+    border-left: 1px #337AB7 solid;
+    border-top: 1px #337AB7 solid;
+    float: left;
+    position: fixed;
+    right: 0;
+    top: 76px;
+    transition: display 5s ease-in-out;
+    width: 500px;
+    transform: translateX(0);
+    transition: transform 0.8s ease-in-out;
+}
+.contain_information{
+    transform: translateX(100%);
+}
+.second .information_section h2{
+    font-family: 'amiri' , sans-serif;
+}
+.second .information_section h5{
+    font-family: 'roboto' , sans-serif;
+    letter-spacing: -1px;
+}
+.second .information_section input[type=text], .second .information_section input[type=email] , .second .information_section select  {
+    font-family: 'Poppins' , sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    border: 1px solid #707070;
+}
+.second .information_section input[type=submit]{
+    background-color: #337AB7;
+    color: white;
+    font-family: 'roboto';
+    font-weight: bold;
+    padding:5px 0;
+    outline: none;
+    border: none;
+    letter-spacing: 1px;
+}
+.second .right{
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    font-size: 30px;
+    cursor: pointer;
+    color: #337AB7;
+}

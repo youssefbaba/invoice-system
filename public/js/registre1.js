@@ -1,0 +1,9 @@
+$('document').ready(function(){
+    $('#suivant').click(function(){
+        $('.second').toggleClass('contain_information');
+    });
+    $('.right').click(function(){
+        $('.second').toggleClass('contain_information');
+    });
+    $('.alert-success').delay(3000).fadeOut('slow');
+});

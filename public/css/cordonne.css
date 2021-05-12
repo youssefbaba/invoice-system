@@ -1,0 +1,43 @@
+#avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+form{
+    width: 100%;
+}
+.floot{
+    position: absolute !important;
+    top: -6px !important;
+    left: 1px !important;
+    font-size: 20px !important;
+}
+.group_form{
+    position: relative;
+    margin: 0 auto;
+}
+.group_form input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    padding-left: 2px;
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    background-color:transparent;
+    margin: 10px 0 0;
+}
+.group_form label{
+    position: absolute;
+    top: 17px;
+    left: 2px;
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    transition: all 0.5s;
+    color: black;
+}
+.eror{
+    color: brown;
+    font-family: 'amiri' , sans-serif;
+    margin-left: 5px;
+}
+

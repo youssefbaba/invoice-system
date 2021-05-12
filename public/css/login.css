@@ -1,0 +1,85 @@
+.connect_section{
+    margin: 0 auto;
+    width: 400px;
+    background-color:#F7F7F7;
+    margin-top: 100px;
+    box-shadow: -3px -10px 30px rgba(0,0,0,0.3);
+}
+.connect_section h2{
+    font-family: 'amiri' , sans-serif;
+    padding: 10px 0;
+    /* font-weight: bold; */
+    background-color: rgba(0,0,0,.03);
+    letter-spacing: -1px;
+}
+.connect_section form input[type=email] , .connect_section form input[type=password] {
+    font-family: 'Poppins' , sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    border: 1px solid #707070;
+}
+.connect_section form input[type=submit]{
+    background-color: #337AB7;
+    color: white;
+    font-family: 'roboto';
+    font-weight: bold;
+    padding:5px 0;
+    outline: none;
+    border: none;
+    letter-spacing: 1px;
+}
+.connect_section form .checkbox{
+    margin-left: -12px;
+}
+.connect_section form .checkbox span{
+    font-family: 'Poppins' , sans-serif;
+}
+.connect_section form .souvenir input[type=checkbox]{
+    background-color: grey;
+    transform: scale(1.5);
+    display: inline;
+    padding-top: 5px;
+}
+.connect_section form .oublie a{
+    font-family: 'Amiri' , sans-serif;
+    font-size: 18px;
+    color: #337AB7;
+}
+.connect_section form .ou_section hr{
+    border-top: 2px solid #707070;
+}
+.connect_section form .ou_section p{
+    font-family: 'Amiri' , sans-serif;
+    color: #337AB7;
+    font-size: 25px;
+}
+.connect_section form .para p{
+    font-family: 'Roboto' , sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+.connect_section form .social .fb{
+    font-size: 25px;
+    color: #507CC0;
+    text-decoration: none;
+}
+.connect_section form .social .fb:hover{
+    color: #000;
+}
+.connect_section form .social .tw{
+    font-size: 25px;
+    color: #64CCF1;
+    text-decoration: none;
+}
+.connect_section form .social .tw:hover{
+    color: #000;
+}
+.connect_section form .social .go{
+    font-size: 25px;
+    color: #DF4930;
+    text-decoration: none;
+}
+.connect_section form .social .go:hover{
+    color: #000;
+}

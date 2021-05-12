@@ -1,0 +1,185 @@
+#grand_title_addclient{
+    font-family: 'Microsoft Uighur' , 'roboto', sans-serif;
+    letter-spacing: -0.5px;
+    font-weight: bold;
+    font-size: 40px;
+    margin-left: 20px;
+    color: white;
+}
+#title_addclient{
+    font-family: 'Josefin Sans' , 'roboto', sans-serif;
+    color: #5B616A;
+    text-align: center;
+    margin: 10px auto;
+    letter-spacing: -0.5px;
+}
+.part1_addclient{
+    padding: 20px 50px;
+}
+#addclient_form{
+    width: 90%;
+    /* background-color: rgba(171,169,195,0.6); */
+    margin: 5px auto;
+}
+#addclient_form h5{
+    font-family: 'Josefin Sans' , 'roboto', sans-serif;
+    font-weight: bold;
+}
+.group_form{
+    position: relative;
+    margin: 0 auto;
+}
+.group_form input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    padding-left: 2px;
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    background-color:transparent;
+    margin: 10px 0 0;
+}
+.group_form label{
+    position: absolute;
+    top: 17px;
+    left: 2px;
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    transition: all 0.5s;
+    color: black;
+}
+.floot{
+    position: absolute !important;
+    top: -6px !important;
+    left: 1px !important;
+    font-size: 20px !important;
+}
+.group_langue{
+    position: relative;
+    margin: 0 auto;
+}
+.group_langue label{
+    position: absolute;
+    top: -20px;
+    left: 2px;
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    transition: all 0.5s;
+    color: white;
+
+}
+.group_langue select{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    background-color:transparent;
+    width: 295px;
+}
+
+.part2_addclient{
+    padding: 20px 50px;
+}
+.part2_addclient textarea{
+    font-family: 'Microsoft Uighur';
+    font-size: 25px;
+    resize: none;
+}
+.part3_addclient{
+    padding: 20px 50px;
+}
+/*start mot cles*/
+.part4_addclient{
+    padding: 20px 50px;
+}
+.part4_addclient .group_cle select{
+    font-size: 20px;
+}
+.part4_addclient .group_cle .select2-container--default {
+    border: none !important;
+    outline: none !important;
+    border-bottom: 1px solid #000 !important;
+    font-family: 'Microsoft Uighur' !important;
+    background-color: transparent !important;
+    width: 100% !important;
+}
+.part4_addclient .group_cle .select2-selection--multiple{
+    border: none !important;
+    outline: none !important;
+    font-family: 'Microsoft Uighur' !important;
+    background-color: transparent !important;
+    font-size: 20px;
+}
+
+/*start submit button*/
+
+.contain_button_submit #addclient_sumbit_button{
+    border: none;
+    background-color:#13438A;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px 30px;
+    color: white;
+    margin: 0 20px 50px 20px;
+    margin-left:2px;
+    font-size: 15px;
+}
+a.addclient_retour{
+    color: white;
+    border: none;
+    color:wih;
+    border-radius: 0px;
+    background-color:#3E81C8;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px 30px;
+    margin: 0 20px 50px 20px;
+    font-size: 15px;
+    line-height: inherit;
+}
+a.addclient_retour:focus{
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-shadow:none;
+    color:white;
+}
+a.addclient_retour:hover{
+    color:white;
+}
+.editclient_retour{
+    color: white;
+    border: none;
+    color:wih;
+    border-radius: 0px;
+    background-color:red;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px 30px;
+    margin: 0 20px 50px 20px;
+    font-size: 15px;
+    line-height: inherit;
+}
+.editclient_retour:focus{
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-shadow:none;
+    color:white;
+}
+.editclient_retour:hover{
+    color:white;
+}
+
+.contain_button_submit span
+{
+    background-color: #275DAD;
+    font-size: 15px;
+    color: white;
+    margin-right: 10px;
+}
+
+
+/*errors style*/
+.eror{
+    font-family: 'amiri', sans-serif;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+

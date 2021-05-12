@@ -1,0 +1,33 @@
+.user-row {
+    margin-bottom: 14px;
+  }
+
+  .table-user-information > tbody > tr {
+    border-top: 1px solid #ccc;
+  }
+
+  .table-user-information > tbody > tr:first-child {
+    border-top: 0;
+  }
+
+  .table-user-information > tbody > tr > td {
+    border-top: 0;
+  }
+
+  .panel {
+    margin-top: 20px;
+  }
+ .uppercase {
+    text-transform: uppercase;
+}
+.link-hover-focus:focus{
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+.link-hover-focus:hover{
+    color: cornflowerblue;
+    text-decoration: underline;
+}
+.link-hover-focus{
+    color: black;
+    }

@@ -1,0 +1,43 @@
+.content_inside{
+    padding: 0;
+}
+.etat_div{
+    width: 100%;
+    background-color: #3E81C8;
+}
+.etat_div ul li{
+    padding: 10px 20px;
+}
+.etat_div ul li a{
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.etat_div ul li a:hover{
+    border-bottom: 2px solid rgb(13, 255, 0);
+}
+.active{
+    border-bottom: 2px solid rgb(13, 255, 0);
+    font-weight: bold;
+}
+.showprovi_retour{
+    border: none;
+    color:white;
+    border-radius: 0px;
+    background-color: #275DAD;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px 30px;
+    margin: 0 20px 50px 20px;
+    font-size: 15px;
+    line-height: inherit;
+}
+.showprovi_retour:hover{
+    color: white;
+}
+.showprovi_retour:focus{
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-shadow:none;
+    color: white;
+}
