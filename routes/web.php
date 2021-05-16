@@ -25,7 +25,6 @@ Route::get('/terms', function () {
 })->name('terms');
 
 
-
 // Auth::routes();
 Auth::routes(['verify' => true]);
 

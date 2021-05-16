@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 class Facture extends Model
 {
-    // protected $fillable = ['total_ht_articlesf','total_ht_apres_remise_genf','tvaf','total_facturef','condition_reglf','user_id','remised'];
-     protected $guarded = ['*'];
+    protected $fillable = ['total_ht_articlesf','total_ht_apres_remise_genf','tvaf','total_facturef','condition_reglf','user_id','remised'];
+
     //  protected $hidden = ['tvaf'];
 
     public function client(){

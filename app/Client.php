@@ -9,8 +9,8 @@ use App\Cle;
 
 class Client extends Model
 {
-    // protected $fillable = ['nom_client', 'prenom_client', 'fonction_client', 'adresse_client', 'langue_client', 'codep_client', 'ville_client', 'site_client', 'tel_client', 'societe_client', 'note_client', 'user_id', 'adresse_email_client'];
-    protected $guarded = ['*'];
+    protected $fillable = ['nom_client', 'prenom_client', 'fonction_client', 'adresse_client', 'langue_client', 'codep_client', 'ville_client', 'site_client', 'tel_client', 'societe_client', 'note_client', 'user_id', 'adresse_email_client'];
+
 
     public function factures()
     {
