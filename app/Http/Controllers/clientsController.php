@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Http\Requests\createClientRequest;
 use App\Http\Requests\updateClientRequest;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Cle;
 use App\Facture;
 

@@ -1,7 +1,7 @@
 form .inscrire_section{
     margin: 0 auto;
     background-color:#F7F7F7;
-    margin-top: 60px;
+    /* margin-top: 60px; */
     box-shadow: -3px -10px 30px rgba(0,0,0,0.3);
     width: 400px;
 }

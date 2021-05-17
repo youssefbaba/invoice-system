@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
                 <div id="contain_image_sidebar">
-                <a href="{{route('user')}}"><img src="{{asset('uploads/avatars/'.$user->avatar)}}" alt="avatar_image" style="width:50px;height:50px;border-radius:50%;margin-left:15%"> <span class="text-light ml-1">@if(Auth::user()->role === 0)
+                <a href="{{route('user')}}"><img src="{{asset('uploads/avatars/'.Auth::user()->avatar)}}" alt="avatar_image" style="width:50px;height:50px;border-radius:50%;margin-left:15%"> <span class="text-light ml-1">@if(Auth::user()->role === 0)
                 Utilisateur
                 @else
                 Administrateur

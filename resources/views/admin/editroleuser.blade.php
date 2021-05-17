@@ -10,25 +10,25 @@
         @method('PUT')
         <div class="form-row">
           <div class="col-md-6 mb-3">
-            <label for="nom_user">Nom</label>
-            <input type="text" class="form-control" id="nom_user" name="nom_user" value="{{$user->name}}"  readonly required>
+            <label for="nom_user" class="font-weight-bold">Nom</label>
+            <input type="text" class="form-control bg-white" id="nom_user" name="nom_user" value="{{$user->name}}"  readonly required>
           </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="prenom_user">Prenom</label>
-              <input type="text" class="form-control" id="prenom_user" value="{{$user->lastname}}" readonly required>
+              <label for="prenom_user" class="font-weight-bold">Prenom</label>
+              <input type="text" class="form-control bg-white" id="prenom_user" value="{{$user->lastname}}" readonly required>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="email_user">Email Professionnel</label>
-              <input type="email" class="form-control" id="email_user" value="{{$user->email_profes}}" readonly name="email_user"  required>
+              <label for="email_user" class="font-weight-bold">Email Professionnel</label>
+              <input type="email" class="form-control bg-white" id="email_user" value="{{$user->email_profes}}" readonly name="email_user"  required>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="role_user">Role</label>
+              <label for="role_user" class="font-weight-bold">Role</label>
                 <select class="form-control" name="role_user" id="role_user">
                   <option value="0">Adminisrateur </option>
                   <option value="1"  selected>Utilisateur</option>

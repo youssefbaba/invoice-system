@@ -30,9 +30,13 @@ Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
+    Route::get('/listadministrateurs', 'AdminController@listadmin')->name('admin.listadmin');
+    Route::get('/listutilisateurs', 'AdminController@listuser')->name('admin.listuser');
     Route::get('editroleuser/{user_id}', 'AdminController@edit')->name('admin.edit');
     Route::put('updateroleuser/{user_id}', 'AdminController@update')->name('admin.update');
     Route::get('deleteuser/{user_id}', 'AdminController@deleteuser')->name('admin.delete');
+    Route::get('showuser/{user_id}', 'AdminController@show')->name('admin.show');
+    Route::get('/adduser', 'AdminController@create')->name('admin.create');
 });
 Route::get('/dashboard', 'chartController@chartdirham')->name('dashboard');;
 

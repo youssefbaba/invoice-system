@@ -45,7 +45,7 @@
         <div class="row">
             @foreach ($clients_cles as $client_cle)
             {{-- {{dd($client)}} --}}
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-8 mt-3">
                             <div class="card client_display bg-light">
                                 <div class="card-body">
                                     <div class="row">

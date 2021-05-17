@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="{{ asset('css/facture_voirplus.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/avoir.css') }}">
 </head>
 <body >
         <div class="sidebar">

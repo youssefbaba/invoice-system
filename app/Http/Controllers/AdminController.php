@@ -23,7 +23,22 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.listuser')->with('users', $users);
+        $useradmin = User::where('role', 1)->get();
+        $listuser = User::where('role', 0)->get();
+        return view('admin.listall')->with('users', $users)->with('useradmin', $useradmin)->with('listuser', $listuser);
+    }
+    public function listadmin()
+    {
+        $users = User::all();
+        $useradmin = User::where('role', 1)->get();
+        $listuser = User::where('role', 0)->get();
+        return view('admin.listadministrateurs')->with('users', $users)->with('useradmin', $useradmin)->with('listuser', $listuser);
+    }
+    public function listuser()
+    {
+        $users = User::all();
+        $useradmin = User::where('role', 1)->get();
+        $listuser = User::where('role', 0)->get();
     }
     /**
      * Show the form for creating a new resource.
@@ -32,6 +47,7 @@ class AdminController extends Controller
      */
     public function create()
     {
+        return view('admin.ajouteruser');
     }
 
     /**
@@ -53,8 +69,10 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrfail($id);
+        return view('admin.showuser')->with('user', $user);
     }
+
 
     /**
      * Show the form for editing the specified resource.
