@@ -25,8 +25,8 @@ Route::get('/terms', function () {
 })->name('terms');
 
 
-// Auth::routes();
-Auth::routes(['verify' => true]);
+Auth::routes();
+// Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
@@ -37,6 +37,7 @@ Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::get('deleteuser/{user_id}', 'AdminController@deleteuser')->name('admin.delete');
     Route::get('showuser/{user_id}', 'AdminController@show')->name('admin.show');
     Route::get('/adduser', 'AdminController@create')->name('admin.create');
+    Route::post('/saveuser', 'AdminController@store')->name('admin.store');
 });
 Route::get('/dashboard', 'chartController@chartdirham')->name('dashboard');;
 
@@ -153,6 +154,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //create route for user
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user', 'UserController@index')->name('user');
+    Route::get('user/finishinformation', 'UserController@create')->name('user.create');
+    Route::post('saveuser/{user_id}', 'UserController@store')->name('user.store');
 });
 //create route for parametre
 Route::middleware(['auth', 'verified'])->group(function () {

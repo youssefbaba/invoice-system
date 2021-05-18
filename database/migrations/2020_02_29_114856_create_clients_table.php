@@ -29,7 +29,7 @@ class CreateClientsTable extends Migration
             $table->string('societe_client')->nullable();
             $table->text('note_client')->nullable();
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

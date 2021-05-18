@@ -15,8 +15,8 @@
                 <div class="row mt-2">
                     <div class="col-md-8">
                         <div class="group_form">
-                            <input type="text" name="adresse_email_pro" id="adresse_email_pro" class="inputs" style="width:60%" value="{{$user->email_profes}}">
-                            <label for="adresse_email_pro" class="lb">Adresse email professionnelle (apparaît sur les documents)</label>
+                            <input type="text" name="adresse_email_pro" id="adresse_email_pro" class="inputs" style="width:60%" value="{{$user->email}}">
+                            <label for="adresse_email_pro" class="lb">Adresse email professionnelle</label>
                         </div>
                     </div>
                 </div>

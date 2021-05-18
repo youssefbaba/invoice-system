@@ -34,11 +34,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-center btn btn-outline-primary" href="{{ route('login') }}">Connexion</a>
                 </li>
-                @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link text-center btn btn-outline-primary" href="{{ route('register') }}">Inscription</a>
-                    </li>
-                @endif
             @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -102,10 +97,7 @@
                                 <span class="col-5"><hr></span> <p class="col-2">ou</p> <span class="col-5"><hr></span>
                             </div>
                         </div>
-                        <div class="col-12 para text-center">
-                            <p>Connectez-vous avec votre compte de médias sociaux</p>
-                        </div>
-                    
+
                     </div>
                 </form>
     </div>

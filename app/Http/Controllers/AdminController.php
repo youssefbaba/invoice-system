@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mail\CreateNewUser;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\StoreRequestNewUser;
 
 class AdminController extends Controller
 {
@@ -39,6 +44,7 @@ class AdminController extends Controller
         $users = User::all();
         $useradmin = User::where('role', 1)->get();
         $listuser = User::where('role', 0)->get();
+        return view('admin.listusers')->with('users', $users)->with('useradmin', $useradmin)->with('listuser', $listuser);
     }
     /**
      * Show the form for creating a new resource.
@@ -56,9 +62,22 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequestNewUser $request)
     {
-        //
+        // dd($request);
+        $user = new User();
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        // 'password' => Hash::make($data['password']),
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        $user->save();
+        Mail::to($request->email)->send(new CreateNewUser($user, $request->password));
+        return redirect()->route('admin');
+    }
+    protected function guard()
+    {
+        return Auth::guard();
     }
 
     /**

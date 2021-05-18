@@ -23,21 +23,28 @@
                 <h5 class="card-title text-uppercase mb-0">Gestion des utilisateurs</h5>
             </div>
 
-            <div>
-                <ul class="nav nav-tabs">
-                    <a  href="{{ route('admin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                        Tous <span class="badge badge-light">{{$users->count()}}</span>
-                        <span class="sr-only">unread messages</span>
-                      </a>
-                      <a   href="{{ route('admin.listadmin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                        Administrateurs <span class="badge badge-light">{{$useradmin->count()}}</span>
-                        <span class="sr-only">unread messages</span>
-                      </a>
-                      <a href="{{ route('admin.listuser') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                        Utilisateurs <span class="badge badge-light">{{$listuser->count()}}</span>
-                        <span class="sr-only">unread messages</span>
-                      </a>
-                  </ul>
+            <div class="row d-flex justify-content-between">
+                <div class="ml-3">
+                    <ul class="nav nav-tabs">
+                        <a  href="{{ route('admin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
+                            Tous <span class="badge badge-light">{{$users->count()}}</span>
+                          </a>
+                          <a   href="{{ route('admin.listadmin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
+                            Administrateurs <span class="badge badge-light">{{$useradmin->count()}}</span>
+                          </a>
+                          <a href="{{ route('admin.listuser') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
+                            Utilisateurs <span class="badge badge-light">{{$listuser->count()}}</span>
+                          </a>
+                      </ul>
+                </div>
+
+                <div >
+                    <ul class="nav nav-tabs mr-3">
+                        <a  href="{{ route('admin.create') }}" class="btn btn-primary" style="border-radius: 0px;color: white;margin-right:2px">
+                            Ajouter Un Utilisateur
+                          </a>
+                      </ul>
+                </div>
             </div>
 
             <div class="table">
@@ -46,7 +53,7 @@
                     <tr>
                       <th class="border-0 text-uppercase">Nom</th>
                       <th class="border-0 text-uppercase">Prenom</th>
-                      <th  class="border-0 text-uppercase">Email Professionnel</th>
+                      <th  class="border-0 text-uppercase">Email</th>
                       <th  class="border-0 text-uppercase">Ajouter à</th>
                       <th  class="border-0 text-uppercase">Type</th>
                       <th  class="border-0 text-uppercase">Action</th>
@@ -57,7 +64,7 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->lastname}}</td>
-                        <td> {{$user->email_profes}}</td>
+                        <td> {{$user->email}}</td>
                         <td>{{$user->created_at->format('Y-m-d')}}</td>
                         <td>
                             @if($user->role === 0)

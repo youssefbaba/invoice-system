@@ -3,6 +3,7 @@
     width: 400px;
     background-color:#F7F7F7;
     /* margin-top: 100px; */
+    height: 400px;
     box-shadow: -3px -10px 30px rgba(0,0,0,0.3);
 }
 .connect_section h2{

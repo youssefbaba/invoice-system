@@ -2,9 +2,9 @@
     margin: 0 auto;
     width: 400px;
     background-color:#F7F7F7;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     box-shadow: -3px -10px 30px rgba(0,0,0,0.3);
-    height: 500px;
+    height: 400px;
 }
 .reset_section h2{
     font-family: 'amiri' , sans-serif;

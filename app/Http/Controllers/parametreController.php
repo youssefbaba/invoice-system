@@ -13,6 +13,7 @@ use Illuminate\Routing\Controller;
 use App\Http\Requests\compteRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\deleteCompteRequest;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class parametreController extends Controller
 {
@@ -89,7 +90,7 @@ class parametreController extends Controller
             $user->codepostal = $request->code_postal;
             $user->ville = $request->ville;
             $user->tel = $request->telephone;
-            $user->email_profes = $request->adresse_email_pro;
+            $user->email = $request->adresse_email_pro;
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(150, 150)->save(public_path('/uploads/avatars/' . $filename));
@@ -104,10 +105,10 @@ class parametreController extends Controller
             $user->codepostal = $request->code_postal;
             $user->ville = $request->ville;
             $user->tel = $request->telephone;
-            $user->email_profes = $request->adresse_email_pro;
+            $user->email = $request->adresse_email_pro;
             $user->save();
         }
-        return redirect()->back();
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -125,15 +126,15 @@ class parametreController extends Controller
         $user = auth()->user();
         return view('parameters.compte')->with('user', $user);
     }
-    public function updateCompte(compteRequest $request, $id_user)
+    public function updateCompte(compteRequest $request, $user_id)
     {
-        $user = User::find($id_user);
+        $user = User::find($user_id);
         if (Hash::check($request->pass_actuel, $user->password)) {
             if ($user->email == $request->adresse_email) {
                 $user->password = Hash::make($request->passnew);
                 $user->save();
                 session()->flash('msg', 'Votre mot de pass modifier avec succes');
-                return redirect()->back();
+                return redirect()->route('clients.index');
             } else {
                 $user->email = $request->adresse_email;
                 $user->password = Hash::make($request->passnew);
@@ -142,7 +143,7 @@ class parametreController extends Controller
                 return redirect()->back();
             }
         } else {
-            session()->flash('error', 'Votre mot de pass actuel n\'est pas correct ');
+            session()->flash('error', 'Votre mot de passe actuel n\'est pas correct ');
             return redirect()->back();
         }
     }

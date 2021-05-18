@@ -61,6 +61,8 @@
                                         </select>
                                     </div>
                                 </div>
+                                
+
                                 <div class="col-1 form-group">
                                     <button type="button" class="btn btn-info btn-sm duplicate  form-control"><i
                                             class="far fa-clone"></i></button>
@@ -69,6 +71,8 @@
                                     <button type="button" class="btn btn-danger btn-sm deleteclass form-control"><i
                                             class="far fa-trash-alt"></i></button>
                                 </div>
+
+
                             </div>
                             <div class="row">
                                 <div class="col-md-2">

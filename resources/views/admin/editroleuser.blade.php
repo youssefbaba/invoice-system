@@ -22,8 +22,8 @@
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="email_user" class="font-weight-bold">Email Professionnel</label>
-              <input type="email" class="form-control bg-white" id="email_user" value="{{$user->email_profes}}" readonly name="email_user"  required>
+              <label for="email_user" class="font-weight-bold">Email</label>
+              <input type="email" class="form-control bg-white" id="email_user" value="{{$user->email}}" readonly name="email_user"  required>
             </div>
         </div>
         <div class="form-row">

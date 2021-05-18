@@ -1,6 +1,6 @@
 @extends('admin')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Listes des utilisateurs</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Liste des utilisateurs</a> </h5>
 <div class="form-group has-search d-inline-flex">
     <form action="#" method="POST">
         @csrf
@@ -22,6 +22,7 @@
             <div class="card-body">
                 <h5 class="card-title text-uppercase mb-0">Gestion des utilisateurs</h5>
             </div>
+
             <div class="row d-flex justify-content-between">
                 <div class="ml-3">
                     <ul class="nav nav-tabs">
@@ -36,6 +37,7 @@
                           </a>
                       </ul>
                 </div>
+                
                 <div >
                     <ul class="nav nav-tabs mr-3">
                         <a  href="{{ route('admin.create') }}" class="btn btn-primary" style="border-radius: 0px;color: white;margin-right:2px">
@@ -51,7 +53,7 @@
                     <tr>
                       <th class="border-0 text-uppercase">Nom</th>
                       <th class="border-0 text-uppercase">Prenom</th>
-                      <th  class="border-0 text-uppercase">Email Professionnel</th>
+                      <th  class="border-0 text-uppercase">Email</th>
                       <th  class="border-0 text-uppercase">Ajouter à</th>
                       <th  class="border-0 text-uppercase">Type</th>
                       <th  class="border-0 text-uppercase">Action</th>
@@ -62,7 +64,7 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->lastname}}</td>
-                        <td> {{$user->email_profes}}</td>
+                        <td> {{$user->email}}</td>
                         <td>{{$user->created_at->format('Y-m-d')}}</td>
                         <td>
                             @if($user->role === 0)
@@ -98,7 +100,7 @@
                                                   </button>
                                               </div>
                                               <div class="modal-body">
-                                                  Voulez-vous vraiment supprimer cette utilisateur !!!
+                                                  Voulez-vous vraiment supprimer cet utilisateur !!!
                                               </div>
                                               <div class="modal-footer">
                                                   <a class="btn btn-secondary btn-lg text-white" data-dismiss="modal">Annuler</a>

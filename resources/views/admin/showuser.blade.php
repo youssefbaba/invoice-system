@@ -47,10 +47,6 @@
                                             <td><a href="mailto:{{$user->email}}" class="link-hover-focus">{{$user->email}}</a></td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Adresse email professionnelle </td>
-                                            <td><a href="mailto:{{$user->email_profes}}" class="link-hover-focus">{{$user->email_profes}}</a></td>
-                                        </tr>
-                                        <tr>
                                             <td class="font-weight-bold">Adresse</td>
                                             <td>{{$user->adresse}}</td>
                                         </tr>

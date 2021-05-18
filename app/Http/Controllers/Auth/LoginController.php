@@ -9,7 +9,7 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Laravel\Socialite\Facades\Socialite as FacadesSocialite;
+
 
 class LoginController extends Controller
 {
@@ -60,7 +60,7 @@ class LoginController extends Controller
     public function redirectToProvider()
     {
 
-        return FacadesSocialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
 
     /**
@@ -72,7 +72,7 @@ class LoginController extends Controller
     {
         try {
 
-            $user = FacadesSocialite::driver('facebook')->user();
+            $user = Socialite::driver('facebook')->user();
 
             $finduser = User::where('facebook_id', $user->id)->first();
 
@@ -105,7 +105,7 @@ class LoginController extends Controller
     }
     public function redirectToProvider1()
     {
-        return FacadesSocialite::driver('google')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
     /**
@@ -117,7 +117,7 @@ class LoginController extends Controller
     {
         try {
 
-            $user = FacadesSocialite::driver('google')->user();
+            $user = Socialite::driver('google')->user();
 
             $finduser = User::where('google_id', $user->id)->first();
 
