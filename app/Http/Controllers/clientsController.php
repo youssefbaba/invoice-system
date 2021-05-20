@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Cle;
 use App\Client;
+use App\Facture;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\createClientRequest;
 use App\Http\Requests\updateClientRequest;
-use Illuminate\Support\Facades\DB;
-use App\Cle;
-use App\Facture;
 
 
 class clientsController extends Controller
@@ -91,7 +93,8 @@ class clientsController extends Controller
                 ));
             };
         }
-        return redirect()->route('clients.index')->with('user', $user);
+        Session::flash('statuscode', 'success');
+        return redirect()->route('clients.index')->with('user', $user)->with('status_add_client', 'Client créé avec succès.');
     }
 
     /**
@@ -168,7 +171,8 @@ class clientsController extends Controller
                 ));
             };
         }
-        return \redirect('clients')->with('user', $user);
+        Session::flash('statuscode', 'info');
+        return \redirect('clients')->with('user', $user)->with('status_update_client', 'Client modifié avec succès.');
     }
 
     /**
@@ -184,12 +188,12 @@ class clientsController extends Controller
             DB::table('cles')->where('client_id', $client->id)->delete();
         };
         $client->delete();
-        return redirect('clients');
+        Session::flash('statuscode', 'error');
+        return redirect('clients')->with('status_delete_client', 'Client supprimé avec succès.');
     }
     public function deconnexion()
     {
-        auth()->logout();
-
+        Auth::logout();
         return redirect('/');
     }
 

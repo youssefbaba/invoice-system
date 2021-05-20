@@ -24,10 +24,24 @@ class devisRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantitéd'=>'required',
+
+            'clients' => 'required',
+            'devis' => 'required',
+            'typed' => 'required',
+            'reductiond' => 'required',
+            'totalhtd' => 'required',
+            'totalttcd' => 'required',
+            'tvad' => 'required',
+            'descriptiond' => 'required',
+            'remise' => 'required',
+            'condition_reglement' => 'required',
+            'mode_reglement' => 'required',
+            'interet' => 'required',
+            'quantitéd' => 'required',
             'prixhtd' => 'required',
-            'motcled' => 'required|max:30',
+            'motcled' => 'required|max:250',
             'text_introd' => 'required|max:250',
+            'text_cond' => 'required|max:250',
             'text_concld' => 'required|max:250',
             'text_piedd' => 'required|max:250'
 

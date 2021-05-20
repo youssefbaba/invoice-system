@@ -12,10 +12,9 @@
                         class="far fa-check-circle"></i>
                     <p id="hover_finalise">Finaliser</p>
                 </a>
-                @else
                 @endif
-                @else
                 @endif
+
                 @if ($devise->etat_devis == 'Finalisé')
                 @if ($devise->client_id != null)
                 <a href="{{route('devises.signe',$devise->id)}}" class="bg-info text-white" id="finalise_paye"><i
@@ -26,19 +25,16 @@
                     id="finalise_span"><i class="far fa-times-circle"></i>
                     <p id="hover_finalise">Marquer comme refusé</p>
                 </a>
-                @else
                 @endif
-                @else
                 @endif
+
                 @if ($devise->etat_devis == 'Signés')
                 @if ($devise->client_id != null)
                 <a href="{{route('devises.finalise',$devise->id)}}" class="bg-warning text-white" id="finalise_span"><i
                         class=" fas fa-undo-alt"></i>
                     <p id="hover_finalise">Annuler la signature</p>
                 </a>
-                @else
                 @endif
-                @else
                 @endif
 
                 @if ($devise->etat_devis == 'Refusés')
@@ -47,10 +43,9 @@
                         class="fas fa-backspace"></i>
                     <p id="hover_finalise">Annuler le refus</p>
                 </a>
-                @else
                 @endif
-                @else
                 @endif
+
                 @if ($devise->etat_devis == 'Provisoire')
                 @if ($devise->client_id != null)
                 <a href="{{route('devises.editdevis',['devi_id'=>$devise->id,'client_id'=>$devise->client_id])}}"
@@ -77,11 +72,35 @@
                 @else
                 @endif
                 @if ($devise->etat_devis == 'Provisoire')
-                {{-- {{dd($devise->id)}} --}}
-                <a href="{{route('deletedevise',$devise->id)}}" class="bg-danger text-white" id="finalise_trash"><i
-                        class="far fa-trash-alt"></i>
+                <a href="#" data-href="{{route('deletedevise',$devise->id)}}" data-toggle="modal" data-target="#confirm-delete" class="bg-danger text-white" id="finalise_trash">
+                    <i class="far fa-trash-alt"></i>
                     <p id="hover_trash">Supprimer</p>
                 </a>
+                <div class="modal fade top" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger text-white">
+                                <h5 class="modal-title" id="exampleModalLabel">Supprimer Devis</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Voulez-vous vraiment supprimer ce devis !!!
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-secondary btn-lg" data-dismiss="modal">Annuler</a>
+                                <a class="btn btn-danger btn-ok btn-lg" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
+                                Supprimer
+                                </a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 @else
                 @endif
                 <a class="options_voirplus ml-2"><i class="fas fa-ellipsis-v ellipse"></i></a>
@@ -139,7 +158,35 @@
                 @else
                 @endif
                 @if ($devise->etat_devis == 'Provisoire')
-                <li><a href="{{route('deletedevise',$devise->id)}}">Supprimer</a></li>
+                <li>
+                    <a href="#" data-href="{{route('deletedevise',$devise->id)}}" data-toggle="modal" data-target="#confirm-delete" id="finalise_trash">
+                        Supprimer
+                    </a>
+                    <div class="modal fade top" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Devis</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez-vous vraiment supprimer ce devis !!!
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-secondary btn-lg" data-dismiss="modal">Annuler</a>
+                                    <a class="btn btn-danger btn-ok btn-lg" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
+                                    Supprimer
+                                    </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
                 <hr class="m-0">
                 @else
                 @endif
@@ -279,7 +326,7 @@
                     class="text-dark">{{$devise->getClient($devise->client_id)->nom_client}}&nbsp;{{$devise->getClient($devise->client_id)->prenom_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px">
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Société:</p>
@@ -287,7 +334,7 @@
             <div class="col-md-8">
                 <p style="color: red">{{$devise->getClient($devise->client_id)->societe_client}} had partie ya ima khasssni n7aydha ola n9adha ila dart partie dyal societe</p>
             </div>
-        </div>
+        </div> --}}
         <hr style="margin: 0.5px">
         <div class="row">
             <div class="col-md-4">
@@ -452,4 +499,10 @@
 @endsection
 @section('script')
 <script src="{{ asset('js/voirplus_devis.js') }}"></script>
+<script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+
+</script>
 @endsection

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreRequestNewUser;
 
 class AdminController extends Controller
@@ -73,7 +74,8 @@ class AdminController extends Controller
         $user->email = $request->email;
         $user->save();
         Mail::to($request->email)->send(new CreateNewUser($user, $request->password));
-        return redirect()->route('admin');
+        Session::flash('statuscode', 'success');
+        return redirect()->route('admin')->with('status_add_utilisateur', 'Utilisateur ajouté avec succès.');
     }
     protected function guard()
     {
@@ -117,7 +119,8 @@ class AdminController extends Controller
         $user = User::findOrfail($id);
         $user->role = 1;
         $user->save();
-        return redirect()->route('admin');
+        Session::flash('statuscode', 'info');
+        return redirect()->route('admin')->with('status_updated_role_user', 'Le role  modifié avec succès.');
     }
 
     /**
@@ -130,6 +133,8 @@ class AdminController extends Controller
     {
         $user = User::findOrfail($user_id);
         $user->delete();
-        return redirect()->route('admin');
+
+        Session::flash('statuscode', 'error');
+        return redirect()->route('admin')->with('status_delete_utilisateur', 'Utilisateur supprimé avec succès.');
     }
 }

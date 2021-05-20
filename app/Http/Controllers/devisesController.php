@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\devisRequest;
-use App\Http\Requests\factureRequest;
+use App\Cle;
 use App\Devi;
 use App\Client;
 use App\Article;
-use App\Cle;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\devisRequest;
+use App\Http\Requests\factureRequest;
+use Illuminate\Support\Facades\Session;
 
 class devisesController extends Controller
 {
@@ -50,8 +51,8 @@ class devisesController extends Controller
      */
     public function store(devisRequest $request)
     {
-        $user = auth()->user();
         // dd($request);
+        $user = auth()->user();
         DB::table('devis')->insert([
             'etat_devis' => 'Provisoire',
             'remised' => $request->remise,
@@ -60,16 +61,16 @@ class devisesController extends Controller
             'total_ht_apres_remise_gendf' => $request->total_ht_final_lastd,
             'tvadf' => $request->tva_final_lastd,
             'total_facturedf' => $request->total_total_lastd,
-            'condition_regld' => $request->condition_reglementd,
-            'mode_regld' => $request->mode_reglementd,
-            'interet_regld' => $request->interetd,
+            'condition_regld' => $request->condition_reglement,
+            'mode_regld' => $request->mode_reglement,
+            'interet_regld' => $request->interet,
             'text_introductiond' => $request->text_introd,
             'text_conclusiond' => $request->text_concld,
             'pied_paged' => $request->text_piedd,
             'condition_vented' => $request->text_cond,
-            'client_id' => $request->clientsd,
+            'client_id' => $request->clients,
             'user_id' => $user->id,
-            'devis' => $request->devisd,
+            'devis' => $request->devis,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
@@ -121,7 +122,8 @@ class devisesController extends Controller
         $devises = Devi::where('user_id', $user->id)->get();
         // dd($devises );
         //return view('devises.showdevises')->with('devises',$devises)->with('clients',Client::all());
-        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
+        Session::flash('statuscode', 'success');
+        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('status_add_devis', 'Devis créé avec succès.');
     }
 
 
@@ -243,7 +245,8 @@ class devisesController extends Controller
         }
         $user = auth()->user();
         $devises = Devi::where('user_id', $user->id)->get();
-        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
+        Session::flash('statuscode', 'success');
+        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('status_update_devis', 'Devi modifié avec succès.');
         //return dd($request);
     }
 
@@ -256,7 +259,9 @@ class devisesController extends Controller
     public function destroy(Devi $devise)
     {
         $devise->delete();
-        return redirect()->back();
+
+        Session::flash('statuscode', 'error');
+        return redirect()->back()->with('status_destroy_devis', 'Devis supprimé avec succès.');
     }
     public function editdevis($devi_id, $client_id)
     {
@@ -296,7 +301,6 @@ class devisesController extends Controller
         $articles = Article::where('devi_id', $devi_id)->get();
         $cle = Cle::select('mot_cle')->distinct()->get();
         $cles = Cle::where('devi_id', $devi_id)->get();
-
         return \view('devises.duplicatedevise')->with('devis', $devi)->with('clients', $client)->with('arrs', $arr)->with('articles', $articles)->with('cles', $cles)->with('user', $user)->with('cle', $cle)->with('clientes', $clientes);
     }
     public function duplicatedevise_vide($devi_id)
@@ -341,24 +345,44 @@ class devisesController extends Controller
     }
     public function finalisedevi($id)
     {
-        $affected = DB::table('devis')
-            ->where('id', $id)
-            ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
-        return \redirect()->back();
+
+        $etat = Devi::find($id)->etat_devis;
+        switch ($etat) {
+            case 'Provisoire':
+                DB::table('devis')
+                    ->where('id', $id)
+                    ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
+                Session::flash('statuscode', 'info');
+                return redirect()->back()->with('status_finalise_devi', 'Devis finalisé avec succès.');
+            case 'Refusés':
+                DB::table('devis')
+                    ->where('id', $id)
+                    ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
+                Session::flash('statuscode', 'info');
+                return \redirect()->back()->with('status_annuler_refuse', 'Refuse annulé avec succès.');
+            case 'Signés':
+                DB::table('devis')
+                    ->where('id', $id)
+                    ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
+                Session::flash('statuscode', 'info');
+                return \redirect()->back()->with('status_annuler_signature', 'Signature annulé avec succès.');
+        }
     }
     public function signéedevi($id)
     {
-        $affected = DB::table('devis')
+        DB::table('devis')
             ->where('id', $id)
             ->update(['etat_devis' => 'Signés', 'updated_at' => \Carbon\Carbon::now()]);
-        return \redirect()->back();
+        Session::flash('statuscode', 'success');
+        return \redirect()->back()->with('status_signe_devis', 'Devis signé avec succès.');
     }
     public function refusedevi($id)
     {
-        $affected = DB::table('devis')
+        DB::table('devis')
             ->where('id', $id)
             ->update(['etat_devis' => 'Refusés', 'updated_at' => \Carbon\Carbon::now()]);
-        return \redirect()->back();
+        Session::flash('statuscode', 'error');
+        return \redirect()->back()->with('status_refuse_devis', 'Devis refusé avec succès.');
     }
 
 
@@ -384,7 +408,8 @@ class devisesController extends Controller
         $user = auth()->user();
         $devises = Devi::where('user_id', $user->id)->get();
         $cles = Cle::all();
-        return view('devises.showdevises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
+        Session::flash('statuscode', 'error');
+        return redirect()->route('devises.index')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cles)->with('status_delete_devi', 'Devis supprimé avec succès.');
     }
     /**
      * Store a newly created resource in storage.
@@ -392,32 +417,37 @@ class devisesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_duplicate(devisRequest $request)
+    public function store_duplicate(Request $request)
     {
-        $user = auth()->user();
         // dd($request);
+
+        $user = auth()->user();
         DB::table('devis')->insert([
             'etat_devis' => 'Provisoire',
             'remised' => $request->remise,
             'total_ht_articlesdf' => $request->total_ht_articlesdf,
-            'remise_gendf' => $request->total_ht_apres_remise_gendf,
             'total_ht_apres_remise_gendf' => $request->total_ht_apres_remise_gendf,
+            'remise_gendf' => $request->remise_gendf,
             'tvadf' => $request->tvadf,
             'total_facturedf' => $request->total_facturedf,
             'condition_regld' => $request->condition_reglement,
             'mode_regld' => $request->mode_reglement,
             'interet_regld' => $request->interet,
-            'text_introductiond' => $request->text_intro,
-            'text_conclusiond' => $request->text_concl,
-            'pied_paged' => $request->text_pied,
+            'text_introductiond' => $request->text_introd,
+            'text_conclusiond' => $request->text_concld,
+            'pied_paged' => $request->text_piedd,
             'condition_vented' => $request->condition_vente,
             'client_id' => $request->clients,
             'user_id' => $user->id,
             'devis' => $request->devis,
+            'code_devis' => $request->code_devis,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
         $id = DB::getPdo()->lastInsertId();
+        $devis = Devi::where('id', $id)->first();
+        $devis->code_devis = 'D' . $devis->created_at->format('Y') . $id;
+        $devis->save();
         for ($i = 0; $i < \count($request->quantitéd); $i++) {
             DB::table('articles')->insert(array(
                 array(
@@ -435,30 +465,31 @@ class devisesController extends Controller
                 )
             ));
         };
-        $test2 = $request->motcle[0];
+        $test2 = $request->motcled[0];
         if ($test2 == null) {
             for ($t = 0; $t < 0; $t++) {
                 break;
                 DB::table('cles')->insert(array(
                     array(
                         'devi_id' => $id,
-                        'mot_cle' => $request->motcle[$t]
+                        'mot_cle' => $request->motcled[$t]
                     )
                 ));
             };
         } else {
-            for ($n = 0; $n < \count($request->motcle); $n++) {
+            for ($n = 0; $n < \count($request->motcled); $n++) {
                 DB::table('cles')->insert(array(
                     array(
                         'devi_id' => $id,
-                        'mot_cle' => $request->motcle[$n]
+                        'mot_cle' => $request->motcled[$n]
                     )
                 ));
             };
         }
         $user = auth()->user();
         $devises = Devi::where('user_id', $user->id)->get();
-        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
+        Session::flash('statuscode', 'success');
+        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('status_duplicate_devi', 'Devis dupliqué avec succès.');
     }
     public function genererpdf($devi_id)
     {
@@ -474,6 +505,7 @@ class devisesController extends Controller
         $cle = Cle::select('mot_cle')->distinct()->get();
         return \view('devises.adddevis')->with('client_determiner', $client_determiner)->with('user', $user)->with('cles', $cle);
     }
+
     public function duplicateen_facture($devi_id)
     {
         $arr = ['(DH)', '($)', '(€)'];
@@ -485,7 +517,7 @@ class devisesController extends Controller
         $clientes = Client::where('user_id', $user->id)->get();
         $cles = Cle::where('devi_id', $devi_id)->get();
         $cle = Cle::select('mot_cle')->distinct()->get();
-        return \view('devises.duplicateen_facture')->with('devis', $devi)->with('arrs', $arr)->with('articles', $articles)->with('cles', $cles)->with('clientes', $clientes)->with('user', $user)->with('cle', $cle);
+        return \view('devises.duplicateen_facture')->with('debours', [])->with('devis', $devi)->with('arrs', $arr)->with('articles', $articles)->with('cles', $cles)->with('clientes', $clientes)->with('user', $user)->with('cle', $cle);
     }
     public function search(Request $request)
     {

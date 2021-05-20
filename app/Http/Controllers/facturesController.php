@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 
+use Illuminate\Support\Facades\Session;
+
 class facturesController extends Controller
 {
     /**
@@ -49,8 +51,8 @@ class facturesController extends Controller
      */
     public function store(factureRequest $request)
     {
-        $user = auth()->user();
         // dd($request);
+        $user = auth()->user();
         DB::table('factures')->insert([
             'etat_facture' => 'Provisoire',
             'remised' => $request->remise,
@@ -154,7 +156,13 @@ class facturesController extends Controller
         $factures = Facture::where('user_id', $user->id)->get();
         // $cle = Cle::where("devi_id",);
         // return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cle', $cle);
-        return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
+        Session::flash('statuscode', 'success');
+        if ($request->check === 'duplicate') {
+            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('status_duplicate_devi_en_facture', 'Devi dupliqué  en facture avec succès.');
+        }
+        else{
+            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('status_add_facture', 'Facture créé avec succès.');
+        }
     }
 
     /**
@@ -385,6 +393,7 @@ class facturesController extends Controller
         // dd($debours);
         $cles = Cle::where('facture_id', $facture_id)->get();
         $cle = Cle::select('mot_cle')->distinct()->get();
+
 
         if ($debours->count()) {
             return \view('factures.duplicatefacture')->with('facture', $factures)->with('clients', $client)->with('arrs', $arr)->with('articles', $articles)->with('debours', $debours)->with('cles', $cles)->with('user', $user)->with('clientes', $clientes)->with('cle', $cle);

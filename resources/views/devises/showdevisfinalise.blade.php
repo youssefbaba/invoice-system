@@ -28,9 +28,9 @@
             <li class="list-inline-item"><a href="{{route('devises.showsigne')}}">Signés</a></li>
         </ul>
     </div>
-    <div class="container-fluid mt-4">
+    <div class="container-fluid pt-2 m-3">
 
-                <a href="{{route('devises.create')}}" class="bg-info font-weight-bold p-2 ml-3 border rounded btn-sm" id="ajouter_client">Ajouter un devis</a>
+                <a href="{{route('devises.create')}}" class="p-2 border" style="background-color: #4DBCED;" id="ajouter_client">Ajouter un devis</a>
                @if ($devises->count() > 0)
                     <div class="row">
                     @foreach ($devises as $devis)

@@ -427,6 +427,7 @@ class AvoirController extends Controller
         $cles = Cle::where('avoir_id', $avoir_id)->get();
         $cle = Cle::select('mot_cle')->distinct()->get();
 
+        
         if ($debours->count()) {
             return \view('avoirs.duplicateen_facture')->with('avoir', $avoirs)->with('clients', $client)->with('arrs', $arr)->with('articles', $articles)->with('debours', $debours)->with('cles', $cles)->with('user', $user)->with('clientes', $clientes)->with('cle', $cle);
         } else {

@@ -45,6 +45,7 @@ function total_montant(){
     });
     $('#total_debours').val(total_montant_debours);
 };
+
 //Event Bubbling.
 document.addEventListener('change', function (event) {
     if ( event.target.classList.contains( 'montant_debours_class' ) ) {

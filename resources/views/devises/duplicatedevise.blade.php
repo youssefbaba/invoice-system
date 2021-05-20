@@ -5,7 +5,7 @@
 @section('contenu_inside')
 <div class="contain_inside">
     <div class="card-body">
-        <form action="{{route('store_duplicate')}}" method="post" id="bigform">
+        <form action="{{ route('store_duplicate') }}" method="POST" id="bigform">
             @csrf
             <div class="client col-md-8">
                 <div class="form-group">
@@ -18,6 +18,10 @@
                             <option value="{{$clients->id}}" selected>{{$clients->nom_client}}&nbsp;{{$clients->prenom_client}}</option>
                         @endisset
                     </select>
+                    @error('clients')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                 </div>
             </div>
             <div class="col-md-8">
@@ -31,12 +35,19 @@
                         <option value="($)" @if($devis->devis == '($)') selected @endif>Dollar($)</option>
                         <option value="(€)" @if($devis->devis == '(€)') selected @endif>Euro(€)</option>
                     </select>
+                    @error('devis')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="tva">Tva Pour Devis (%)</label>
-                    <input  value="" onchange="change()" type="number" id="tvashow" class="form-control showtva" step="any" >
+                    <input  value="" name="tvad[]"  onchange="change()" type="number" id="tvashow" class="form-control showtva" step="any" >
+                    @error('tvad')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-8">
@@ -60,6 +71,9 @@
                                 <option value="Service" @if($article->type_article == 'Service') selected @endif>Service
                                 </option>
                             </select>
+                            @error('typed')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-1 form-group">
@@ -77,6 +91,10 @@
                             <label for="quantité">Quantité</label>
                             <input type="number" name="quantitéd[]" id="quantité" class="form-control quantité" min="0"
                                 step="any" value="{{$article->quantité_article}}">
+                                @error('quantitéd')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -84,6 +102,9 @@
                             <label for="prixht">Prix HT</label>
                             <input type="number" name="prixhtd[]" id="prixht" class="form-control prixht" min="0"
                                 step="any" value="{{$article->prix_ht_article}}">
+                                @error('prixhtd')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -91,6 +112,9 @@
                             <label for="reduction">Réduction</label>
                             <input type="number" name="reductiond[]" id="reduction" class="form-control reduction"
                                 step="any" value="{{$article->reduction_article}}">
+                                @error('reductiond')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -98,6 +122,9 @@
                             <label for="totalht">Total HT</label>
                             <input type="text" name="totalhtd[]" id="totalht" class="form-control totalht" step="any"
                                 readonly value="{{$article->total_ht_article}}">
+                                @error('totalhtd')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -105,12 +132,15 @@
                             <label for="totalttc">Total TTC</label>
                             <input type="text" readonly name="totalttcd[]" id="totalttc" class="form-control totalttc"
                                 step="any" value="{{$article->total_ttc_article}}">
+                                @error('totalttcd')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="tva" hidden>TVA</label>
-                            <input type="number" hidden name="tvad[]" id="tva" class="form-control tva hiddentva" step="any"
+                            <label for="tva" hidden >TVA</label>
+                            <input type="number" hidden  name="tvad[]" id="tva" class="form-control tva hiddentva" step="any"
                                 value="{{$article->tva}}">
                         </div>
                     </div>
@@ -121,6 +151,10 @@
                             <label for="description">Description</label>
                             <textarea type="text" name="descriptiond[]" id="description"
                                 class="form-control description">{{$article->description_article}}</textarea>
+                                @error('descriptiond')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
                         </div>
                     </div>
                 </div>
@@ -133,6 +167,17 @@
                         <div class="div form-group">
                             <input type="number" value="{{$devis->remised}}" name="remise" id="remise" placeholder="remise"
                                 class="form-control remise_class">
+                            @error('remise')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <div class="div form-group">
+                            <input type="hidden" value="{{$devis->code_devis}}" name="code_devis">
                         </div>
                     </div>
                 </div>
@@ -148,7 +193,7 @@
                         </div>
                         <div class="row mb-1">
                             <div class="col-md-6 font-weight-bold">Remise générale</div>
-                            <input type="number" name="total_ht_apres_remise_gendf"
+                            <input type="number" name="remise_gendf"
                             class="col-md-3 font-weight-bold border-0 bg-transparent" readonly id="remise_general" value="{{$devis->remise_gendf}}"
                                 placeholder="0.00">
                             <span class="col-md-3 font-weight-bold spn_devis">DH</span>
@@ -195,6 +240,9 @@
                             <option value="120 Jours Fin De Mois" @if($devis->condition_regld == '120 Jours Fin De Mois') selected @endif>120 Jours Fin De Mois</option>
                             <option value="120 Jours" @if($devis->condition_regld == '120 Jours') selected @endif>120 Jours</option>
                         </select>
+                        @error('condition_reglement')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -209,6 +257,9 @@
                             <option value="PayPal" @if($devis->mode_regld == 'PayPal') selected @endif>PayPal</option>
                             <option value="Espèces" @if($devis->mode_regld == 'Espèces') selected @endif>Espèces</option>
                         </select>
+                        @error('mode_reglement')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -224,6 +275,9 @@
                             <option value="Taux d’intérêt légal en vigueur" @if($devis->interet_regld == 'Taux d’intérêt légal en vigueur') selected @endif>Taux d’intérêt légal en vigueur</option>
                             <option value="À préciser" @if($devis->interet_regld == 'À préciser') selected @endif>À préciser</option>
                         </select>
+                        @error('interet')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -235,32 +289,44 @@
             <div class="contain_textes col-md-8">
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <textarea name="text_intro" cols="30" rows="3" class="form-control"
+                        <textarea name="text_introd" cols="30" rows="3" class="form-control"
                             placeholder="Texte d'introduction (visible sur la devis)">{{$devis->text_introductiond}}</textarea>
+                            @error('text_introd')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <textarea name="text_concl" cols="30" rows="3" class="form-control"
+                        <textarea name="text_concld" cols="30" rows="3" class="form-control"
                             placeholder="Texte de conclusion (visible sur la devis)">{{$devis->text_conclusiond}}</textarea>
+                            @error('text_concld')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <textarea name="text_pied" cols="30" rows="3" class="form-control"
+                        <textarea name="text_piedd" cols="30" rows="3" class="form-control"
                             placeholder="Pied de page (visible sur la devis)">{{$devis->pied_paged}}</textarea>
+                            @error('text_piedd')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <textarea name="condition_vente" cols="30" rows="3" class="form-control"
+                        <textarea name="text_cond" cols="30" rows="3" class="form-control"
                             placeholder="Conditions de vente (visible sur la devis)">{{$devis->condition_vented}}</textarea>
+                        @error('text_cond')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -274,7 +340,7 @@
                     <div class="col-md-6">
                         <h5>Mots clés:</h5>
                         <div class="group_cle ">
-                                <select name="motcle[]" id="motcle_facture" multiple="multiple" class="clé form-control">
+                                <select name="motcled[]" id="motcle_facture" multiple="multiple" class="clé form-control">
                                     @foreach ($cle as $item)
                                     <option>{{$item->mot_cle}}</option>
                                     @endforeach
@@ -282,6 +348,10 @@
                                     <option value="{{$cle->mot_cle}}"  selected >{{$cle->mot_cle}}</option>
                                     @endforeach
                                 </select>
+                                @error('motcled')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -290,8 +360,7 @@
             </div>
             <div class="row mt-3 col-md-6">
                 <div class="col-md-6">
-                    <input type="submit" value="Dupliquer le devis " name="submit"
-                        class="btn btn-success form-control font-weight-bold text-weight">
+                    <button type="submit" class="btn btn-success form-control font-weight-bold text-weight">Dupliquer le devis </button>
                 </div>
                 <div class="col-md-6">
                 </div>

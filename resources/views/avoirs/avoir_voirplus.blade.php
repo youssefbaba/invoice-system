@@ -114,7 +114,7 @@
                 @endif
                 @if ($avoir->etat_facture == 'Provisoire')
                 <li>
-                    <a href="#" data-href="{{route('deleteavoir',$avoir->id)}}" data-toggle="modal" data-target="#confirm-delete"   >
+                    <a href="#" data-href="{{route('deleteavoir',$avoir->id)}}" data-toggle="modal" data-target="#confirm-delete">
 
                         Supprimer
                     </a>

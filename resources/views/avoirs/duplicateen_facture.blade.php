@@ -132,8 +132,6 @@
             @endforeach
 
 
-
-
             {{-- start debour  --}}
             @if($debours !== [])
             <div class="col-md-8">
@@ -180,6 +178,10 @@
             {{-- end debours  --}}
             @endif
 
+
+
+
+
             {{-- start debour  --}}
             @if($debours === [])
 
@@ -225,6 +227,9 @@
                 {{-- end -debours --}}
 
             @endif
+
+
+
 
 
 

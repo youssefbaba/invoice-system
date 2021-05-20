@@ -24,7 +24,11 @@
             <ul class="navbar-nav ml-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link text-center btn btn-outline-primary "   href="{{route('dashboard')}}" >Home</a>
+                        @if(Auth::user()->role === 1)
+                        <a class="nav-link text-center btn btn-outline-primary "   href="{{route('admin')}}" >Home</a>
+                        @else
+                        <a class="nav-link text-center btn btn-outline-primary "   href="{{route('clients.index')}}" >Home</a>
+                        @endif
                     </li>
                 @else
                     <li class="nav-item">

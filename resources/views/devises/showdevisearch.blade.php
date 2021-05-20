@@ -18,9 +18,6 @@
               <i class="fas fa-search"></i>
             </button>
           </div>
-        {{-- <span class="fa fa-search form-control-feedback"></span>
-        <input type="text" class="form-control" placeholder="Search" id="search" name="q">
-        <button type="submit" class="btn btn-primary mt-2 d-none"> Search</button> --}}
     </form>
 </div>
 @endsection
@@ -33,7 +30,7 @@
 <div class="contain_inside">
 
     {{-- start container li fih les cards dyal les devis  --}}
-    <div class="container-fluid mt-4">
+    <div class="container-fluid pt-2 m-3">
                 @if ($devis_cles_clients === [])
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{$status}}

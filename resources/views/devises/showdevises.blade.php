@@ -20,8 +20,6 @@
 
 @section('contenu_inside')
 <div class="contain_inside">
-
-
     {{-- etat_div --}}
     <div class="etat_div">
         <ul class="list-inline">
@@ -34,11 +32,10 @@
     </div>
     {{-- End etat_div --}}
 
-
     {{-- start container li fih les cards dyal les devis  --}}
-    <div class="container-fluid mt-4">
+    <div class="container-fluid  pt-2 m-3 ">
 
-                <a href="{{route('devises.create')}}" class="font-weight-bold p-2 ml-3 border rounded btn-sm " style="background-color: #4DBCED;" id="ajouter_client">Ajouter un devis</a>
+                <a href="{{route('devises.create')}}" class="p-2 border" style="background-color: #4DBCED;" id="ajouter_client">Ajouter un devis</a>
                 {{-- hnaya ila kano 3andna les devis deja m2ajautine --}}
                @if ($devises->count() > 0)
                     <div class="row">
@@ -179,14 +176,14 @@
             @csrf
             @method('DELETE')
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Supprimer devis</h5>
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer  Ce Devis</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Voulez-vous vraiment supprimer cette devis!!!
+                    Voulez-vous vraiment supprimer ce devis !!!!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

@@ -29,22 +29,13 @@
 @section('contenu_inside')
 <div class="contain_inside p-3">
 
-    <div class="container-fluid pt-2 mt-2">
+    <div class="container-fluid pt-2 mb-4">
 
-        @if ($clients === [])
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{$status}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        @else
+           <a href="{{route('clients.create')}}" class="p-2 border" style="background-color: #4DBCED"
+               id="ajouter_client">Ajouter un client</a>
 
-        <a href="{{route('clients.create')}}" class=" p-2 border" style="background-color: #4DBCED"
-            id="ajouter_client">Ajouter
-            un client</a>
         @if ($clients->count() > 0)
-        <div class="row">
+        <div class="row ">
             @foreach ($clients as $client)
             {{-- {{dd($client)}} --}}
             <div class="col-md-8 mt-3">
@@ -97,9 +88,6 @@
             Aucun client ajouté pour le moment
         </h2>
         @endif
-
-        @endif
-
     </div>
 
 
@@ -113,14 +101,14 @@
             @csrf
             @method('DELETE')
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Supprimer Client</h5>
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Supprimer Ce Client</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Voulez-vous vraiment supprimer cette client!!!
+                    Voulez-vous vraiment supprimer ce client !!!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -141,4 +129,5 @@
     }
 
 </script>
+
 @endsection

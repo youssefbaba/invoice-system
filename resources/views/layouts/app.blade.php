@@ -8,6 +8,7 @@
     <title>Fatoura</title>
     <!-- Fonts -->
     <link rel="stylesheet" href="{{ asset('font/css/all.css') }}">
+    <link href="{{ asset('css/tailwind.min.css') }}" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style_home.css') }}">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/facture_voirplus.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/avoir.css') }}">
 </head>
 <body >
         <div class="sidebar">
@@ -51,9 +53,195 @@
     <script src="{{ asset('js/showdevi.js') }}">
     <script src="{{ asset('js/showfacture.js') }}">
     <script src="{{ asset('js/showfacturepaye.js') }}">
-    <script src="{{ asset('js/jquery.js') }}">
-    <script src="{{ asset('js/bootstrap.bundle.js') }}">
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
-    </script>
+
+    @if (Session::get('status_update_client'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_update_client')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+
+                });
+            </script>
+            {{Session()->forget('status_update_client')}}
+            {{session()->flush()}}
+    @endif
+    @if (Session::get('status_delete_client'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_delete_client')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_add_client'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_add_client')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_add_facture'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_add_facture')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_add_devis'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_add_devis')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_add_utilisateur'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_add_utilisateur')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_updated_role_user'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_updated_role_user')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_delete_utilisateur'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_delete_utilisateur')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_finalise_devi'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_finalise_devi')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_update_devis'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_update_devis')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_destroy_devis'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_delete_devis')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_duplicate_devi'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_duplicate_devi')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_duplicate_devi_en_facture'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_duplicate_devi_en_facture')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_signe_devis'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_signe_devis')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_refuse_devis'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_refuse_devis')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_annuler_refuse'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_annuler_refuse')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+
+    @if (Session::get('status_annuler_signature'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_annuler_signature')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+    @if (Session::get('status_delete_devi'))
+            <script type="text/javascript">
+                swal({
+                    title:"{{Session::get('status_delete_devi')}}",
+                    icon:"{{Session::get('statuscode')}}",
+                    button:'OK',
+                });
+            </script>
+    @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

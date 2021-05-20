@@ -27,10 +27,10 @@
                 <a class="link-hover-focus" href="tel:{{$clients->tel_client}}">{{$clients->tel_client}}</a>
             </div>
             <hr>
-            <div>
+            {{-- <div>
                 <p class="text-muted d-inline-flex">Société:</p>
                 <a href="#" style="color: red">{{$clients->societe_client}} (mzl madart  had partie  dyal société)</a>
-            </div>
+            </div> --}}
             <div>
                 <p class="text-muted d-inline-flex">Adresse:</p>
                 <p class="d-inline-flex">{{$clients->adresse_client}}</p>

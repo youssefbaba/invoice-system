@@ -26,10 +26,11 @@ class factureRequest extends FormRequest
         return [
             'quantité' => 'required',
             'prixht' => 'required',
-            'motcle' => 'required|max:30',
+            'motcle' => 'required|max:250',
             'text_intro' => 'required|max:250',
             'text_concl' => 'required|max:250',
-            'text_pied' => 'required|max:250'
+            'text_pied' => 'required|max:250',
+            'compte_bancaire' => 'required'
         ];
     }
 }

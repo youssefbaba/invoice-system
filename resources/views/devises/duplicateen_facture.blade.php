@@ -38,6 +38,11 @@
                 </div>
             </div>
             <div class="col-md-8">
+                <div class="form-group">
+                    <input value="duplicate" name="check"  type="hidden">
+                </div>
+            </div>
+            <div class="col-md-8">
                 <h4 class="text-left font-weight-bold">Articles</h4>
             </div>
             @foreach ($articles as $article)
@@ -75,6 +80,9 @@
                             <label for="quantité">Quantité</label>
                             <input type="number" name="quantité[]" id="quantité" class="form-control quantité" min="0"
                                 step="any" value="{{$article->quantité_article}}">
+                                @error('quantité')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -82,6 +90,9 @@
                             <label for="prixht">Prix HT</label>
                             <input type="number" name="prixht[]" id="prixht" class="form-control prixht" min="0"
                                 step="any" value="{{$article->prix_ht_article}}">
+                                @error('prixht')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -125,46 +136,53 @@
 
             </div>
             @endforeach
-            <div class="col-md-8">
-                <h4 class="text-left font-weight-bold">Débours</h4>
-            </div>
-            <div class="col-md-8">
-                <button type="button" class="btn btn-light btn-md count_btn_ajout" id="ajout_debours">Ajouter un
-                    débours</button>
-            </div>
-            <div class="contain_debours col-md-8 mt-3" id="contain_debours">
-            </div>
-                <div class="contain_debours col-md-8 mt-3" id="contain_debours">
+
+            {{-- start debour  --}}
+            @if($debours === [])
+
+                <div class="col-md-8">
+                    <h4 class="text-left font-weight-bold">Débours</h4>
+                </div>
+                {{-- {{dd('empty')}} --}}
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-light btn-md count_btn_ajout" id="ajout_debours">Ajouter un débours</button>
+                </div>
+
+                <div class="contain_debours d-none col-md-8" id="contain_debours">
+                    <button type="button" class="btn btn-info btn-sm duplicate_debours my-3 form-control">Duplicate</button>
                     <div id="contain_debours2" class="contain_debours_count">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <input type="text" name="references[]" placeholder="References de la facture"
-                                        class="form-control" >
+                                        class="form-control referdebours" id="references">
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <input type="number" name="montant_ht[]" placeholder="Montant HT" id="montant_debours"
-                                        class="form-control montant_debours_class" >
+                                        class="form-control montant_debours_class">
                                 </div>
                             </div>
                             <div class="col-2 form-group">
-                                <button type="button" class="btn btn-danger btn-sm delete_debours form-control"
-                                    onclick="delete_row(this)" id="delete_debo"><i class="far fa-trash-alt"></i></button>
+                                <button type="button" class="btn btn-danger btn-sm delete_debours form-control" onclick="delete_row(this)" id="delete_debo"><i
+                                        class="far fa-trash-alt"></i></button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <textarea type="text" name="descriptiond[]" id="descriptiond"
-                                        class="form-control description_debours"
-                                        placeholder="Description"></textarea>
+                                        class="form-control description_debours" placeholder="Description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- end -debours --}}
+
+            @endif
+
             <div class="contain_total col-md-8">
                 <div class="row">
                     <div class="col-md-8"></div>
@@ -279,6 +297,9 @@
                         <label for="compte_bancaire">Compte bancaire</label>
                         <input type="text" name="compte_bancaire" id="compte_bancaire" placeholder="Compte bancaire"
                             class="form-control">
+                        @error('compte_bancaire')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -292,6 +313,9 @@
                     <div class="col-md-6 form-group">
                         <textarea name="text_intro" cols="30" rows="3" class="form-control"
                             placeholder="Texte d'introduction (visible sur la facture)">{{$devis->text_introductiond}}</textarea>
+                        @error('text_intro')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -300,6 +324,9 @@
                     <div class="col-md-6 form-group">
                         <textarea name="text_concl" cols="30" rows="3" class="form-control"
                             placeholder="Texte de conclusion (visible sur la facture)">{{$devis->text_conclusiond}}</textarea>
+                        @error('text_concl')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -308,6 +335,9 @@
                     <div class="col-md-6 form-group">
                         <textarea name="text_pied" cols="30" rows="3" class="form-control"
                             placeholder="Pied de page (visible sur la facture)">{{$devis->pied_paged}}</textarea>
+                        @error('text_pied')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -329,9 +359,9 @@
                                     <option value="{{$cle->mot_cle}}"  selected >{{$cle->mot_cle}}</option>
                                 @endforeach
                                 </select>
-                                @if($errors->has('motcle'))
-                                    <p class="text-danger eror" >doit être rempli(e)</p>
-                                @endif
+                                @error('motcled')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -351,15 +381,24 @@
 </div>
 @endsection
 @section('script')
-<script src="{{ asset('js/dupliquerdevienfacture.js') }}"></script>
+<script src="{{asset('js/duplicateavoir.js')}}"></script>
 <script>
+
+    jQuery(function(){
+         jQuery('.count_btn_ajout').click();
+    });
     function change() {
-        var valueTva = $('.showtva').val();
-        $('.hiddentva').val(valueTva);
-       }
+            var valueTva = $('.showtva').val();
+            $('.hiddentva').val(valueTva);
+    }
 
     var valueTva = $('.hiddentva').val();
     document.getElementById("tvashow").value = valueTva;
+
+    $('.clé').select2({
+            tags: true
+        });
+
 
 </script>
 @endsection

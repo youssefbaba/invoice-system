@@ -1,4 +1,5 @@
- <p>Voilà votre email et mot de passe pour l'authentification sur l'application Fatoura </p>
+ <p>Voilà vos email et mot de passe pour l'authentification sur l'application Fatoura </p>
+ <p>lien pour l'authentification :  <a href="{{ route('login') }}">Authentification</a></p>
  <p>Email:<span>{{$user->email}}</span></p>
  <p>Mot de passe:<span>{{$password}}</span></p>
  <p style="color: red">Après l'authentification c'est obligatoire de modifier votre mot de passe et finir le remplissage de votre information</p>
