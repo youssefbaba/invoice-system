@@ -1,8 +1,7 @@
 @extends('home')
 @section('header_content')
-<h2 id="grand_title_addclient" class="text-uppercase">Nouveau&nbsp;en&nbsp;facture</h2>
+<h2 id="grand_title_addclient" class="text-uppercase">Nouveau&nbsp;facture</h2>
 @endsection
-
 
 @section('contenu_inside')
 <div class="contain_inside">
@@ -23,6 +22,9 @@
                                         @endforeach
                                     @endempty
                                 </select>
+                                @error('clients')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -36,12 +38,18 @@
                                     <option value="($)">Dollar($)</option>
                                     <option value="(€)">Euro(€)</option>
                                 </select>
+                                @error('devis')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label for="tva">Tva Pour Facture (%)</label>
-                                <input onchange="change()" type="number" name="" id="" class="form-control showtva" step="any">
+                                <input onchange="change()" type="number" name="tva[]"  class="form-control showtva" step="any">
+                                @error('tva')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -59,6 +67,9 @@
                                             <option value="Produit">Produit</option>
                                             <option value="Service">Service</option>
                                         </select>
+                                        @error('type')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                     </div>
                                 </div>
                                 <div class="col-1 form-group">
@@ -76,6 +87,9 @@
                                         <label for="quantité">Quantité</label>
                                         <input type="number" name="quantité[]" id="quantité"
                                             class="form-control quantité" min="0" step="any">
+                                            @error('quantité')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -83,6 +97,10 @@
                                         <label for="prixht">Prix HT</label>
                                         <input type="number" name="prixht[]" id="prixht" class="form-control prixht"
                                             min="0" step="any">
+                                            @error('prixht')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -90,6 +108,9 @@
                                         <label for="reduction">Remise (%)</label>
                                         <input type="number" name="reduction[]" id="reduction"
                                             class="form-control reduction" step="any">
+                                            @error('reduction')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -97,6 +118,9 @@
                                         <label for="totalht">Total HT</label>
                                         <input type="text" name="totalht[]" id="totalht" class="form-control totalht"
                                             step="any" readonly>
+                                            @error('totalht')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -104,6 +128,9 @@
                                         <label for="totalttc">Total TTC</label>
                                         <input type="text" name="totalttc[]" id="totalttc"
                                             class="form-control totalttc" step="any" readonly>
+                                            @error('totalttc')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -119,6 +146,9 @@
                                         <label for="description">Description</label>
                                         <textarea type="text" name="description[]" id="description"
                                             class="form-control description"></textarea>
+                                            @error('description')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                             </div>
@@ -178,6 +208,9 @@
                                 <div class="col-md-4">
                                     <div class="div form-group">
                                         <input type="number" name="remise" id="remise" placeholder="remise (%)" class="form-control remise_class" >
+                                        @error('remise')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                 </div>
                             </div>
@@ -236,6 +269,9 @@
                                         <option value="120 Jours Fin De Mois">120 Jours Fin De Mois</option>
                                         <option value="120 Jours">120 Jours</option>
                                     </select>
+                                    @error('condition_reglement')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -250,6 +286,9 @@
                                         <option value="PayPal">PayPal</option>
                                         <option value="Espèces">Espèces</option>
                                     </select>
+                                    @error('mode_reglement')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -265,6 +304,9 @@
                                         <option value="Taux d’intérêt légal en vigueur">Taux d’intérêt légal en vigueur</option>
                                         <option value="À préciser">À préciser</option>
                                     </select>
+                                    @error('interet')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -273,6 +315,9 @@
                                 <div class="col-md-6 form-group">
                                     <label for="compte_bancaire">Compte bancaire</label>
                                     <input  type="text" name="compte_bancaire" id="compte_bancaire" placeholder="Compte bancaire" class="form-control">
+                                    @error('compte_bancaire')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -285,6 +330,9 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <textarea name="text_intro"  cols="30" rows="3" class="form-control" placeholder="Texte d'introduction (visible sur la facture)"></textarea>
+                                    @error('text_intro')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -292,6 +340,9 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <textarea name="text_concl"  cols="30" rows="3" class="form-control" placeholder="Texte de conclusion (visible sur la facture)"></textarea>
+                                    @error('text_concl')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -299,6 +350,9 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <textarea name="text_pied"  cols="30" rows="3" class="form-control" placeholder="Pied de page (visible sur la facture)"></textarea>
+                                    @error('text_pied')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -318,9 +372,9 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if($errors->has('motcle'))
-                                        <p class="text-danger eror" >doit être rempli(e)</p>
-                                    @endif
+                                    @error('motcle')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>

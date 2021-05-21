@@ -77,7 +77,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('changefacturepayé/{facture_id}', 'facturesController@facturepayéchange')->name('facture.change.payé');
     Route::get('deletefacture/{facture_id}', 'facturesController@deletefacture')->name('deletefacture');
     Route::get('showfacturepaye', 'facturesController@facturepaye')->name('factures.paye');
-    Route::get('showfactureapaye', 'facturesController@factureapaye')->name('factures.apayé');
     Route::get('changefactureanulle/{facture_id}', 'facturesController@annulepaiement')->name('facture.anulle_paiement');
     Route::resource('factures', 'facturesController')->middleware('auth');
     Route::get('create_facture/{id}', 'facturesController@create_facture_client')->name('create_determine_facture');

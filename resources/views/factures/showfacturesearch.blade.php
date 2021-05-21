@@ -25,7 +25,7 @@
 @section('contenu_inside')
 <div class="contain_inside">
 
-    <div class="container-fluid mt-4">
+    <div class="container-fluid  pt-2 m-3">
                @if ($factures_cles_clients === [])
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{$status}}

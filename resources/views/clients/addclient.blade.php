@@ -12,35 +12,45 @@
             <div class="group_form">
                 <input type="text" name="adresse_email_client" id="adresse_email_client" class="inputs">
                 <label for="adresse_email_client" class="lb">Adresse Email</label>
-                @if($errors->has('adresse_email_client'))
+                @error('adresse_email_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                {{-- @if($errors->has('adresse_email_client'))
                     <p class="text-danger eror" >n'est pas une adresse email valide</p>
-                @endif
+                @endif --}}
             </div>
             <div class="group_form">
                 <input type="text" name="nom_client" id="nom_client" class="inputs">
                 <label for="nom_client" class="lb">Nom</label>
-                @if($errors->has('nom_client'))
-                    <p class="text-danger eror" >doit être rempli(e)</p>
-                @endif
+                @error('nom_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="prenom_client" id="prenom_client"  class="inputs">
                 <label for="prenom_client" class="lb">Prénom</label>
-                @if($errors->has('prenom_client'))
-                    <p class="text-danger eror" >doit être rempli(e)</p>
-                @endif
+                @error('prenom_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="fonction_client" id="fonction"  class="inputs">
                 <label for="fonction" class="lb">Fonction</label>
+                @error('fonction_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
             </div>
             <div class="group_form">
                 <input type="text" name="adresse_client" id="adresse"  class="inputs">
                 <label for="adresse" class="lb">Adresse client</label>
+                @error('adresse_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_langue mt-4">
                 <select name="langue" id="langue" class="mt-3">
-                    <option value="Francais">Francais</option>
+                    <option value="Francais" selected>Francais</option>
                     <option value="Arabic">Arabic</option>
                     <option value="Angalis">Angalis</option>
                 </select>
@@ -52,6 +62,10 @@
             <div class="group_form">
                 <textarea name="note_client" id="note_client" cols="30" rows="6" placeholder="Note sur client"
                             class="form-control"></textarea>
+                @error('note_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
             </div>
         </div>
         <div class="col-md-6 part3_addclient">
@@ -59,31 +73,30 @@
             <div class="group_form">
                 <input type="text" name="codepostal_client" id="codepostal"  class="inputs">
                 <label for="codepostal" class="lb">Code postal</label>
-                @if($errors->has('codepostal_client'))
-                    <p class="text-danger eror" >n'est pas valide</p>
-                @endif
+                @error('codepostal_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="ville_client" id="ville_client"  class="inputs">
                 <label for="ville_client" class="lb">Ville</label>
+                @error('ville_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="site_client" id="site_client"  class="inputs">
                 <label for="site_client" class="lb">Site</label>
-                @if($errors->has('site_client'))
-                    <p class="text-danger eror" >n'est pas valide</p>
-                @endif
+                @error('site_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="tel_client" id="tel_client"  class="inputs">
                 <label for="tel_client" class="lb">Teléphone</label>
-                @if($errors->has('tel_client'))
-                    <p class="text-danger eror" >n'est pas valide</p>
-                @endif
-            </div>
-            <div class="group_form">
-                <input type="text" name="societe_client" id="societe_client"  class="inputs">
-                <label for="societe_client" class="lb">Nom de sociéte</label>
+                @error('tel_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="col-md-6 part4_addclient">
@@ -94,9 +107,13 @@
                      <option>{{$cle->mot_cle}}</option>
                      @endforeach
                 </select>
+                @error('motcle_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
     </div>
+    
     <div class="d-flex justify-content-end contain_button_submit">
         <a href="{{ route('clients.index') }}" class="btn addclient_retour "><span><i class="fas fa-undo" style="background-color: #3E81C8"></i></span> Annuler</a>
         <button type="submit" id="addclient_sumbit_button"><span><i  class="fas fa-user-plus"  style="background-color: #13438A"></i></span>Ajouter un client</button>

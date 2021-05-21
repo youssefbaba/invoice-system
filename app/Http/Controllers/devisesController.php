@@ -122,8 +122,16 @@ class devisesController extends Controller
         $devises = Devi::where('user_id', $user->id)->get();
         // dd($devises );
         //return view('devises.showdevises')->with('devises',$devises)->with('clients',Client::all());
-        Session::flash('statuscode', 'success');
-        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('status_add_devis', 'Devis créé avec succès.');
+        if ($request->checked === 'dupliquer') {
+            Session::flash('status_duplicate_facture_en_devi', 'Facture dupliqué  en devis avec succès.');
+            return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
+
+        } else {
+            Session::flash('status_add_devis', 'Devis créé avec succès.');
+            return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
+        }
+
+
     }
 
 
@@ -245,8 +253,8 @@ class devisesController extends Controller
         }
         $user = auth()->user();
         $devises = Devi::where('user_id', $user->id)->get();
-        Session::flash('statuscode', 'success');
-        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('status_update_devis', 'Devi modifié avec succès.');
+        Session::flash('status_update_devis', 'Devi modifié avec succès.');
+        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
         //return dd($request);
     }
 
@@ -260,8 +268,8 @@ class devisesController extends Controller
     {
         $devise->delete();
 
-        Session::flash('statuscode', 'error');
-        return redirect()->back()->with('status_destroy_devis', 'Devis supprimé avec succès.');
+        Session::flash('status_destroy_devis', 'Devis supprimé avec succès.');
+        return redirect()->back();
     }
     public function editdevis($devi_id, $client_id)
     {
@@ -352,20 +360,20 @@ class devisesController extends Controller
                 DB::table('devis')
                     ->where('id', $id)
                     ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
-                Session::flash('statuscode', 'info');
-                return redirect()->back()->with('status_finalise_devi', 'Devis finalisé avec succès.');
+                Session::flash('status_finalise_devi', 'Devis finalisé avec succès.');
+                return redirect()->back();
             case 'Refusés':
                 DB::table('devis')
                     ->where('id', $id)
                     ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
-                Session::flash('statuscode', 'info');
-                return \redirect()->back()->with('status_annuler_refuse', 'Refuse annulé avec succès.');
+                Session::flash('status_annuler_refuse', 'Refuse annulé avec succès.');
+                return \redirect()->back();
             case 'Signés':
                 DB::table('devis')
                     ->where('id', $id)
                     ->update(['etat_devis' => 'Finalisé', 'updated_at' => \Carbon\Carbon::now()]);
-                Session::flash('statuscode', 'info');
-                return \redirect()->back()->with('status_annuler_signature', 'Signature annulé avec succès.');
+                Session::flash('status_annuler_signature', 'Signature annulé avec succès.');
+                return \redirect()->back();
         }
     }
     public function signéedevi($id)
@@ -373,16 +381,16 @@ class devisesController extends Controller
         DB::table('devis')
             ->where('id', $id)
             ->update(['etat_devis' => 'Signés', 'updated_at' => \Carbon\Carbon::now()]);
-        Session::flash('statuscode', 'success');
-        return \redirect()->back()->with('status_signe_devis', 'Devis signé avec succès.');
+        Session::flash('status_signe_devis', 'Devis signé avec succès.');
+        return \redirect()->back();
     }
     public function refusedevi($id)
     {
         DB::table('devis')
             ->where('id', $id)
             ->update(['etat_devis' => 'Refusés', 'updated_at' => \Carbon\Carbon::now()]);
-        Session::flash('statuscode', 'error');
-        return \redirect()->back()->with('status_refuse_devis', 'Devis refusé avec succès.');
+        Session::flash('status_refuse_devis', 'Devis refusé avec succès.');
+        return \redirect()->back();
     }
 
 
@@ -408,8 +416,8 @@ class devisesController extends Controller
         $user = auth()->user();
         $devises = Devi::where('user_id', $user->id)->get();
         $cles = Cle::all();
-        Session::flash('statuscode', 'error');
-        return redirect()->route('devises.index')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cles)->with('status_delete_devi', 'Devis supprimé avec succès.');
+        Session::flash('status_delete_devi', 'Devis supprimé avec succès.');
+        return redirect()->route('devises.index')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }
     /**
      * Store a newly created resource in storage.
@@ -488,8 +496,8 @@ class devisesController extends Controller
         }
         $user = auth()->user();
         $devises = Devi::where('user_id', $user->id)->get();
-        Session::flash('statuscode', 'success');
-        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('status_duplicate_devi', 'Devis dupliqué avec succès.');
+        Session::flash('status_duplicate_devi', 'Devis dupliqué avec succès.');
+        return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
     }
     public function genererpdf($devi_id)
     {

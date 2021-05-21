@@ -10,11 +10,7 @@
             <div class="client col-md-8">
                 <div class="form-group">
                     <label for="clients">Choisir le client</label>
-                    <select name="clientsd" id="clients" class="form-control">
-                        {{-- @foreach ($clientes as $client)
-                        <option value="{{$client->id}}" @if($client->id == $client->getClient_devise_id($devis->client_id)) selected @endif >{{$client->nom_client}}&nbsp;{{$client->prenom_client}}</option>
-                        @endforeach --}}
-
+                    <select name="clients" id="clients" class="form-control">
 
                         @foreach ($clients as $client)
                         <option value="{{$client->id}}" @if($client->id == $client->getClient_Facture_id($facture->client_id)) selected @endif >{{$client->nom_client}}&nbsp;{{$client->prenom_client}}</option>
@@ -28,7 +24,7 @@
             <div class="client col-md-8">
                 <div class="form-group">
                     <label for="devis">Choisir Le Devis</label>
-                    <select name="devisd" id="devis" class="form-control">
+                    <select name="devis" id="devis" class="form-control">
                         <option value="(DH)" @if($facture->devis == '(DH)') selected @endif>Dirham Marocain(DH)</option>
                         <option value="($)" @if($facture->devis == '($)') selected @endif>Dollar($)</option>
                         <option value="(€)" @if($facture->devis == '(€)') selected @endif>Euro(€)</option>
@@ -38,8 +34,13 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="tva">Tva Pour Devis (%)</label>
-                    <input value="" onchange="change()" type="number" id="tvashow" class="form-control showtva"
+                    <input value="" onchange="change()" type="number" name="tvad[]" id="tvashow" class="form-control showtva"
                         step="any">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <input value="dupliquer" name="checked" type="hidden">
                 </div>
             </div>
             <div class="col-md-8">
@@ -187,7 +188,7 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="conditions_reglement" class="text-muted">Conditions de règlement</label>
-                        <select name="condition_reglementd" id="conditions_reglement" class="form-control">
+                        <select name="condition_reglement" id="conditions_reglement" class="form-control">
                             <option value="A Réception" @if($facture->condition_reglf == 'A Réception') selected @endif>A Réception</option>
                             <option value="Fin de mois" @if($facture->condition_reglf == 'Fin de mois') selected @endif>Fin de mois</option>
                             <option value="10 Jours" @if($facture->condition_reglf == '10 Jours') selected @endif>10 Jours</option>
@@ -205,7 +206,7 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="mode_reglement" class="text-muted">Mode de règlement</label>
-                        <select name="mode_reglementd" id="mode_reglement" class="form-control">
+                        <select name="mode_reglement" id="mode_reglement" class="form-control">
                             <option value="Non spécifié" @if($facture->mode_reglf == 'Non spécifié') selected @endif>Non spécifié</option>
                             <option value="Virement bancaire" @if($facture->mode_reglf == 'Virement bancaire') selected @endif>Virement bancaire</option>
                             <option value="Carte bancaire" @if($facture->mode_regld == 'Carte bancaire') selected @endif>Carte bancaire</option>
@@ -219,7 +220,7 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="interet">Intérêt de retard</label>
-                        <select name="interetd" id="interet" class="form-control">
+                        <select name="interet" id="interet" class="form-control">
                             <option value="none" @if($facture->interet_reglf == 'none') selected @endif>Pas d'intérêts de retard</option>
                             <option value="1% par mois" @if($facture->interet_reglf == '1% par mois') selected @endif>1% par mois</option>
                             <option value="1,5% par mois" @if($facture->interet_reglf == '1,5% par mois') selected @endif>1,5% par mois</option>

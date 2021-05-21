@@ -1,7 +1,6 @@
 @extends('home')
 @section('header_content')
-<h2 id="grand_title_addclient "  class="text-uppercase ml-2 text-white">
-    Modifier&nbsp;le&nbsp;Role&nbsp;du&nbsp;{{$user->name}}&nbsp;{{$user->lastname}}</h2>
+<h2 id="grand_title_addclient" class="text-uppercase">Modifier&nbsp;le&nbsp;Role&nbsp;du&nbsp;{{$user->name}}&nbsp;{{$user->lastname}}</h2>
 @endsection
 @section('contenu_inside')
 <div class="container mt-2">

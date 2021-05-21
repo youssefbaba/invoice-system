@@ -1,6 +1,6 @@
 @extends('home')
 @section('header_content')
-<h2 id="grand_title_addclient" class="text-uppercase">Dupliquer&nbsp;en&nbsp;facture</h2>
+<h2 id="grand_title_addclient" class="text-uppercase">Dupliquer&nbsp;facture</h2>
 @endsection
 @section('contenu_inside')
 <div class="contain_inside">
@@ -19,6 +19,10 @@
                         <option value="{{$cliente->id}}" >{{$cliente->nom_client}}&nbsp;{{$cliente->prenom_client}}</option>
                         @endforeach
                     </select>
+                    @error('clients')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                 </div>
             </div>
             <div class="col-md-8">
@@ -32,13 +36,25 @@
                         <option value="($)" @if($facture->devis == '($)') selected @endif>Dollar($)</option>
                         <option value="(€)" @if($facture->devis == '(€)') selected @endif>Euro(€)</option>
                     </select>
+                    @error('devis')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <input value="dupliquer_factutre" type="hidden" name="check" >
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="tva">Tva Pour Facture (%)</label>
-                    <input value="" onchange="change()" type="number" id="tvashow" class="form-control showtva"
+                    <input value="" onchange="change()" type="number" name="tva[]" id="tvashow" class="form-control showtva"
                         step="any">
+                        @error('tva')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                 </div>
             </div>
             <div class="col-md-8">
@@ -63,6 +79,9 @@
                                 <option value="Service" @if($article->type_article == 'Service') selected @endif>Service
                                 </option>
                             </select>
+                            @error('type')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-1 form-group">
@@ -80,6 +99,9 @@
                             <label for="quantité">Quantité</label>
                             <input type="number" name="quantité[]" id="quantité" class="form-control quantité" min="0"
                                 step="any" value="{{$article->quantité_article}}">
+                                @error('quantité')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -87,6 +109,9 @@
                             <label for="prixht">Prix HT</label>
                             <input type="number" name="prixht[]" id="prixht" class="form-control prixht" min="0"
                                 step="any" value="{{$article->prix_ht_article}}">
+                                @error('prixht')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
 
@@ -95,6 +120,9 @@
                             <label for="reduction">Réduction</label>
                             <input type="number" name="reduction[]" id="reduction" class="form-control reduction"
                                 step="any" value="{{$article->reduction_article}}">
+                                @error('reduction')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -102,6 +130,9 @@
                             <label for="totalht">Total HT</label>
                             <input type="text" name="totalht[]" id="totalht" class="form-control totalht" step="any"
                                 readonly value="{{$article->total_ht_article}}">
+                                @error('totalht')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -109,6 +140,9 @@
                             <label for="totalttc">Total TTC</label>
                             <input type="text" readonly name="totalttc[]" id="totalttc" class="form-control totalttc"
                                 step="any" value="{{$article->total_ttc_article}}">
+                                @error('totalttc')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -125,6 +159,9 @@
                             <label for="description">Description</label>
                             <textarea type="text" name="description[]" id="description"
                                 class="form-control description">{{$article->description_article}}</textarea>
+                                @error('description')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                 </div>
@@ -238,6 +275,9 @@
                         <div class="div form-group">
                             <input type="number" value="{{$facture->remised}}" name="remise" id="remise" placeholder="remise"
                                 class="form-control remise_class">
+                                @error('remise')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                 </div>
@@ -307,6 +347,9 @@
                             <option value="120 Jours Fin De Mois" @if($facture->condition_reglf == '120 Jours Fin De Mois') selected @endif>120 Jours Fin De Mois</option>
                             <option value="120 Jours" @if($facture->condition_reglf == '120 Jours') selected @endif>120 Jours</option>
                         </select>
+                        @error('condition_reglement')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -321,6 +364,9 @@
                             <option value="PayPal" @if($facture->mode_reglf == 'PayPal') selected @endif>PayPal</option>
                             <option value="Espèces" @if($facture->mode_reglf == 'Espèces') selected @endif>Espèces</option>
                         </select>
+                        @error('mode_reglement')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -336,6 +382,9 @@
                             <option value="Taux d’intérêt légal en vigueur" @if($facture->interet_reglf == 'Taux d’intérêt légal en vigueur') selected @endif>Taux d’intérêt légal en vigueur</option>
                             <option value="À préciser" @if($facture->interet_reglf == 'À préciser') selected @endif>À préciser</option>
                         </select>
+                        @error('interet')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -345,6 +394,9 @@
                         <label for="compte_bancaire">Compte bancaire</label>
                         <input type="text" name="compte_bancaire" id="compte_bancaire" placeholder="Compte bancaire"
                             class="form-control" value="{{$facture->code_bancf}}">
+                            @error('compte_bancaire')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -358,6 +410,9 @@
                     <div class="col-md-6 form-group">
                         <textarea name="text_intro" cols="30" rows="3" class="form-control"
                             placeholder="Texte d'introduction (visible sur la facture)">{{$facture->text_introductionf}}</textarea>
+                            @error('text_intro')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -366,6 +421,9 @@
                     <div class="col-md-6 form-group">
                         <textarea name="text_concl" cols="30" rows="3" class="form-control"
                             placeholder="Texte de conclusion (visible sur la facture)">{{$facture->text_conclusionf}}</textarea>
+                            @error('text_concl')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -374,6 +432,9 @@
                     <div class="col-md-6 form-group">
                         <textarea name="text_pied" cols="30" rows="3" class="form-control"
                             placeholder="Pied de page (visible sur la facture)">{{$facture->pied_pagef}}</textarea>
+                            @error('text_pied')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6">
                     </div>
@@ -395,9 +456,9 @@
                                     <option value="{{$cle->mot_cle}}"  selected >{{$cle->mot_cle}}</option>
                                    @endforeach
                                 </select>
-                                @if($errors->has('motcle'))
-                                    <p class="text-danger eror" >doit être rempli(e)</p>
-                                @endif
+                                @error('motcle')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-md-6">

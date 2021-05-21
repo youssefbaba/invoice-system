@@ -30,10 +30,8 @@
 <div class="contain_inside p-3">
 
     <div class="container-fluid pt-2 mb-4">
-
-           <a href="{{route('clients.create')}}" class="p-2 border" style="background-color: #4DBCED"
-               id="ajouter_client">Ajouter un client</a>
-
+            <a href="{{route('clients.create')}}" class="p-2 border" style="background-color: #4DBCED"
+            id="ajouter_client">Ajouter un client</a>
         @if ($clients->count() > 0)
         <div class="row ">
             @foreach ($clients as $client)

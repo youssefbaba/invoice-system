@@ -93,8 +93,8 @@ class clientsController extends Controller
                 ));
             };
         }
-        Session::flash('statuscode', 'success');
-        return redirect()->route('clients.index')->with('user', $user)->with('status_add_client', 'Client créé avec succès.');
+        Session::flash('status_add_client', 'Client créé avec succès.');
+        return redirect()->route('clients.index')->with('user', $user);
     }
 
     /**
@@ -171,8 +171,8 @@ class clientsController extends Controller
                 ));
             };
         }
-        Session::flash('statuscode', 'info');
-        return \redirect('clients')->with('user', $user)->with('status_update_client', 'Client modifié avec succès.');
+        Session::flash('status_update_client', 'Client modifié avec succès.');
+        return \redirect('clients')->with('user', $user);
     }
 
     /**
@@ -188,8 +188,8 @@ class clientsController extends Controller
             DB::table('cles')->where('client_id', $client->id)->delete();
         };
         $client->delete();
-        Session::flash('statuscode', 'error');
-        return redirect('clients')->with('status_delete_client', 'Client supprimé avec succès.');
+        Session::flash('status_delete_client', 'Client supprimé avec succès.');
+        return redirect('clients');
     }
     public function deconnexion()
     {

@@ -13,31 +13,37 @@
             <div class="group_form">
             <input type="text" name="adresse_email_client" id="adresse_email_client" class="inputs" value="{{$clients->adresse_email_client}}" >
                 <label for="adresse_email_client" class="lb">Adresse Email</label>
-                @if($errors->has('adresse_email_client'))
-                    <p class="text-danger eror" >n'est pas une adresse email valide</p>
-                @endif
+                @error('adresse_email_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="nom_client" id="nom_client" class="inputs" value="{{$clients->nom_client}}">
                 <label for="nom_client" class="lb">Nom</label>
-                @if($errors->has('nom_client'))
-                <p class="text-danger eror" >doit être rempli(e)</p>
-            @endif
+                @error('nom_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="prenom_client" id="prenom_client"  class="inputs" value="{{$clients->prenom_client}}">
                 <label for="prenom_client" class="lb">Prénom</label>
-                @if($errors->has('prenom_client'))
-                    <p class="text-danger eror" >doit être rempli(e)</p>
-                @endif
+                @error('prenom_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="fonction_client" id="fonction"  class="inputs" value="{{$clients->fonction_client}}">
                 <label for="fonction" class="lb">Fonction</label>
+                @error('fonction_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="adresse_client" id="adresse"  class="inputs" value="{{$clients->adresse_client}}">
                 <label for="adresse" class="lb">Adresse client</label>
+                @error('adresse_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_langue mt-4">
                 <select name="langue" id="langue" class="mt-3">
@@ -58,6 +64,9 @@
             <div class="group_form">
                 <textarea name="note_client" id="note_client" cols="30" rows="6" placeholder="Note sur client"
                             class="form-control">{{$clients->note_client}}</textarea>
+                @error('note_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="col-md-6 part3_addclient">
@@ -65,31 +74,30 @@
             <div class="group_form">
                 <input type="text" name="codepostal_client" id="codepostal"  class="inputs" value="{{$clients->codep_client}}">
                 <label for="codepostal" class="lb">Code postal</label>
-                @if($errors->has('codepostal_client'))
-                    <p class="text-danger eror" >N'est pas valide</p>
-                @endif
+                @error('codepostal_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="ville_client" id="ville_client"  class="inputs" value="{{$clients->ville_client}}">
                 <label for="ville_client" class="lb">Ville</label>
+                @error('ville_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="site_client" id="site_client"  class="inputs" value="{{$clients->site_client}}">
                 <label for="site_client" class="lb">Site</label>
-                @if($errors->has('site_client'))
-                    <p class="text-danger eror" >N'est pas valide</p>
-                @endif
+                @error('site_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="group_form">
                 <input type="text" name="tel_client" id="tel_client"  class="inputs" value="{{$clients->tel_client}}">
                 <label for="tel_client" class="lb">Teléphone</label>
-                @if($errors->has('tel_client'))
-                    <p class="text-danger eror" >N'est pas valide</p>
-                @endif
-            </div>
-            <div class="group_form">
-                <input type="text" name="societe_client" id="societe_client"  class="inputs" value="{{$clients->societe_client}}">
-                <label for="societe_client" class="lb">Nom de sociéte</label>
+                @error('tel_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
         <div class="col-md-6 part4_addclient">
@@ -100,6 +108,9 @@
                         <option value="{{$cle->mot_cle}}"  selected >{{$cle->mot_cle}}</option>
                     @endforeach
                 </select>
+                @error('motcle_client')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
     </div>

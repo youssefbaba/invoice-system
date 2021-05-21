@@ -1,7 +1,6 @@
 @extends('home')
 @section('header_content')
-<h2 id="grand_title_addclient "   class="text-uppercase ml-2 text-white">
-    Ajouter&nbsp;Un&nbsp;Utlisateur</h2>
+<h2 id="grand_title_addclient" class="text-uppercase">Nouveau&nbsp;&nbsp;utilisateur</h2>
 @endsection
 @section('contenu_inside')
 <div class="container mt-2" >
@@ -10,7 +9,7 @@
         <div class="client col-md-8">
             <div class="form-group">
                 <label for="clients">Nom</label>
-                <input id="name" type="text" class=" form-control @error('name') @enderror col-12 mb-4 " name="name" placeholder="Nom"  autocomplete="name" autofocus required>
+                <input id="name" type="text" class=" form-control @error('name') @enderror col-12 mb-4 " name="name" placeholder="Nom"  autocomplete="name" required>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

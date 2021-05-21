@@ -22,11 +22,10 @@
             <li class="list-inline-item"><a href="{{route('factures.provi')}}">PROVISOIRES</a></li>
             <li class="list-inline-item"><a href="{{route('factures.finalise')}}">FINALISÉES</a></li>
             <li class="list-inline-item"><a href="{{route('factures.paye')}}">PAYÉES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.apayé')}}">À PAYER</a></li>
         </ul>
     </div>
-    <div class="container-fluid mt-4">
-                <a href="{{route('factures.create')}}" class=" font-weight-bold p-2 ml-3 border rounded btn-sm" style="background-color: #4DBCED" id="ajouter_client">Ajouter une facture</a>
+    <div class="container-fluid pt-2 m-3">
+                <a href="{{route('factures.create')}}" class="p-2 border " style="background-color: #4DBCED" id="ajouter_client">Ajouter une facture</a>
                 @if ($factures->count() > 0)
                 <div class="row">
                     {{-- {{dd($factures)}} --}}
@@ -103,9 +102,8 @@
                                                             <hr>
                                                         @else
                                                         @endif
-                                                        @if ($facture->etat_facture == 'Payée')
-                                                            <li><a href="{{route('facture.anulle_paiement',$facture->id)}}">Annuler le paiment</a></li>
-                                                            <hr>
+                                                        @if ($facture->etat_facture == 'APayée')
+                                                        <li><a href="{{route('facture.change.payé',$facture->id)}}">Marquer comme Payée</a></li>                                                            <hr>
                                                         @else
                                                         @endif
 
@@ -150,14 +148,14 @@
             @csrf
             @method('DELETE')
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Voulez-vous vraiment supprimer cette facture!!!
+                    Voulez-vous vraiment supprimer cette facture !!!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

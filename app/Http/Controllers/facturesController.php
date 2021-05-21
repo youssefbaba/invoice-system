@@ -51,7 +51,7 @@ class facturesController extends Controller
      */
     public function store(factureRequest $request)
     {
-        // dd($request);
+        //  dd($request);
         $user = auth()->user();
         DB::table('factures')->insert([
             'etat_facture' => 'Provisoire',
@@ -156,12 +156,17 @@ class facturesController extends Controller
         $factures = Facture::where('user_id', $user->id)->get();
         // $cle = Cle::where("devi_id",);
         // return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cle', $cle);
-        Session::flash('statuscode', 'success');
+
         if ($request->check === 'duplicate') {
-            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('status_duplicate_devi_en_facture', 'Devi dupliqué  en facture avec succès.');
+            Session::flash('status_duplicate_devi_en_facture', 'Devi dupliqué  en facture avec succès.');
+            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
         }
-        else{
-            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('status_add_facture', 'Facture créé avec succès.');
+        if ($request->check === 'dupliquer_factutre') {
+            Session::flash('status_dupliquer_facture', 'Facture dupliqué  avec succès.');
+            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
+        } else {
+            Session::flash('status_add_facture', 'Facture créé avec succès.');
+            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
         }
     }
 
@@ -315,6 +320,9 @@ class facturesController extends Controller
         }
         $user = auth()->user();
         $factures = Facture::where('user_id', $user->id)->get();
+
+        Session::flash('status_update_facture', 'Facture modifié avec succès.');
+
         return redirect()->to('/factures')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
     }
 
@@ -327,6 +335,8 @@ class facturesController extends Controller
     public function destroy(Facture $facture)
     {
         $facture->delete();
+
+        Session::flash('status_destroy_facture', 'Facture supprimé avec succès.');
         return redirect()->back();
     }
     public function deletefacture($facture_id)
@@ -335,6 +345,7 @@ class facturesController extends Controller
         $facture->delete();
         $user = auth()->user();
         $factures = Facture::where('user_id', $user->id)->first();
+        Session::flash('status_delete_facture', 'Facture supprimé avec succès.');
         return redirect()->to('/factures')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
     }
     public function create_facture_client($id)
@@ -423,11 +434,11 @@ class facturesController extends Controller
     }
     public function facturefinalisechange($id)
     {
-        $user = auth()->user();
-        $affected = DB::table('factures')
+        DB::table('factures')
             ->where('id', $id)
             ->update(['etat_facture' => 'Finalisé', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
-        return \redirect()->back();
+        Session::flash('status_finalise_facture', 'Facture finalisé avec succès.');
+        return redirect()->back();
     }
     public function facturefinalise()
     {
@@ -439,10 +450,11 @@ class facturesController extends Controller
     }
     public function facturepayéchange($id)
     {
-        $user = auth()->user();
-        $affected = DB::table('factures')
+
+        DB::table('factures')
             ->where('id', $id)
             ->update(['etat_facture' => 'Payée', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
+        Session::flash('status_paye_facture', 'Facture payé avec succès.');
         return \redirect()->back();
     }
     public function facturepaye()
@@ -452,18 +464,12 @@ class facturesController extends Controller
         $cles = Cle::all();
         return \view('factures.showfacturepaye')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }
-    public function factureapaye()
-    {
-        $user = auth()->user();
-        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Finalisé']])->get();
-        $cles = Cle::all();
-        return \view('factures.showfactureapayé')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
-    }
     public function annulepaiement($id)
     {
-        $affected = DB::table('factures')
+        DB::table('factures')
             ->where('id', $id)
             ->update(['etat_facture' => 'Finalisé', 'created_at' => \Carbon\Carbon::now()->format('Y-m-d'), 'updated_at' => \Carbon\Carbon::now()]);
+        Session::flash('status_annuler_paiement', 'Paiement de facture annulé avec succès.');
         return \redirect()->back();
     }
     public function facture_voirplus($id)

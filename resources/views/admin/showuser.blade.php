@@ -69,10 +69,10 @@
                                     <td class="font-weight-bold">Pays</td>
                                     <td>{{$user->pays}}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td class="font-weight-bold">Société</td>
                                     <td>{{$user->name_company}}</td>
-                                </tr>
+                                </tr> --}}
 
                                 <tr>
                                     <td class="font-weight-bold">Numéro de téléphone</td>

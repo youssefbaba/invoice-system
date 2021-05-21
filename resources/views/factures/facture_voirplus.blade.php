@@ -64,10 +64,6 @@
                 @endif
 
                 @if ($facture->etat_facture == 'Provisoire')
-                {{-- <a href="{{route('deletefacture',$facture->id)}}" class="bg-danger text-white" id="finalise_trash"><i
-                        class="far fa-trash-alt"></i>
-                    <p id="hover_trash">Supprimer</p>
-                </a> --}}
                 <a href="#" data-href="{{route('deletefacture',$facture->id)}}" data-toggle="modal" data-target="#confirm-delete" class="bg-danger text-white" id="finalise_trash" >
                     <i class="far fa-trash-alt"></i>
                     <p id="hover_trash">Supprimer</p></a>
@@ -75,7 +71,7 @@
                 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -86,7 +82,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <a class="btn btn-danger btn-ok">Supprimer</a>
+                                <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                             </div>
                         </div>
                     </div>
@@ -123,7 +119,30 @@
                 @endif
 
                 @if ($facture->etat_facture == 'Provisoire')
-                <li><a href="{{route('deletefacture',$facture->id)}}">Supprimer</a></li>
+                <li>
+                    <a href="#" data-href="{{route('deletefacture',$facture->id)}}" data-toggle="modal" data-target="#confirm-delete"  >
+                        Supprimer
+                    </a>
+                    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez-vous vraiment supprimer cette facture!!!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <hr class="m-0">
                 @else
                 @endif
@@ -135,7 +154,7 @@
                 @else
                 @endif
                 @if ($facture->etat_facture == 'Payée')
-                <li><a href="#">Créer un avoir</a></li>
+                <li><a href="{{route('avoirs.addavoirs',['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}">Créer un avoir</a></li>
                 <hr class="m-0">
                 @else
                 @endif
@@ -280,7 +299,7 @@
                 <a href="{{route('voirplus',$facture->client_id)}}" class="link-hover-focus">{{$facture->getClient($facture->client_id)->nom_client}}&nbsp;{{$facture->getClient($facture->client_id)->prenom_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px">
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Société:</p>
@@ -288,7 +307,7 @@
             <div class="col-md-8">
                 <p style="color: red">{{$facture->getClient($facture->client_id)->societe_client}} had partie khass ya ima t7ayad ola n9adha ila dart partie dyal societe</p>
             </div>
-        </div>
+        </div> --}}
         <hr style="margin: 0.5px">
         <div class="row">
             <div class="col-md-4">

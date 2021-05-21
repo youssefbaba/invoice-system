@@ -8,11 +8,12 @@ use App\Client;
 use App\Article;
 use App\Debours;
 use App\Facture;
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use App\Http\Requests\factureRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AvoirController extends Controller
 {
@@ -166,6 +167,7 @@ class AvoirController extends Controller
         }
         $user = auth()->user();
         $avoirs = Avoir::where('user_id', $user->id)->get();
+        Session::flash('status_add_avoir', 'Avoir créé avec succès.');
         return redirect()->route('avoirs.index')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user);
     }
 
@@ -427,7 +429,7 @@ class AvoirController extends Controller
         $cles = Cle::where('avoir_id', $avoir_id)->get();
         $cle = Cle::select('mot_cle')->distinct()->get();
 
-        
+
         if ($debours->count()) {
             return \view('avoirs.duplicateen_facture')->with('avoir', $avoirs)->with('clients', $client)->with('arrs', $arr)->with('articles', $articles)->with('debours', $debours)->with('cles', $cles)->with('user', $user)->with('clientes', $clientes)->with('cle', $cle);
         } else {

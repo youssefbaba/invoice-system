@@ -89,12 +89,8 @@
                                 Voulez-vous vraiment supprimer ce devis !!!
                             </div>
                             <div class="modal-footer">
-                                <a class="btn btn-secondary btn-lg" data-dismiss="modal">Annuler</a>
-                                <a class="btn btn-danger btn-ok btn-lg" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
-                                Supprimer
-                                </a>
-
-
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                             </div>
                         </div>
                     </div>

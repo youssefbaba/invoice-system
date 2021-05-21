@@ -24,6 +24,19 @@ class factureRequest extends FormRequest
     public function rules()
     {
         return [
+
+            'clients' => 'required',
+            'devis' => 'required',
+            'tva' => 'required',
+            'type' => 'required',
+            'reduction' => 'required',
+            'totalht' => 'required',
+            'totalttc' => 'required',
+            'description' => 'required',
+            'remise' => 'required',
+            'condition_reglement' => 'required',
+            'mode_reglement' => 'required',
+            'interet' => 'required',
             'quantité' => 'required',
             'prixht' => 'required',
             'motcle' => 'required|max:250',

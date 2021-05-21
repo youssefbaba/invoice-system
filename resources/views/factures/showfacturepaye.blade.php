@@ -25,11 +25,10 @@
             <li class="list-inline-item"><a href="{{route('factures.provi')}}" >PROVISOIRES</a></li>
             <li class="list-inline-item"><a href="{{route('factures.finalise')}}">FINALISÉES</a></li>
             <li class="list-inline-item"><a href="{{route('factures.paye')}}" class="active">PAYÉES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.apayé')}}">À PAYER</a></li>
         </ul>
     </div>
-    <div class="container-fluid mt-4">
-                <a href="{{route('factures.create')}}" class="bg-info font-weight-bold p-2 ml-3 border rounded btn-sm" id="ajouter_client">Ajouter une facture</a>
+    <div class="container-fluid pt-2 m-3">
+                <a href="{{route('factures.create')}}" class="p-2 border" id="ajouter_client" style="background-color: #4DBCED">Ajouter une facture</a>
                 @if ($factures->count() > 0)
                 <div class="row">
 
