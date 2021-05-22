@@ -12,6 +12,7 @@ use App\Http\Requests\userRequest;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\compteRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\deleteCompteRequest;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
@@ -108,6 +109,7 @@ class parametreController extends Controller
             $user->email = $request->adresse_email_pro;
             $user->save();
         }
+        Session::flash('status_update_coordonnée', 'Coordonnées modifié avec succès.');
         return redirect()->route('clients.index');
     }
 
@@ -133,17 +135,17 @@ class parametreController extends Controller
             if ($user->email == $request->adresse_email) {
                 $user->password = Hash::make($request->passnew);
                 $user->save();
-                session()->flash('msg', 'Votre mot de pass modifier avec succes');
+                Session::flash('status_update_mot_passe', 'Mot de pass modifié avec succes');
                 return redirect()->route('clients.index');
             } else {
                 $user->email = $request->adresse_email;
                 $user->password = Hash::make($request->passnew);
                 $user->save();
-                session()->flash('msg', 'Votre modification effectuer avec succes mais notice vous devez confirmer votre nouvelle adresse email');
+                Session::flash('status_update_mot_passe', 'Modification effectuer avec succes mais notice vous devez confirmer votre nouvelle adresse email');
                 return redirect()->back();
             }
         } else {
-            session()->flash('error', 'Votre mot de passe actuel n\'est pas correct ');
+            Session::flash('error', 'Mot de passe actuel n\'est pas correct ');
             return redirect()->back();
         }
     }

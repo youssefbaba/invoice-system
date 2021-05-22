@@ -42,6 +42,11 @@
                 </div>
             </div>
             <div class="col-md-8">
+                <div class="form-group">
+                    <input value="dupliquer" name="dupliquer_avoir" type="hidden" >
+                </div>
+            </div>
+            <div class="col-md-8">
                 <h4 class="text-left font-weight-bold">Articles</h4>
             </div>
 

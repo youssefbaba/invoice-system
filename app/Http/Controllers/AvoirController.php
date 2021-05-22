@@ -94,7 +94,7 @@ class AvoirController extends Controller
 
         $id = DB::getPdo()->lastInsertId();
         $avoir = Avoir::where('id', $id)->first();
-        $avoir->code_avoir = 'A'.$avoir->created_at->format('Y').$id ;
+        $avoir->code_avoir = 'A' . $avoir->created_at->format('Y') . $id;
         $avoir->save();
         for ($i = 0; $i < \count($request->quantité); $i++) {
             DB::table('articles')->insert(array(
@@ -323,6 +323,7 @@ class AvoirController extends Controller
         }
         $user = auth()->user();
         $avoirs = Avoir::where('user_id', $user->id)->get();
+        Session::flash('status_update_avoir', 'Avoir modifié avec succès.');
         return redirect()->to('/avoirs')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user);
     }
 
@@ -336,6 +337,7 @@ class AvoirController extends Controller
     public function destroy(Avoir $avoir)
     {
         $avoir->delete();
+        Session::flash('status_destroy_avoir', 'Avoir supprimé avec succès.');
         return redirect()->back();
     }
 
@@ -355,6 +357,7 @@ class AvoirController extends Controller
         DB::table('avoirs')
             ->where('id', $id)
             ->update(['etat_facture' => 'Finalisé', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
+        Session::flash('status_finalise_avoir', 'Avoir finalisé avec succès.');
         return \redirect()->back();
     }
 
@@ -378,13 +381,13 @@ class AvoirController extends Controller
             return \view('avoirs.editavoir')->with('avoir', $avoir)->with('clients', $client)->with('arrs', $arr)->with('articles', $articles)->with('debours', [])->with('cles', $cles)->with('user', $user)->with('clientes', $clientes)->with('cle', $cle);
         }
     }
-    public function genererpdfa($avoir_id)
+    public function genererpdfa($id)
     {
         $user = auth()->user();
-        $avoir = Avoir::find($avoir_id);
+        $avoir = Avoir::find($id);
         // dd($avoir->etat_facture);
-        $articles = Article::where('avoir_id', $avoir_id)->get();
-        $debourses = Debours::where('avoir_id', $avoir_id)->get();
+        $articles = Article::where('avoir_id', $id)->get();
+        $debourses = Debours::where('avoir_id', $id)->get();
         $pdf = App::make('dompdf.wrapper');
         $pdf = PDF::loadView('avoirs.avoirpdf', compact('avoir', 'articles', 'debourses'));
         switch ($avoir->etat_facture) {
@@ -399,7 +402,7 @@ class AvoirController extends Controller
         }
     }
 
-    public function duplicateen_devise($avoir_id)
+    public function duplicateen_devi($avoir_id)
     {
         $user = auth()->user();
         $arr = ['(DH)', '($)', '(€)'];
@@ -407,7 +410,6 @@ class AvoirController extends Controller
         // $clientes = Client::where('user_id', $user->id)->get();
         $client = Client::where('user_id', $user->id)->get();
         $avoir = Avoir::where('id', $avoir_id)->first();
-        // dd($facture);
         $articles = Article::where('avoir_id', $avoir_id)->get();
         $cles = Cle::where('avoir_id', $avoir_id)->get();
         $cle = Cle::select('mot_cle')->distinct()->get();
@@ -437,19 +439,21 @@ class AvoirController extends Controller
         }
     }
 
-    public function avoirrembourséchange($id)
+    public function avoirrembourséchange($avoir_id)
     {
         DB::table('avoirs')
-            ->where('id', $id)
+            ->where('id', $avoir_id)
             ->update(['etat_facture' => 'Remboursé', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
+        Session::flash('status_remboursé_devis', ' Avoir  remboursé avec succès.');
         return \redirect()->back();
     }
 
-    public function annuleremboursement($id)
+    public function annuleremboursement($avoir_id)
     {
         DB::table('avoirs')
-            ->where('id', $id)
+            ->where('id', $avoir_id)
             ->update(['etat_facture' => 'Finalisé', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
+        Session::flash('status_annuler_remboursement_avoir', ' Remboursement annulé avec succès.');
         return \redirect()->back();
     }
     public function avoirprovi()
@@ -480,6 +484,7 @@ class AvoirController extends Controller
         $avoir->delete();
         $user = auth()->user();
         $avoirs = Avoir::where('user_id', $user->id)->first();
+        Session::flash('status_delete_avoir', 'Avoir supprimé avec succès.');
         return redirect()->to('/avoirs')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user);
     }
     public function search(Request $request)

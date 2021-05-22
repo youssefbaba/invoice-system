@@ -16,10 +16,7 @@
                         <p id="hover_editfacture">Modifier</p>
                     </a>
                 @else
-                    {{-- <a href="{{route('factures.editfacture_vide',$facture->id)}}" id="finalise_edit"><i
-                        class="fas fa-pencil-alt"></i>
-                    <p id="hover_editfacture">Modifier</p>
-                    </a> --}}
+
                     <a href="#" id="finalise_edit"><i
                         class="fas fa-pencil-alt"></i>
                     <p id="hover_editfacture">Modifier</p>
@@ -63,7 +60,7 @@
                 <div class="modal fade top" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer avoir</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -73,11 +70,8 @@
                                 Voulez-vous vraiment supprimer cette avoir!!!
                             </div>
                             <div class="modal-footer">
-                                <a class="btn btn-secondary btn-lg" data-dismiss="modal">Annuler</a>
-                                <a class="btn btn-danger btn-ok btn-lg" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
-                                Supprimer
-                                </a>
-
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                             </div>
                         </div>
                     </div>
@@ -121,7 +115,7 @@
                     <div class="modal fade top" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header bg-danger text-white">
                                     <h5 class="modal-title" id="exampleModalLabel">Supprimer avoir</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -131,10 +125,8 @@
                                     Voulez-vous vraiment supprimer cette avoir!!!
                                 </div>
                                 <div class="modal-footer">
-                                    <a class="btn btn-secondary btn-lg" data-dismiss="modal">Annuler</a>
-                                    <a class="btn btn-danger btn-ok btn-lg" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
-                                    Supprimer
-                                    </a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
 
 
                                 </div>
@@ -153,7 +145,7 @@
                 <hr class="m-0">
                 @else
                 @endif
-                <li><a href="{{route('avoirs.duplicateen_devise',$avoir->id)}}">Dupliquer en devis</a></li>
+                <li><a href="{{ route('avoir.duplicate_en_devi', ['avoir_id'=>$avoir->id]) }}">Dupliquer en devis</a></li>
                 @if($avoir->client_id!= null)
                 <li><a  href="{{route('avoirs.duplicateen_facture',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}">Dupliquer en  facture</a></li>
                 @else
@@ -294,15 +286,7 @@
                 <a href="{{route('voirplus',$avoir->client_id)}}" class="link-hover-focus">{{$avoir->getClient($avoir->client_id)->nom_client}}&nbsp;{{$avoir->getClient($avoir->client_id)->prenom_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
-        <div class="row">
-            <div class="col-md-4">
-                <p class="text-muted">Société:</p>
-            </div>
-            <div class="col-md-8">
-                <p style="color: red">{{$avoir->getClient($avoir->client_id)->societe_client}} had partie khass ya ima t7ayad ola n9adha ila dart partie dyal societe</p>
-            </div>
-        </div>
+
         <hr style="margin: 0.5px">
         <div class="row">
             <div class="col-md-4">

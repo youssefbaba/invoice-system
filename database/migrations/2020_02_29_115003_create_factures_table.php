@@ -15,7 +15,7 @@ class CreateFacturesTable extends Migration
     {
         Schema::create('factures', function (Blueprint $table) {
             $table->integerIncrements('id');
-            $table->enum('etat_facture', ['Provisoire', 'Finalisé', 'Payée', 'APayée']);
+            $table->enum('etat_facture', ['Provisoire', 'Finalisé', 'Payée']);
 
             $table->float('total_ht_articlesf');
             $table->float('remise_genf')->nullable();

@@ -102,11 +102,6 @@
                                                             <hr>
                                                         @else
                                                         @endif
-                                                        @if ($facture->etat_facture == 'APayée')
-                                                        <li><a href="{{route('facture.change.payé',$facture->id)}}">Marquer comme Payée</a></li>                                                            <hr>
-                                                        @else
-                                                        @endif
-
                                                         <li><a href="{{route('facture.generpdff',$facture->id)}}">Telécharger</a></li>
                                                         <li><a href="mailto:{{$facture->getClient($facture->client_id)->adresse_email_client}}">Envoyer par email</a></li>
                                                         <hr>

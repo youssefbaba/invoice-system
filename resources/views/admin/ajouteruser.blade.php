@@ -49,7 +49,7 @@
         <div class="client col-md-8">
             <div class="form-group">
                 <a type="button" class="btn btn-danger" href="{{ route('admin') }}" >Annuler</a>
-                <button class="btn btn-primary" type="submit">Ajouter un utilisateur</button>
+                <button class="btn btn-primary" type="submit">Ajouter</button>
             </div>
         </div>
 

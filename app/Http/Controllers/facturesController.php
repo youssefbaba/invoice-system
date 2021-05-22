@@ -157,14 +157,18 @@ class facturesController extends Controller
         // $cle = Cle::where("devi_id",);
         // return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cle', $cle);
 
-        if ($request->check === 'duplicate') {
+        if($request->check === 'duplicate') {
             Session::flash('status_duplicate_devi_en_facture', 'Devi dupliqué  en facture avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
         }
-        if ($request->check === 'dupliquer_factutre') {
+        if($request->check === 'dupliquer_factutre') {
             Session::flash('status_dupliquer_facture', 'Facture dupliqué  avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
-        } else {
+        }if($request->dupliquer_avoir === 'dupliquer'){
+            Session::flash('status_dupliquer_avoir_en_facture', 'Avoir dupliqué  en facture avec succès.');
+            return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
+        }
+         else {
             Session::flash('status_add_facture', 'Facture créé avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
         }

@@ -375,6 +375,201 @@
                     }})
         </script>
     @endif
+    @if (Session::get('status_finalise_avoir'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_finalise_avoir')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_update_avoir'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_update_avoir')}}",
+                    icon: 'info',
+                    confirmButtonColor: '#3FC3EE',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_destroy_avoir'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_destroy_avoir')}}",
+                    icon: 'error',
+                    confirmButtonColor: '#F27474',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_dupliquer_avoir_en_facture'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_dupliquer_avoir_en_facture')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_delete_avoir'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_delete_avoir')}}",
+                    icon: 'error',
+                    confirmButtonColor: '#F27474',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_remboursé_devis'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_remboursé_devis')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_annuler_remboursement_avoir'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_annuler_remboursement_avoir')}}",
+                    icon: 'error',
+                    confirmButtonColor: '#F27474',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_update_coordonnée'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_update_coordonnée')}}",
+                    icon: 'info',
+                    confirmButtonColor: '#3FC3EE',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_update_mot_passe'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_update_mot_passe')}}",
+                    icon: 'info',
+                    confirmButtonColor: '#3FC3EE',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('error'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('error')}}",
+                    icon: 'error',
+                    confirmButtonColor: '#F27474',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_add_utilisateur'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_add_utilisateur')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_updated_role_user'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_updated_role_user')}}",
+                    icon: 'info',
+                    confirmButtonColor: '#3FC3EE',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_delete_utilisateur'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_delete_utilisateur')}}",
+                    icon: 'error',
+                    confirmButtonColor: '#F27474',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_duplicate_avoir_en_devi'))
+        <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_duplicate_avoir_en_devi')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

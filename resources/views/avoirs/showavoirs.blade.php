@@ -37,7 +37,7 @@
                                         <div class="card-body">
 
                                             <div class="row">
-                                                <a href="{{route('avoirs.voirplus',$avoir->id)}}" class="card-title col-md-8 nm_client"><span>{{$avoir->code_avoir}}</span>:{{$avoir->etat_facture}}</a>
+                                                <a href="{{route('avoirs.voirplus',['id'=>$avoir->id])}}" class="card-title col-md-8 nm_client"><span>{{$avoir->code_avoir}}</span>:{{$avoir->etat_facture}}</a>
 
                                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                             </div>
@@ -98,28 +98,24 @@
                                                         @else
                                                         @endif
                                                         @if($avoir->etat_facture == 'Finalisé')
-                                                            <li><a href="{{route('avoir.change.remboursé',$avoir->id)}}">Marquer comme  remboursé</a></li>
+                                                            <li><a href="{{route('avoir.change.remboursé',['avoir_id'=>$avoir->id])}}">Marquer comme  remboursé</a></li>
                                                             <hr>
                                                         @else
                                                         @endif
                                                         @if ($avoir->etat_facture == 'Remboursé')
-                                                            <li><a href="{{route('avoir.anulle_remboursement',$avoir->id)}}">Annuler le remboursement</a></li>
+                                                            <li><a href="{{route('avoir.anulle_remboursement',['avoir_id'=>$avoir->id])}}">Annuler le remboursement</a></li>
                                                             <hr>
                                                         @else
                                                         @endif
-                                                        <li><a href="{{route('avoir.genererpdfa',$avoir->id)}}">Telécharger</a></li>
+                                                        <li><a href="{{route('avoir.genererpdfa',['id'=>$avoir->id])}}">Telécharger</a></li>
                                                         <li><a href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}">Envoyer par email</a></li>
                                                         <hr>
-
-                                                    @else
-                                                        {{-- <li><a href="{{route('factures.editfacture_vide',$facture->id)}}">Modifier</a></li> --}}
-                                                        <li><a href="#">Modifier</a></li>
-
                                                     @endif
                                                 @break
                                                 @endforeach
 
-                                                <li><a href="{{route('avoirs.duplicateen_devise',$avoir->id)}}">Dupliquer en devis</a></li>
+                                                <li><a href="{{route('avoir.duplicate_en_devi', ['avoir_id'=>$avoir->id]) }}">Dupliquer en devis</a></li>
+                                                {{-- <li><a href="{{route('avoirs.duplicateen_devise',$avoir->id)}}">Dupliquer en devis</a></li> --}}
                                                 @if($client->getClient_Facture_id($avoir->client_id) != null)
                                                     <li><a href="{{route('avoirs.duplicateen_facture',['avoir_id'=>$avoir->id,'client_id'=>$client->getClient_Facture_id($avoir->client_id)])}}">Dupliquer en facture</a></li>
                                                 @else
@@ -148,7 +144,7 @@
             @csrf
             @method('DELETE')
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Supprimer avoir</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

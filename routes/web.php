@@ -92,9 +92,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('avoirs', 'AvoirController')->middleware('auth');
     Route::get('voirplus_avoir/{id}', 'AvoirController@avoir_voirplus')->name('avoirs.voirplus');
     Route::get('showavoirfinalise/{avoir_id}', 'AvoirController@avoirfinalisechange')->name('avoir.change.finalise');
+    Route::get('duplicateen_devi/{avoir_id}', 'AvoirController@duplicateen_devi')->name('avoir.duplicate_en_devi');
     Route::get('edit_avoir/{avoir_id}/{client_id}', 'AvoirController@editavoir')->name('avoirs.editavoir');
     Route::get('generer_pdf_avoir/{id}', 'AvoirController@genererpdfa')->name('avoir.genererpdfa');
-    Route::get('duplicateen_devise/{avoir_id}', 'AvoirController@duplicateen_devise')->name('avoirs.duplicateen_devise');
     Route::get('duplicateen_facture/{avoir_id}/{client_id}', 'AvoirController@duplicateen_facture')->name('avoirs.duplicateen_facture');
     Route::get('changeavoirremboursé/{avoir_id}', 'AvoirController@avoirrembourséchange')->name('avoir.change.remboursé');
     Route::get('changeavoiranulle/{avoir_id}', 'AvoirController@annuleremboursement')->name('avoir.anulle_remboursement');
@@ -103,15 +103,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('showavoirrembourse', 'AvoirController@avoirrembourse')->name('avoirs.rembourse');
     Route::get('deleteavoir/{avoir_id}', 'AvoirController@deleteavoir')->name('deleteavoir');
     Route::post('/avoir_search', 'AvoirController@search')->name('recherche_avoir');
-
-
-
-
-
-
-    Route::get('edit_facture_vide/{facture_id}', 'facturesController@editfacture_vide')->name('factures.editfacture_vide');
-    Route::get('create_facture/{id}', 'facturesController@create_facture_client')->name('create_determine_facture');
-    Route::get('duplicate_facture_vide/{facture_id}', 'facturesController@duplicatefacture_vide')->name('factures.duplicatefacture_vide');
 });
 
 
@@ -165,11 +156,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('parametreDelete', 'parametreController@parametre_delete')->name('parametre.delete');
     Route::post('parametre_DeleteCompte/{user_id}', 'parametreController@delete_account')->name('parametre.deleteCompte');
 });
-
-//create route for connecion par media
-Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('login_facebook');
-Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
-
-
-Route::get('login/google', 'Auth\LoginController@redirectToProvider1')->name('login_google');
-Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback1');

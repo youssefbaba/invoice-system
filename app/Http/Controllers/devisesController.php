@@ -126,7 +126,10 @@ class devisesController extends Controller
             Session::flash('status_duplicate_facture_en_devi', 'Facture dupliqué  en devis avec succès.');
             return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
 
-        } else {
+        }if($request->checked === 'dupliquer_avoir_devi'){
+            Session::flash('status_duplicate_avoir_en_devi', 'Avoir dupliqué  en devis avec succès.');
+            return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
+        }else {
             Session::flash('status_add_devis', 'Devis créé avec succès.');
             return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
         }

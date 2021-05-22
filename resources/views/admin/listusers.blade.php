@@ -104,8 +104,8 @@
                                             Voulez-vous vraiment supprimer cette utilisateur !!!
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn btn-secondary btn-lg text-white" data-dismiss="modal">Annuler</a>
-                                            <a class="btn btn-danger btn-ok btn-lg text-white" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
+                                            <a class="btn btn-secondary  text-white" data-dismiss="modal">Annuler</a>
+                                            <a class="btn btn-danger btn-ok  text-white" style="background-color: #bb2124 !important;border-radius: 0.25rem;;">
                                             Supprimer
                                             </a>
 
