@@ -89,7 +89,7 @@
                                                 <li><a href="{{route('facture.change.payé',$facture->id)}}">Marquer comme Payée</a></li>
                                                 <hr>
                                                 <li><a href="{{route('facture.generpdff',$facture->id)}}">Telécharger</a></li>
-                                                <li><a href="mailto:{{$facture->getClient($facture->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                <li><a href="{{route('create_email_facture', ['facture_id'=>$facture->id,'client_id'=>$client->getClient_Facture_id($facture->client_id)])}}">Envoyer par email</a></li>
                                                 <hr>
                                             @endif
                                             @break

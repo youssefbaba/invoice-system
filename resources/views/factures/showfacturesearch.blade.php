@@ -117,7 +117,7 @@
                                                             @endif
 
                                                             <li><a href="{{route('facture.generpdff',$facture_cle_client->id)}}">Telécharger</a></li>
-                                                            <li><a href="mailto:{{$facture_cle_client->getClient($facture_cle_client->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                            <li><a <a href="{{route('create_email_facture',['facture_id'=>$facture_cle_client->id,'client_id'=>$client->getClient_Facture_id($facture_cle_client->client_id)])}}">Envoyer par email</a></li>
                                                             <hr>
                                                         @else
                                                             <li><a href="{{route('factures.editfacture_vide',$facture_cle_client->id)}}">Modifier</a></li>

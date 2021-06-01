@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+    
         /*
          * Package Service Providers...
          */
@@ -177,7 +178,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        
+
     ],
 
     /*

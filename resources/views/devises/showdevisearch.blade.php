@@ -141,7 +141,7 @@
 
 
                                                                 <li><a href="{{route('devise.generpdf',$devi_cle_client->id)}}">Telécharger</a></li>
-                                                                <li><a href="mailto:{{$devi_cle_client->getClient($devi_cle_client->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                                <li><a href="{{route('create_email_devi',['devi_id'=>$devi_cle_client->id,'client_id'=>$client->getClient_Facture_id($devi_cle_client->client_id)]>Envoyer par email</a></li>
                                                                 <hr>
                                                                 @if ($devi_cle_client->etat_devis=='Signés')
                                                                     <li><a href="#">créer une facture</a></li>

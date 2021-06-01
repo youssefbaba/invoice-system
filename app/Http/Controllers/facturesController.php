@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\factureRequest;
-use App\Facture;
+use App\Cle;
 use App\Client;
 use App\Article;
 use App\Debours;
-use App\Cle;
+use App\Facture;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use App\Mail\EnvoiMail;
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\factureRequest;
+use App\Mail\EnvoiMailFacture;
 use Illuminate\Support\Facades\Session;
 
 class facturesController extends Controller
@@ -157,18 +159,18 @@ class facturesController extends Controller
         // $cle = Cle::where("devi_id",);
         // return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cle', $cle);
 
-        if($request->check === 'duplicate') {
+        if ($request->check === 'duplicate') {
             Session::flash('status_duplicate_devi_en_facture', 'Devi dupliqué  en facture avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
         }
-        if($request->check === 'dupliquer_factutre') {
+        if ($request->check === 'dupliquer_factutre') {
             Session::flash('status_dupliquer_facture', 'Facture dupliqué  avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
-        }if($request->dupliquer_avoir === 'dupliquer'){
+        }
+        if ($request->dupliquer_avoir === 'dupliquer') {
             Session::flash('status_dupliquer_avoir_en_facture', 'Avoir dupliqué  en facture avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
-        }
-         else {
+        } else {
             Session::flash('status_add_facture', 'Facture créé avec succès.');
             return redirect()->route('factures.index')->with('factures', $factures)->with('clients', Client::all())->with('user', $user);
         }
@@ -493,6 +495,7 @@ class facturesController extends Controller
         $debourses = Debours::where('facture_id', $facture_id)->get();
         $pdf = PDF::loadView('factures.facturepdf', compact('facture', 'articles', 'debourses'));
         return $pdf->download('Facture_' . $facture->etat_facture . '.pdf');
+        // return view('factures.facturepdf', compact('facture', 'articles', 'debourses'));
     }
     public function duplicateen_devise($facture_id)
     {
@@ -535,5 +538,36 @@ class facturesController extends Controller
         } else {
             return view('factures.showfacturesearch')->with('status', 'recherche failed')->with('user', $user)->with('factures_cles_clients', [])->with('clients', Client::all());
         }
+    }
+    public function create_email($facture_id, $client_id)
+    {
+        $user = auth()->user();
+        $client = Client::where('id', $client_id)->first();
+        $clientes = Client::whereNotIn('id', [$client_id])->get();
+        $facture = Facture::where('id', $facture_id)->first();
+        return view('factures.factureemail')->with('facture', $facture)->with('client', $client)->with('clientes', $clientes)->with('user', $user);
+    }
+    public function store_email(Request $request)
+    {
+
+        $data = request()->validate([
+            'objet_email' => 'required',
+            'message_email' => 'required',
+            'email_client' => 'required',
+            'facture_id' => 'required'
+        ]);
+
+        $user = auth()->user();
+        $facture = Facture::find($data['facture_id']);
+        $articles = Article::where('facture_id', $data['facture_id'])->get();
+        $debourses = Debours::where('facture_id', $data['facture_id'])->get();
+        $pdf = PDF::loadView('factures.facturepdf', compact('facture', 'articles', 'debourses'));
+
+        $message = new EnvoiMailFacture($data);
+        $message->attachData($pdf->output(), "facture.pdf");
+        $to_email = $request->email_client;
+        Mail::to($to_email)->send($message);
+        Session::flash('status_send_mail_facture', ' Email envoyé avec succès.');
+        return redirect()->route('factures.index');
     }
 }

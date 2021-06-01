@@ -115,7 +115,7 @@
                                                             @endif
 
                                                             <li><a href="{{route('avoir.genererpdfa',$avoir_cle_client->id)}}">Telécharger</a></li>
-                                                            <li><a href="mailto:{{$avoir_cle_client->getClient($avoir_cle_client->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                            <li><a href="{{route('create_email_avoir',['avoir_id'=>$avoir_cle_client->id,'client_id'=>$client->getClient_Facture_id($avoir_cle_client->client_id)])}}">Envoyer par email</a></li>
                                                             <hr>
                                                         @else
                                                             <li><a href="#">Modifier</a></li>

@@ -7,11 +7,14 @@ use App\Devi;
 use App\Client;
 use App\Article;
 use Carbon\Carbon;
+use App\Mail\EnvoiMail;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\devisRequest;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\factureRequest;
+use App\Mail\EnvoiMailDevi;
 use Illuminate\Support\Facades\Session;
 
 class devisesController extends Controller
@@ -125,16 +128,14 @@ class devisesController extends Controller
         if ($request->checked === 'dupliquer') {
             Session::flash('status_duplicate_facture_en_devi', 'Facture dupliqué  en devis avec succès.');
             return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
-
-        }if($request->checked === 'dupliquer_avoir_devi'){
+        }
+        if ($request->checked === 'dupliquer_avoir_devi') {
             Session::flash('status_duplicate_avoir_en_devi', 'Avoir dupliqué  en devis avec succès.');
             return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
-        }else {
+        } else {
             Session::flash('status_add_devis', 'Devis créé avec succès.');
             return redirect()->to('/devises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user);
         }
-
-
     }
 
 
@@ -556,5 +557,34 @@ class devisesController extends Controller
         } else {
             return view('devises.showdevisearch')->with('status', 'recherche failed')->with('user', $user)->with('devis_cles_clients', [])->with('clients', Client::all());
         }
+    }
+    public function create_email($devi_id, $client_id)
+    {
+        $user = auth()->user();
+        $client = Client::where('id', $client_id)->first();
+        $clientes = Client::whereNotIn('id', [$client_id])->get();
+        $devi = Devi::where('id', $devi_id)->first();
+        return view('devises.deviemail')->with('devi', $devi)->with('client', $client)->with('clientes', $clientes)->with('user', $user);
+    }
+    public function store_email(Request $request)
+    {
+
+        $data = request()->validate([
+            'objet_email' => 'required',
+            'message_email' => 'required',
+            'email_client' => 'required',
+            'devi_id' => 'required'
+        ]);
+
+        $devise = Devi::find($data['devi_id']);
+        $articles = Article::where('devi_id', $data['devi_id'])->get();
+        $pdf = PDF::loadView('devises.devispdf', compact('devise', 'articles'));
+
+        $message = new EnvoiMailDevi($data);
+        $message->attachData($pdf->output(), "devis.pdf");
+        $to_email = $request->email_client;
+        Mail::to($to_email)->send($message);
+        Session::flash('status_send_mail_devis', ' Email envoyé avec succès.');
+        return redirect()->route('devises.index');
     }
 }

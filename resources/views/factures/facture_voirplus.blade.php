@@ -49,7 +49,7 @@
                 @endif
 
                 @if ($facture->etat_facture != 'Provisoire')
-                <a href="mailto:{{$facture->getClient($facture->client_id)->adresse_email_client}}" class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
+                <a href="{{route('create_email_facture', ['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}" class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
                     <p id="hover_email">Envoyer par email</p>
                 </a>
                 @else
@@ -149,7 +149,7 @@
                 <hr class="m-0">
                 @if ($facture->client_id!= null)
                 <li><a href="{{route('facture.generpdff',$facture->id)}}">Télecharger</a></li>
-                <li><a href="mailto:{{$facture->getClient($facture->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                <li><a href="{{route('create_email_facture', ['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}">Envoyer par email</a></li>
                 <hr class="m-0">
                 @else
                 @endif
@@ -299,15 +299,6 @@
                 <a href="{{route('voirplus',$facture->client_id)}}" class="link-hover-focus">{{$facture->getClient($facture->client_id)->nom_client}}&nbsp;{{$facture->getClient($facture->client_id)->prenom_client}}</a>
             </div>
         </div>
-        {{-- <hr style="margin: 0.5px">
-        <div class="row">
-            <div class="col-md-4">
-                <p class="text-muted">Société:</p>
-            </div>
-            <div class="col-md-8">
-                <p style="color: red">{{$facture->getClient($facture->client_id)->societe_client}} had partie khass ya ima t7ayad ola n9adha ila dart partie dyal societe</p>
-            </div>
-        </div> --}}
         <hr style="margin: 0.5px">
         <div class="row">
             <div class="col-md-4">

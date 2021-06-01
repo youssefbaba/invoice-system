@@ -1,9 +1,9 @@
 @extends('home')
 @section('header_content')
-<h2 id="grand_title_addclient" class="text-uppercase">Nouveau&nbsp;&nbsp;utilisateur</h2>
+<h2 id="grand_title_addclient" class="text-uppercase">Nouveau&nbsp;&nbsp;employé</h2>
 @endsection
 @section('contenu_inside')
-<div class="container mt-2" >
+<div class="container-fluid mt-2" >
     <form method="POST" action="{{ route('admin.store') }}" enctype="multipart/form-data" id="bigform2">
             @csrf
         <div class="client col-md-8">

@@ -7,284 +7,210 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pdf</title>
     <style>
-        table {
+        .table {
             border-collapse: collapse;
-            width: 100%;
+             width: 100%;
+             border: 1px solid black;
+         }
+
+
+        table {
+        width: 100%;
+        border-collapse: collapse;
         }
 
-        td {
-            text-align: left;
-            padding: 8px;
-        }
+         .tabl td {
+             text-align: left;
+             padding: 10px;
+             border: 1px solid white;
+         }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
+         .tabl tr:nth-child(even) {
+            background-color: #c1d9ef;
+         }
 
-        th {
-            text-align: left;
-            background-color: #8a8a8a;
-            color: white;
+         .tabl th {
+             border: 1px solid white;
+             text-align: left;
+             background-color: #84B4DF;
+             color: white;
+         }
+         .notactive {
+            display: inline-block;
+            margin-right: 30px;
         }
+        .logo{
+            text-align: center;
 
+        }
     </style>
 
 </head>
 
 <body>
-    <div class="row container">
-        <h1 class="text-center font-weight-bold">A{{$avoir->created_at->format('Y')}}{{$avoir->id}} &nbsp;: &nbsp;{{$avoir->created_at->format('Y-m-d')}}</h1>
-        <h2 class="text-center font-weight-bold"></h2>
-        <div class="col-md-6">
-            <h2 class="font-weight-bold">Informations</h2>
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Status:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>
-                        @if ($avoir->client_id == null)
-                        Incompléte
-                        @else
-                        {{$avoir->etat_facture}}
-                        @endif
-                    </p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Créée le:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->created_at}}</p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Dernière modification le:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->updated_at}}</p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
+
+        <div class="logo">
+            <img src="{{public_path('Logo1.JPG')}}" alt="Logo" style="border-radius: 50%;" width="100" height="100">
         </div>
-        <div class="col-md-6">
-            @if ($avoir->client_id == null)
-            <h2 class="font-weight-bold text-danger">Destinataire</h2>
-            @else
-            <h2 class="font-weight-bold">Destinataire</h2>
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Destinataire:</p>
-                </div>
-                <div class="col-xs-8">
-                    <a style="text-decoration: none; color:black" href="{{route('voirplus',$avoir->client_id)}}"
-                        style="color:black">{{$avoir->getClient($avoir->client_id)->nom_client}}</a>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Société:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p style="color: red">{{$avoir->getClient($avoir->client_id)->societe_client}} hadi n9dar
-                        n7aydha ola n9adha </p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Adresse:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->getClient($avoir->client_id)->adresse_client}}</p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Ville:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->getClient($avoir->client_id)->ville_client}}</p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Numéro de téléphone:</p>
-                </div>
-                <div class="col-xs-8">
-                    <a style="text-decoration: none; color:black"
-                        href="tel:{{$avoir->getClient($avoir->client_id)->tel_client}}}}"
-                        style="color:black">{{$avoir->getClient($avoir->client_id)->tel_client}}</a>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Adresse email:</p>
-                </div>
-                <div class="col-xs-8">
-                    <a style="text-decoration: none; color:black"
+
+        <div>
+            <table style="width:100%;">
+                <tr>
+                    <td><h2>Avoir&nbsp;{{$avoir->code_avoir}}: {{$avoir->etat_facture}}</h2></td>
+                    <td style="margin-left:10px;padding-left:10px"><p><span style="font-weight: bold;">Date création avoir :</span> &nbsp;{{$avoir->created_at->format('Y-m-d')}}</p></td>
+                </tr>
+                <tr>
+                  <td><h2>Destinataire</h2></td>
+                  <td style="margin-left:10px;padding-left:10px"><h2>Envoyer à</h2></td>
+                </tr>
+                <tr>
+                  <td><span style="font-weight: bold;">Entreprise :</span>&nbsp;Devosoft</td>
+                  <td style="margin-left:10px;padding-left:10px"><span style="font-weight: bold;">Client :</span> &nbsp;{{$avoir->getClient($avoir->client_id)->nom_client}}&nbsp;{{$avoir->getClient($avoir->client_id)->prenom_client}}</td>
+                </tr>
+                <tr>
+                    <td><a style="text-decoration: none; color:black"
+                        href="mailto:contact@devosoft.ma"
+                        style="color:black"><span style="font-weight: bold;">Email :</span> &nbsp;contact@devosoft.ma</a>
+                    </td>
+                    <td style="margin-left:10px;padding-left:10px"><a style="text-decoration: none; color:black"
                         href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}"
-                        style="color:black">{{$avoir->getClient($avoir->client_id)->adresse_email_client}}</a>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Site internet:</p>
-                </div>
-                <div class="col-xs-8">
-                    <a style="text-decoration: none; color:black"
-                        href="{{$avoir->getClient($avoir->client_id)->site_client}}"
-                        style="color:black">{{$avoir->getClient($avoir->client_id)->site_client}}</a>
-                </div>
-            </div>
-            @endif
+                        style="color:black"><span style="font-weight: bold;">Email :</span> &nbsp;{{$avoir->getClient($avoir->client_id)->adresse_email_client}}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <span style="font-weight: bold;">Adresse :</span> &nbsp;  Apprt N°14 Rue 135, 1er Etage Qu El Massira-Safi (M)</td>
+                    <td style="margin-left:10px;padding-left:10px"> <span style="font-weight: bold;">Adresse :</span> &nbsp;{{$avoir->getClient($avoir->client_id)->adresse_client}}</td>
+                </tr>
+                <tr>
+                    <td><a style="text-decoration: none; color:black"
+                        href="tel:0525988911"
+                        style="color:black"><span style="font-weight: bold;">Tel :</span> &nbsp; 0525988911</a></td>
+                    <td style="margin-left:10px;padding-left:10px"><a style="text-decoration: none; color:black"
+                        href="tel:{{$avoir->getClient($avoir->client_id)->tel_client}}"
+                        style="color:black"><span style="font-weight: bold;">Tel :</span> &nbsp;{{$avoir->getClient($avoir->client_id)->tel_client}}</a>
+                    </td>
+                </tr>
+              </table>
         </div>
-        <div class="col-md-6">
-            <h2 class="font-weight-bold">Conditions</h2>
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Conditions de règlement:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->condition_reglf}}</p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Mode de règlement:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->mode_reglf}}</p>
-                </div>
-            </div>
-            <hr style="margin: 0.5px">
-            <div class="row">
-                <div class="col-xs-4">
-                    <p class="text-muted">Intérêt de retard:</p>
-                </div>
-                <div class="col-xs-8">
-                    <p>{{$avoir->interet_reglf}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <h2 class="font-weight-bold ">Détail</h2>
-            <table class="table table-striped table-responsive col-md-12">
+
+
+        <div class="tabl" style="margin-top: 20px;">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-muted">Type</th>
-                        <th scope="col" class="text-muted">Description</th>
-                        <th scope="col" class="text-muted">Prix unitaire HT</th>
-                        <th scope="col" class="text-muted">Quantité</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Prix unitaire HT</th>
+                        <th>Quantité</th>
                         @if ($avoir->getArticle($avoir->id)->tva != null)
-                        <th scope="col" class="text-muted">TVA</th>
+                        <th>TVA</th>
                         @else
                         @endif
                         @if ($avoir->getArticle($avoir->id)->reduction_article != null)
-                        <th scope="col" class="text-muted">Réduction</th>
+                        <th>Réduction</th>
                         @else
                         @endif
-                        <th scope="col" class="text-muted">Total HT</th>
+                        <th>Total HT</th>
+                        <th>Devise</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($articles as $article)
                     <tr>
-                        <td scope="col">{{$article->type_article}}</td>
-                        <td scope="col">{{$article->description_article}}</td>
-                        <td scope="col">{{$article->prix_ht_article}} {{$avoir->devis}} </td>
-                        <td scope="col">{{$article->quantité_article}}</td>
+                        <td>{{$article->type_article}}</td>
+                        <td>{{$article->description_article}}</td>
+                        <td>{{$article->prix_ht_article}}</td>
+                        <td>{{$article->quantité_article}}</td>
                         @if ($avoir->getArticle($avoir->id)->tva != null)
-                        <td scope="col">{{$article->tva}}%</td>
+                        <td>{{$article->tva}}%</td>
                         @else
                         @endif
                         @if ($avoir->getArticle($avoir->id)->reduction_article != null)
-                        <td scope="col">{{$article->reduction_article}}%</td>
+                        <td>{{$article->reduction_article}}%</td>
                         @else
                         @endif
-                        <td scope="col">{{$article->total_ht_article}}</td>
-                        <td scope="col"> {{$avoir->devis}}</td>
+                        <td>{{$article->total_ht_article}}</td>
+                        <td> {{$avoir->devis}}</td>
                     </tr>
                     @endforeach
                     @isset($avoir->getDebours($avoir->id)->montant_ht_debours)
                     @foreach ($debourses as $debours)
                     <tr>
-                        <td scope="col">Débours</td>
-                        <td scope="col">Ref:{{$debours->ref_debours}},{{$debours->description_debours}}</td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
+                        <td>Débours</td>
+                        <td>Ref:{{$debours->ref_debours}},{{$debours->description_debours}}</td>
+                        <td></td>
+                        <td></td>
                         @if ($avoir->getArticle($avoir->id)->tva != null)
-                        <td scope="col"></td>
+                        <td></td>
                         @else
                         @endif
                         @if ($avoir->getArticle($avoir->id)->reduction_article != null)
-                        <td scope="col"></td>
+                        <td></td>
                         @else
                         @endif
-                        <td scope="col">{{$debours->montant_ht_debours}}</td>
-                        <td scope="col"> {{$avoir->devis}}</td>
+                        <td>{{$debours->montant_ht_debours}}</td>
+                        <td> {{$avoir->devis}}</td>
                     </tr>
                     @endforeach
                     @endisset
                     <tr>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col" class="font-weight-bold">Total HT</td>
-                        <td scope="col">{{$avoir->total_ht_articlesf}}</td>
-                        <td scope="col"> {{$avoir->devis}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total HT</td>
+                        <td>{{$avoir->total_ht_articlesf}}</td>
+                        <td> {{$avoir->devis}}</td>
                     </tr>
                     @if ($avoir->getArticle($avoir->id)->tva != null)
                     <tr>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col" class="font-weight-bold">TVA</td>
-                        <td scope="col">{{$avoir->tvaf}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>TVA</td>
+                        <td>{{$avoir->tvaf}}</td>
                         <td> {{$avoir->devis}}</td>
                     </tr>
                     @else
                     @endif
                     @isset($avoir->getDebours($avoir->id)->montant_ht_debours)
                     <tr>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col" class="font-weight-bold">Débours</td>
-                        <td scope="col">{{$avoir->total_debours}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Débours</td>
+                        <td>{{$avoir->total_debours}}</td>
                         <td> {{$avoir->devis}} </td>
                     </tr>
                     @endisset
                     <tr>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-                        <td scope="col" class="font-weight-bold">Total TTC</td>
-                        <td scope="col">{{$avoir->total_facturef}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total TTC</td>
+                        <td>{{$avoir->total_facturef}}</td>
                         <td> {{$avoir->devis}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
+        <div>
+            <h2 style="margin-bottom: 0px;">Conditions</h2>
+            <table style="width:100%;margin-bottom: 20px">
+                <tr>
+                    <td style="text-align: left;"><p><span style="font-weight: bold;">Conditions de règlement :</span> &nbsp;{{$avoir->condition_reglf}}</p></td>
+                    <td style="text-align: left;"><p><span style="font-weight: bold;">Mode de règlement :</span> &nbsp;{{$avoir->mode_reglf}}</p></td>
+                    <td style="text-align: left;"><p><span style="font-weight: bold;">Intérêt de retard :</span> &nbsp;{{$avoir->interet_reglf}}</p></td>
+                </tr>
+            </table>
+         </div>
 
 </body>
 

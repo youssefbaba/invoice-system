@@ -71,7 +71,11 @@ class clientsController extends Controller
 
         ]);
         $id = DB::getPdo()->lastInsertId();
+        $client = Client::where('id', $id)->first();
+        $client->code_client = 'C' . $client->created_at->format('Y') . $id;
+        $client->save();
         $test = $request->motcle_client[0];
+
 
         if ($test == null) {
             for ($j = 0; $j < 0; $j++) {

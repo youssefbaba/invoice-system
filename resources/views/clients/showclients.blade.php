@@ -40,7 +40,7 @@
                 <div class="card client_display bg-light">
                     <div class="card-body">
                         <div class="row">
-                            <a href="{{route('voirplus',$client->id)}}" class="card-title col-md-8 nm_client">{{$client->nom_client}}&nbsp;&nbsp;&nbsp;{{$client->prenom_client}}</a>
+                            <a href="{{route('voirplus',$client->id)}}" class="card-title col-md-8 nm_client"><span>{{$client->code_client}}</span>:{{$client->nom_client}}&nbsp;&nbsp;&nbsp;{{$client->prenom_client}}</a>
                             <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                         </div>
                         <h6 class="card-subtitle mb-2 text-muted nm_societe">Particulier</h6>

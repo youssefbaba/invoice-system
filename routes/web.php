@@ -84,6 +84,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('duplicate_facture_vide/{facture_id}', 'facturesController@duplicatefacture_vide')->name('factures.duplicatefacture_vide');
     Route::get('duplicateen_devise/{facture_id}', 'facturesController@duplicateen_devise')->name('devises.duplicateen_devise');
     Route::post('/facture_search', 'facturesController@search')->name('recherche_facture');
+    Route::get('/facture_createemail/{facture_id}/{client_id}', 'facturesController@create_email')->name('create_email_facture');
+    Route::post('/facture_envoiemail', 'facturesController@store_email')->name('envoi_email_facture');
+
+
+    // Route::post('/facture_telecharger/{$facture_id}', 'facturesController@genererpdff($facture_id)')->name('telecharger_facture');
 });
 
 //create a group route for avoirs
@@ -103,6 +108,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('showavoirrembourse', 'AvoirController@avoirrembourse')->name('avoirs.rembourse');
     Route::get('deleteavoir/{avoir_id}', 'AvoirController@deleteavoir')->name('deleteavoir');
     Route::post('/avoir_search', 'AvoirController@search')->name('recherche_avoir');
+    Route::get('/avoir_createemail/{avoir_id}/{client_id}', 'AvoirController@create_email')->name('create_email_avoir');
+    Route::post('/avoir_envoiemail', 'AvoirController@store_email')->name('envoi_email_avoir');
 });
 
 
@@ -128,7 +135,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('create_devis/{id}', 'devisesController@create_devis_client')->name('create_determine_devis');
     Route::get('duplicateen_facture/{devi_id}', 'devisesController@duplicateen_facture')->name('devises.duplicateen_facture');
     Route::post('/devis_search', 'devisesController@search')->name('recherche_devi');
-    // Route::post('/', 'devisesController@storedevi')->name('devises.storedevi');
+    Route::get('/devis_createemail/{devi_id}/{client_id}', 'devisesController@create_email')->name('create_email_devi');
+    Route::post('/devis_envoiemail', 'devisesController@store_email')->name('envoi_email_devi');
 });
 
 

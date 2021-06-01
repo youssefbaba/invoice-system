@@ -110,7 +110,7 @@
                                                         @else
                                                         @endif
                                                         <li><a href="{{route('devise.generpdf',$devis->id)}}">Telécharger</a></li>
-                                                        <li><a href="mailto:{{$devis->getClient($devis->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                        <li><a href="{{route('create_email_devi',['devi_id'=>$devis->id,'client_id'=>$client->getClient_Facture_id($devis->client_id)])}}">Envoyer par email</a></li>
                                                         <hr>
                                                         @if ($devis->etat_devis=='Signés')
                                                             <li><a href="#">créer une facture</a></li>

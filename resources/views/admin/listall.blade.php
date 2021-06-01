@@ -1,6 +1,6 @@
 @extends('admin')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Liste des utilisateurs</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Liste des employés</a> </h5>
 <div class="form-group has-search d-inline-flex">
     <form action="#" method="POST">
         @csrf
@@ -15,12 +15,12 @@
 @endsection
 @section('contenu_inside')
 {{-- <link rel="stylesheet" href="{{ asset('css/listusers.css') }}"> --}}
-<div class="container">
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-12 col-sm-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-uppercase mb-0">Gestion des utilisateurs</h5>
+                <h5 class="card-title text-uppercase mb-0">Gestion des employés</h5>
             </div>
 
             <div class="row d-flex justify-content-between">
@@ -33,15 +33,15 @@
                             Administrateurs <span class="badge badge-light">{{$useradmin->count()}}</span>
                           </a>
                           <a href="{{ route('admin.listuser') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Utilisateurs <span class="badge badge-light">{{$listuser->count()}}</span>
+                            Employés <span class="badge badge-light">{{$listuser->count()}}</span>
                           </a>
                       </ul>
                 </div>
 
                 <div >
                     <ul class="nav nav-tabs mr-3">
-                        <a  href="{{ route('admin.create') }}" class="btn btn-primary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Ajouter Un Utilisateur
+                        <a  href="{{ route('admin.create') }}" class="btn" style="border-radius: 0px;background-color: #4DBCED;color: white;margin-right:2px">
+                            Ajouter un employé
                           </a>
                       </ul>
                 </div>
@@ -68,7 +68,7 @@
                         <td>{{$user->created_at->format('Y-m-d')}}</td>
                         <td>
                             @if($user->role === 0)
-                            Utilisateur
+                            Employé
                             @else
                             Administrateur
                             @endif
@@ -94,13 +94,13 @@
                                       <div class="modal-dialog">
                                           <div class="modal-content">
                                               <div class="modal-header bg-danger text-white">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Supprimer un utilisateur </h5>
+                                                  <h5 class="modal-title" id="exampleModalLabel">Supprimer un employé </h5>
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
                                                   </button>
                                               </div>
                                               <div class="modal-body">
-                                                  Voulez-vous vraiment supprimer cet utilisateur !!!
+                                                  Voulez-vous vraiment supprimer  ce employé !!!
                                               </div>
                                               <div class="modal-footer">
                                                   <a class="btn btn-secondary  text-white" data-dismiss="modal">Annuler</a>

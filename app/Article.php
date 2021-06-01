@@ -12,6 +12,10 @@ class Article extends Model
     {
         return $this->belongsTo('App\Facture');
     }
+    public function devi()
+    {
+        return $this->belongsTo('App\Devi');
+    }
     public function client()
     {
         return $this->belongsTo('App\Devi');

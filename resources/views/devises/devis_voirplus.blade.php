@@ -61,7 +61,7 @@
                 @else
                 @endif
                 @if ($devise->client_id != null)
-                <a href="mailto:{{$devise->getClient($devise->client_id)->adresse_email_client}}"
+                <a href="{{route('create_email_devi',['devi_id'=>$devise->id,'client_id'=>$devise->client_id])}}"
                     class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
                     <p id="hover_email">Envoyer par email</p>
                 </a>
@@ -189,7 +189,7 @@
 
                 @if ($devise->client_id != null)
                 <li><a href="{{route('devise.generpdf',$devise->id)}}">Télecharger</a></li>
-                <li><a href="mailto:{{$devise->getClient($devise->client_id)->adresse_email_client}}">Envoyer par
+                <li><a href="{{route('create_email_devi',['devi_id'=>$devise->id,'client_id'=>$devise->client_id])}}">Envoyer par
                         email</a></li>
                 @else
                 @endif

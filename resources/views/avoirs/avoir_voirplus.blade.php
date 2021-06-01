@@ -42,7 +42,7 @@
                 @else
                 @endif
                 @if ($avoir->client_id!= null)
-                <a href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}" class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
+                <a href="{{route('create_email_avoir',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}" class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
                     <p id="hover_email">Envoyer par email</p>
                 </a>
                 <a href="{{route('avoir.genererpdfa',$avoir->id)}}" class="bg-dark text-white"
@@ -141,7 +141,7 @@
                 <hr class="m-0">
                 @if ($avoir->client_id!= null)
                 <li><a href="{{route('avoir.genererpdfa',$avoir->id)}}">Télecharger</a></li>
-                <li><a href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                <li><a href="{{route('create_email_avoir',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}">Envoyer par email</a></li>
                 <hr class="m-0">
                 @else
                 @endif

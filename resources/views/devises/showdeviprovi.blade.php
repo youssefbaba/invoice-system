@@ -113,7 +113,7 @@
                                                         @else
                                                         @endif
                                                         <li><a href="{{route('devise.generpdf',$devis->id)}}">Telécharger</a></li>
-                                                        <li><a href="mailto:{{$devis->getClient($devis->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                        <li><a href="{{route('create_email_devi',['devi_id'=>$devis->id,'client_id'=>$client->getClient_Facture_id($devis->client_id)])}}">Envoyer par email</a></li>
                                                         <hr>
                                                         <li><a href="{{route('devises.duplicatedevise',['devi_id'=>$devis->id,'client_id'=>$devis->client_id])}}">Dupliquer le devis</a></li>
                                                         <li><a href="{{route('devises.duplicateen_facture',$devis->id)}}">Dupliquer en facture</a></li>

@@ -558,33 +558,6 @@
         </script>
     @endif
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @if (Session::get('status_add_utilisateur'))
             <script type="text/javascript">
                 swal({
@@ -615,6 +588,48 @@
                 location.reload();
             </script>
     @endif
+
+    @if (Session::get('status_send_mail_facture'))
+    <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_send_mail_facture')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_send_mail_devis'))
+    <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_send_mail_devis')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+    @if (Session::get('status_send_mail_avoir'))
+    <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_send_mail_avoir')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+
+
 
 
 

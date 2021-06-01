@@ -37,7 +37,7 @@
                                         <div class="card-body">
 
                                             <div class="row">
-                                                <a href="{{route('avoirs.voirplus',['id'=>$avoir->id])}}" class="card-title col-md-8 nm_client"><span>{{$avoir->code_avoir}}</span>:{{$avoir->etat_facture}}</a>
+                                                <a href="{{route('avoirs.voirplus',['id'=>$avoir->id])}}" class="card-title col-md-8 nm_client"><span>{{$avoir->code_avoir}}</span>:{{$avoir->etat_facture}}&nbsp;&nbsp;&nbsp;&nbsp;<span  class="text-success">[{{$avoir->get_Code_Facture($avoir->facture_id)}}]</span></a>
 
                                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                             </div>
@@ -108,7 +108,7 @@
                                                         @else
                                                         @endif
                                                         <li><a href="{{route('avoir.genererpdfa',['id'=>$avoir->id])}}">Telécharger</a></li>
-                                                        <li><a href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                        <li><a href="{{route('create_email_avoir',['avoir_id'=>$avoir->id,'client_id'=>$client->getClient_Facture_id($avoir->client_id)])}}">Envoyer par email</a></li>
                                                         <hr>
                                                     @endif
                                                 @break

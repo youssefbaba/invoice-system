@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\factureRequest;
+use App\Mail\EnvoiMaiAvoir;
 use Illuminate\Support\Facades\Session;
 
 class AvoirController extends Controller
@@ -88,6 +90,7 @@ class AvoirController extends Controller
             'client_id' => $request->clients,
             'devis' => $request->devis,
             'user_id' => $user->id,
+            'facture_id' => $request->facture_id,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
@@ -172,27 +175,6 @@ class AvoirController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -513,5 +495,39 @@ class AvoirController extends Controller
         } else {
             return view('avoirs.showavoirsearch')->with('status', 'recherche failed')->with('user', $user)->with('avoirs_cles_clients', [])->with('clients', Client::all());
         }
+    }
+    public function create_email($avoir_id, $client_id)
+    {
+        $user = auth()->user();
+        $client = Client::where('id', $client_id)->first();
+        $clientes = Client::whereNotIn('id', [$client_id])->get();
+        $avoir = Avoir::where('id', $avoir_id)->first();
+        return view('avoirs.avoiremail')->with('avoir', $avoir)->with('client', $client)->with('clientes', $clientes)->with('user', $user);
+    }
+    public function store_email(Request $request)
+    {
+
+        $data = request()->validate([
+            'objet_email' => 'required',
+            'message_email' => 'required',
+            'email_client' => 'required',
+            'avoir_id' => 'required'
+        ]);
+
+        $user = auth()->user();
+        $avoir = Avoir::find($data['avoir_id']);
+        // dd($avoir->etat_facture);
+        $articles = Article::where('avoir_id', $data['avoir_id'])->get();
+        $debourses = Debours::where('avoir_id', $data['avoir_id'])->get();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf = PDF::loadView('avoirs.avoirpdf', compact('avoir', 'articles', 'debourses'));
+
+
+        $message = new EnvoiMaiAvoir($data);
+        $message->attachData($pdf->output(), "avoir.pdf");
+        $to_email = $request->email_client;
+        Mail::to($to_email)->send($message);
+        Session::flash('status_send_mail_avoir', ' Email envoyé avec succès.');
+        return redirect()->route('avoirs.index');
     }
 }

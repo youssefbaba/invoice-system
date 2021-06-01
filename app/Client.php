@@ -16,6 +16,10 @@ class Client extends Model
     {
         return $this->hasMany('App\Facture');
     }
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
     public function avoirs()
     {
         return $this->hasMany('App\Avoir');

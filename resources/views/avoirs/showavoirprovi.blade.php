@@ -88,7 +88,7 @@
                                                         <li><a href="#" onclick="handleClickModal({{$avoir->id}})">supprimer</a></li>
                                                         <hr>
                                                         <li><a href="{{route('avoir.genererpdfa',$avoir->id)}}">Telécharger</a></li>
-                                                        <li><a href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                                        <li><a href="{{route('create_email_avoir',['avoir_id'=>$avoir->id,'client_id'=>$client->getClient_Facture_id($avoir->client_id)])}}">Envoyer par email</a></li>
                                                         <hr>
                                                     @else
                                                         <li><a href="#">modifier</a></li>
@@ -97,7 +97,7 @@
                                                     @endif
                                                 @break
                                                 @endforeach
-                                                <li><a href="{{route('avoirs.duplicateen_devise',$avoir->id)}}">Dupliquer en devis</a></li>
+                                                <li><a href="{{route('avoir.duplicate_en_devi',$avoir->id)}}">Dupliquer en devis</a></li>
                                                 @if($client->getClient_Facture_id($avoir->client_id) != null)
                                                 <li><a href="{{route('avoirs.duplicateen_facture',['avoir_id'=>$avoir->id,'client_id'=>$client->getClient_Facture_id($avoir->client_id)])}}">Dupliquer en facture</a></li>
                                                 @else
