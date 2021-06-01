@@ -20,10 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/terms', function () {
-    return view('terms');
-})->name('terms');
-
 
 Auth::routes();
 // Auth::routes(['verify' => true]);
@@ -163,4 +159,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('parametre_UpdateCompte/{user_id}', 'parametreController@updateCompte')->name('parametre.updateCompte');
     Route::get('parametreDelete', 'parametreController@parametre_delete')->name('parametre.delete');
     Route::post('parametre_DeleteCompte/{user_id}', 'parametreController@delete_account')->name('parametre.deleteCompte');
+});
+
+//create route for charts
+Route::middleware(['auth', 'is.admin'])->group(function () {
+    Route::get('dashboardapplication/charteuro', 'DashApplicationController@charteuro')->name('dashapplication.charteuro');
+    Route::get('dashboardapplication/chartdollar', 'DashApplicationController@chartdollar')->name('dashapplication.chartdollar');
+    Route::get('dashboardapplication', 'DashApplicationController@chartdirham')->name('dashapplication.chartdirham');
+
+    // Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('dashboardapplication/chiffre_affaire', 'DashApplicationController@chiffre_affaire')->name('dashapplication.chiffre_affaire');
+    Route::get('dashboardapplication/debours', 'DashApplicationController@debours')->name('dashapplication.debours');
 });

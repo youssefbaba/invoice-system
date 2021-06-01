@@ -7,8 +7,6 @@ use App\Client;
 use App\Article;
 use App\Debours;
 use App\Facture;
-use Carbon\Carbon;
-use App\Mail\EnvoiMail;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;

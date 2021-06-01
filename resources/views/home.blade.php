@@ -18,12 +18,12 @@
                     <li><a href="{{route('avoirs.index')}}" ><i class="fas fa-shopping-cart"></i><span class="second">&nbsp;&nbsp;Avoirs</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
 
                     @if(Auth::user()->role === 0)
-                    <li><a href="{{route('dashboard')}}"><i class="fas fa-chart-line"></i><span class="second">&nbsp;&nbsp;Dash Employés</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
+                    <li><a href="{{route('dashboard')}}"><i class="fas fa-chart-line"></i><span class="second">&nbsp;&nbsp;Dash Employé</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
                     @else
                     <li><a href="{{route('dashboard')}}"><i class="fas fa-chart-line"></i><span class="second">&nbsp;&nbsp;Dash Administrateur</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
                     @endif
                     @if(Auth::user()->role === 1)
-                    <li><a href="#" ><i class="fas fa-tachometer-alt"></i><span class="second">&nbsp;&nbsp;Dash Application</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
+                    <li><a href="{{ route('dashapplication.chartdirham') }}" ><i class="fas fa-tachometer-alt"></i><span class="second">&nbsp;&nbsp;Dash Application</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
                     @endif
                     <li><a href="{{route('parametre')}}"><i class="fas fa-cog"></i><span class="second" >&nbsp;&nbsp;Paramétres</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
                     <li><a href="{{route('deconnexion')}}"><i class="fas fa-sign-in-alt"></i><span class="second" >&nbsp;&nbsp;Déconnexion</span><span><i class="fas fa-chevron-right"></i></span></a></li>

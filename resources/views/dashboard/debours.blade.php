@@ -1,18 +1,6 @@
 @extends('home')
 @section('header_content')
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
-<div class="form-group has-search d-inline-flex">
-    {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="#" method="POST">
-        @csrf
-        <div class="input-group ">
-            <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
-            <button type="submit" class="btn"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-    </form>
-</div>
 @endsection
 @section('contenu_inside')
 <div class="etat_div">
@@ -35,37 +23,15 @@
                  </tr>
                </thead>
                <tbody>
-                 <tr>
-                   <td>Mai 2021</td>
-                   <td>100,00 €</td>
-                   <td></td>
-                   <td>100,00 €	</td>
-                 </tr>
-                 <tr>
-                   <td>Mai 2021</td>
-                   <td>200,00 $	</td>
-                   <td>200,00 $	</td>
-                   <td>00,00 $</td>
-                 </tr>
-                 <tr>
-                   <td>Avril 2021</td>
-                   <td>100,00 €</td>
-                   <td></td>
-                   <td>100,00 €</td>
-                 </tr>
+                   @for($i = 0; $i < count($total_debours_facture_monthly_dirham); $i++)
+                         <tr>
+                             <td>{{$keys_facture_dh[$i]}}</td>
+                             <td>{{$total_debours_facture_monthly_dirham[$i]}}</td>
+                             <td>{{$total_debours_avoir_monthly_dirham[$i]}}</td>
+                             <td>{{$total_debours_facture_monthly_dirham[$i] - $total_debours_avoir_monthly_dirham[$i]}}</td>
+                         </tr>
+                    @endfor
 
-                 <tr style="font-weight: bold">
-                    <td>Total €</td>
-                    <td>200,00 €</td>
-                    <td>00,00€</td>
-                    <td>3287,12 €</td>
-                 </tr>
-                 <tr style="font-weight: bold">
-                    <td>Total $</td>
-                    <td>200,00 $</td>
-                    <td>200,00 $</td>
-                    <td>00,00 $</td>
-                 </tr>
                </tbody>
              </table>
        </div>

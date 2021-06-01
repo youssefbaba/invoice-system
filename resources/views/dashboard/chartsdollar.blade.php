@@ -1,9 +1,9 @@
 @extends('home')
 @section('header_content')
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dash.chartdollar') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
-<div class="form-group has-search d-inline-flex">
+{{-- <div class="form-group has-search d-inline-flex"> --}}
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="#" method="POST">
+    {{-- <form action="#" method="POST">
         @csrf
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
@@ -11,8 +11,8 @@
               <i class="fas fa-search"></i>
             </button>
           </div>
-    </form>
-</div>
+    </form> --}}
+{{-- </div> --}}
 @endsection
 @section('contenu_inside')
 <div class="etat_div">

@@ -1,6 +1,6 @@
 @extends('home')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase" ><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashapplication.chartdollar') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
 {{-- <div class="form-group has-search d-inline-flex"> --}}
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
     {{-- <form action="#" method="POST">
@@ -17,9 +17,9 @@
 @section('contenu_inside')
 <div class="etat_div">
     <ul class="list-inline">
-        <li class="list-inline-item "><a href="{{route('dashboard')}}" class="active">STATISTIQUES</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}">CHIFFRE D'AFFAIRES</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.debours') }}">DÉBOURS</a></li>
+        <li class="list-inline-item "><a href="{{route('dashapplication.chartdollar')}}" class="active">STATISTIQUES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dashapplication.chiffre_affaire') }}">CHIFFRE D'AFFAIRES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dashapplication.debours') }}">DÉBOURS</a></li>
     </ul>
 </div>
 <div class="container-fluid">
@@ -28,9 +28,9 @@
             <form action="">
                 <div class="form-group">
                   <select class="form-control" id="sampleSelect">
-                    <option value="{{ route('dash.charteuro') }}" >Euro (€)</option>
-                    <option value="{{ route('dash.chartdollar') }}">Dollar ($)</option>
-                    <option value="{{ route('dashboard') }}" selected >Dirham (DH)</option>
+                    <option value="{{ route('dashapplication.charteuro') }}" >Euro (€)</option>
+                    <option value="{{ route('dashapplication.chartdollar') }}" selected >Dollar ($)</option>
+                    <option value="{{ route('dashapplication.chartdirham') }}" >Dirham (DH)</option>
                   </select>
                 </div>
             </form>
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="card col-md-12 border-0 mx-auto" >
             <div class="card-header font-weight-bold">
-              CHIFFRE D'AFFAIRES PAR MOIS
+              CHIFRE AFFAIRES PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_chiffre_affaire->container()}}
@@ -53,7 +53,7 @@
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              TOTAL FACTURE ET NOMBRE FACTURE PAR MOIS
+              MONTANT$NOMBRE FACTURE PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_factures->container()}}
@@ -63,7 +63,7 @@
 
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              TOTAL DEVIS ET NOMBRE DEVIS PAR MOIS
+              MONTANT$NOMBRE DEVIS PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_devis->container()}}
@@ -75,13 +75,12 @@
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              TOTAL AVOIRS ET NOMBRE AVOIRS PAR MOIS
+              MONTANT$NOMBRE AVOIRS PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_avoirs->container()}}
             </div>
         </div>
-
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold">
               NOMBRE CLIENTS PAR MOIS
@@ -90,7 +89,6 @@
                 {{$chart_clients->container()}}
             </div>
         </div>
-
     </div>
 
 </div>
@@ -101,10 +99,8 @@
 {!! $chart_factures->script() !!}
 {!! $chart_devis->script() !!}
 {!! $chart_clients->script() !!}
-{!! $chart_avoirs->script() !!}
 {!! $chart_chiffre_affaire->script() !!}
-
-
+{!! $chart_avoirs->script() !!}
 <script >
     $("select").click(function() {
     var open = $(this).data("isopen");

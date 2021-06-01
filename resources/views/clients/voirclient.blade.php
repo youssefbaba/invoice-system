@@ -198,7 +198,7 @@
                                 @endif
 
                                 <li><a href="{{route('facture.generpdff',$facture->id)}}">Telécharger</a></li>
-                                <li><a href="mailto:{{$facture->getClient($facture->client_id)->adresse_email_client}}">Envoyer
+                                <li><a href="{{route('create_email_facture',['facture_id'=>$facture->id,'client_id'=>$clients->getClient_Facture_id($facture->client_id)])}}">Envoyer
                                         par email</a></li><hr>
                                 @else
                                 <li><a href="{{route('factures.editfacture_vide',$facture->id)}}">Modifier</a></li>
@@ -347,7 +347,7 @@
                                         @else
                                         @endif
                                         <li><a href="{{route('devise.generpdf',$devise->id)}}">Telécharger</a></li>
-                                        <li><a href="mailto:{{$devise->getClient($devise->client_id)->adresse_email_client}}">Envoyer par email</a></li>
+                                        <li><a href="{{route('create_email_devi',['devi_id'=>$devise->id,'client_id'=>$clients->getClient_devise_id($devise->client_id)])}}">Envoyer par email</a></li>
                                         <hr>
                                         @if ($devise->etat_devis=='Signés')
                                         <li><a href="#">créer une facture</a></li>

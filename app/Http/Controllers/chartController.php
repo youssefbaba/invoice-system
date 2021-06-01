@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Devi;
 use App\Client;
-use App\Article;
 use App\Avoir;
-use App\Debours;
 use App\Facture;
-use App\Charts\factureChart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
@@ -82,8 +78,8 @@ class chartController extends Controller
             // ->setLabels($this->getAllMonths_clients());
 
 
-            ->addData([20, 24, 30])
-            ->setLabels(['March', 'April', 'May']);
+            ->addData([20, 24, 30, 24, 12, 87])
+            ->setLabels(['January', 'February', 'March', 'April', 'May', 'June']);
 
 
         $chart_chiffre_affaire = (new LarapexChart)->areaChart()
@@ -196,6 +192,7 @@ class chartController extends Controller
         // dump($total_avoirs_monthly);
         return $total_avoirs_monthly;
     }
+
     // function chiffre_affaire_euro()
     // {
     //     $user = auth()->user();
@@ -251,8 +248,8 @@ class chartController extends Controller
             // ->setLabels($this->getAllMonths_clients());
 
 
-            ->addData([10, 34, 50])
-            ->setLabels(['March', 'April', 'May']);
+            ->addData([20, 23, 30, 14, 89, 37])
+            ->setLabels(['January', 'February', 'March', 'April', 'May', 'June']);
 
         $chart_chiffre_affaire = (new LarapexChart)->areaChart()
             ->addData('chiffre affaire', [20, 33, 65, 12, 68, 32])
@@ -400,8 +397,8 @@ class chartController extends Controller
             // ->setLabels($this->getAllMonths_clients());
 
 
-            ->addData([22, 64, 10])
-            ->setLabels(['March', 'April', 'Player 9']);
+            ->addData([20, 14, 30, 44, 12, 17])
+            ->setLabels(['January', 'February', 'March', 'April', 'May', 'June']);
 
         $chart_avoirs = (new LarapexChart)->horizontalBarChart()
             // ->addData('Total Avoirs', $this->avoirs_dirham()->toArray())
@@ -554,6 +551,43 @@ class chartController extends Controller
     function debours()
     {
         $user = auth()->user();
-        return view('dashboard.debours')->with('user', $user);
+        $total_debours_facture_monthly_dirham = Facture::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_debours_avoir_monthly_dirham = Avoir::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        dump($total_debours_facture_monthly_dirham);
+        dump($total_debours_avoir_monthly_dirham);
+
+
+
+
+        $month_array_facture_dh = array();
+        $pulse_dates_facture_dh = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_dh)) {
+            foreach ($pulse_dates_facture_dh as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_dh[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_dh = array_keys($month_array_facture_dh);
+        dump($keys_facture_dh);
+
+
+        $month_array_avoir_dh = array();
+        $pulse_dates_avoir_dh = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_dh)) {
+            foreach ($pulse_dates_avoir_dh as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_dh[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_dh = array_keys($month_array_avoir_dh);
+        dump($keys_avoir_dh);
+
+        return view('dashboard.debours')->with('user', $user)->with('total_debours_facture_monthly_dirham', $total_debours_facture_monthly_dirham)->with('total_debours_avoir_monthly_dirham', $total_debours_avoir_monthly_dirham)->with('keys_facture_dh', $keys_facture_dh)->with('keys_avoir_dh', $keys_avoir_dh);
     }
 }
