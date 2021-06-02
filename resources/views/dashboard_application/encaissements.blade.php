@@ -1,6 +1,6 @@
-@extends('home')
+@extends('admin')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashapplication.chartdirham') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
 {{-- <div class="form-group has-search d-inline-flex"> --}}
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
     {{-- <form action="#" method="POST">
@@ -17,10 +17,10 @@
 @section('contenu_inside')
 <div class="etat_div">
     <ul class="list-inline">
-        <li class="list-inline-item "><a href="{{route('dashboard')}}">STATISTIQUES</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}" class="active">CHIFFRE D'AFFAIRES</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.encaissements') }}">ENCAISSEMENTS</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.debours') }}" >DÉBOURS</a></li>
+        <li class="list-inline-item "><a href="{{route('dashapplication.chartdirham')}}">STATISTIQUES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dashapplication.chiffre_affaire') }}" >CHIFFRE D'AFFAIRES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dashapplication.encaissements') }}" class="active">ENCAISSEMENTS</a></li>
+        <li class="list-inline-item"><a href="{{ route('dashapplication.debours') }}" >DÉBOURS</a></li>
     </ul>
 </div>
 <div class="container-fluid">
@@ -32,7 +32,7 @@
                     <th scope="col">Mois</th>
                     <th scope="col">Facturés </th>
                     <th scope="col">Avoirs</th>
-                    <th scope="col">Chiffre d'affaires</th>
+                    <th scope="col">Encaissements</th>
                   </tr>
                 </thead>
                 <tbody>

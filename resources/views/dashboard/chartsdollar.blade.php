@@ -19,6 +19,7 @@
     <ul class="list-inline">
         <li class="list-inline-item "><a href="{{route('dash.chartdollar')}}" class="active">STATISTIQUES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}">CHIFFRE D'AFFAIRES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dash.encaissements') }}">ENCAISSEMENTS</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.debours') }}">DÉBOURS</a></li>
     </ul>
 </div>
@@ -39,21 +40,21 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row">
+    {{-- <div class="row">
         <div class="card col-md-12 border-0 mx-auto" >
             <div class="card-header font-weight-bold">
-              CHIFRE AFFAIRES PAR MOIS
+              CHIFRE D'AFFAIRES PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_chiffre_affaire->container()}}
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              MONTANT$NOMBRE FACTURE PAR MOIS
+              TOTAL FACTURES ET NOMBRE FACTURES PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_factures->container()}}
@@ -63,7 +64,7 @@
 
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              MONTANT$NOMBRE DEVIS PAR MOIS
+              TOTAL DEVIS ET NOMBRE DEVIS PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_devis->container()}}
@@ -75,7 +76,7 @@
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              MONTANT$NOMBRE AVOIRS PAR MOIS
+              TOTAL AVOIRS ET NOMBRE AVOIRS PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_avoirs->container()}}

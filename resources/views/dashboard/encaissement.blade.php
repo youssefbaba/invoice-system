@@ -18,8 +18,8 @@
 <div class="etat_div">
     <ul class="list-inline">
         <li class="list-inline-item "><a href="{{route('dashboard')}}">STATISTIQUES</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}" class="active">CHIFFRE D'AFFAIRES</a></li>
-        <li class="list-inline-item"><a href="{{ route('dash.encaissements') }}">ENCAISSEMENTS</a></li>
+        <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}" >CHIFFRE D'AFFAIRES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dash.encaissements') }}" class="active">ENCAISSEMENTS</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.debours') }}" >DÉBOURS</a></li>
     </ul>
 </div>
@@ -32,7 +32,7 @@
                     <th scope="col">Mois</th>
                     <th scope="col">Facturés </th>
                     <th scope="col">Avoirs</th>
-                    <th scope="col">Chiffre d'affaires</th>
+                    <th scope="col">Encaissements</th>
                   </tr>
                 </thead>
                 <tbody>

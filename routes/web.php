@@ -34,6 +34,7 @@ Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::get('showuser/{user_id}', 'AdminController@show')->name('admin.show');
     Route::get('/adduser', 'AdminController@create')->name('admin.create');
     Route::post('/saveuser', 'AdminController@store')->name('admin.store');
+    Route::post('/searchuser', 'AdminController@search')->name('admin.search');
 });
 Route::get('/dashboard', 'chartController@chartdirham')->name('dashboard');;
 
@@ -144,12 +145,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::get('/home', 'HomeController@index')->name('home');
     Route::get('dashboard/chiffre_affaire', 'chartController@chiffre_affaire')->name('dash.chiffre_affaire');
     Route::get('dashboard/debours', 'chartController@debours')->name('dash.debours');
+    Route::get('dashboard/encaissements', 'chartController@encaissement')->name('dash.encaissements');
 });
 //create route for user
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user', 'UserController@index')->name('user');
     Route::get('user/finishinformation', 'UserController@create')->name('user.create');
     Route::post('saveuser/{user_id}', 'UserController@store')->name('user.store');
+    Route::get('feedback', 'UserController@createfeedback')->name('user.feedback');
+    Route::post('envoiemailfeedback', 'UserController@envoiemailfeedback')->name('user.envoiemailfeedback');
 });
 //create route for parametre
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -170,4 +174,5 @@ Route::middleware(['auth', 'is.admin'])->group(function () {
     // Route::get('/home', 'HomeController@index')->name('home');
     Route::get('dashboardapplication/chiffre_affaire', 'DashApplicationController@chiffre_affaire')->name('dashapplication.chiffre_affaire');
     Route::get('dashboardapplication/debours', 'DashApplicationController@debours')->name('dashapplication.debours');
+    Route::get('dashboardapplication/encaissements', 'DashApplicationController@encaissement')->name('dashapplication.encaissements');
 });

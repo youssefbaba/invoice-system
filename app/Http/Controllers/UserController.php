@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Mail\EnvoiMailFeedback;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\FeedbackRequest;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -38,6 +42,28 @@ class UserController extends Controller
         $user->pays = $request->pays;
         $user->tel = $request->phone;
         $user->save();
+        return redirect()->route('clients.index');
+    }
+    public function createfeedback()
+    {
+        $user = auth()->user();
+        $admin = User::where('role', 1)->first();
+        return view('feedback.comment')->with('user', $user)->with('admin', $admin);
+    }
+    public function envoiemailfeedback(FeedbackRequest $request)
+    {
+
+        $data = [
+            'objet' => $request->objet,
+            'message' => $request->message,
+            'file' => $request->file('file'),
+            'email_employe' => $request->email_employe,
+            'email_admin' => $request->email_admin
+        ];
+
+
+        Mail::to($data['email_admin'])->send(new EnvoiMailFeedback($data));
+        Session::flash('status_send_mail_feedback', ' Feedback envoyé avec succès.');
         return redirect()->route('clients.index');
     }
 }

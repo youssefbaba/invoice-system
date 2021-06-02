@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EnvoiMailFacture extends Mailable
+class EnvoiMailFeedback extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -23,7 +23,10 @@ class EnvoiMailFacture extends Mailable
      */
     public function build()
     {
-        $subject = $this->data['objet_email'];
-        return $this->subject($subject)->markdown('email.envoiemailfacture');
+        return $this->from($this->data['email_employe'])
+        ->subject($this->data['objet'])->markdown('email.envoiemailfeedback')
+        ->attach($this->data['file']->getRealPath(), [
+            'as' => $this->data['file']->getClientOriginalName(),
+        ]);
     }
 }

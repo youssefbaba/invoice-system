@@ -1,6 +1,6 @@
 @extends('admin')
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Liste des employés</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Liste des employés recherchés</a> </h5>
 <div class="form-group has-search d-inline-flex">
     <form action="{{ route('admin.search') }}" method="POST">
         @csrf
@@ -15,38 +15,10 @@
 @endsection
 @section('contenu_inside')
 {{-- <link rel="stylesheet" href="{{ asset('css/listusers.css') }}"> --}}
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 40px;">
 <div class="row">
     <div class="col-md-12 col-sm-6">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-uppercase mb-0">Gestion des employés</h5>
-            </div>
-
-            <div class="row d-flex justify-content-between">
-                <div class="ml-3">
-                    <ul class="nav nav-tabs">
-                        <a  href="{{ route('admin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Tous <span class="badge badge-light">{{$users->count()}}</span>
-                          </a>
-                          <a   href="{{ route('admin.listadmin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Administrateurs <span class="badge badge-light">{{$useradmin->count()}}</span>
-                          </a>
-                          <a href="{{ route('admin.listuser') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Employés <span class="badge badge-light">{{$listuser->count()}}</span>
-                          </a>
-                      </ul>
-                </div>
-
-                <div >
-                    <ul class="nav nav-tabs mr-3">
-                        <a  href="{{ route('admin.create') }}" class="btn" style="border-radius: 0px;background-color: #4DBCED;color: white;margin-right:2px">
-                            Ajouter un employé
-                          </a>
-                      </ul>
-                </div>
-            </div>
-
             <div class="table">
                 <table class="table no-wrap user-table mb-0">
                   <thead>

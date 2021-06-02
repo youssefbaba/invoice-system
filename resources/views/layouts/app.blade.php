@@ -628,6 +628,20 @@
                     }})
         </script>
     @endif
+    @if (Session::get('status_send_mail_feedback'))
+    <script type="text/javascript">
+            Swal.fire({
+                    title:"{{Session::get('status_send_mail_feedback')}}",
+                    icon: 'success',
+                    confirmButtonColor: '#A5DC86',
+                    confirmButtonText: 'OK'
+                    }).then((result) => {
+                    if(result){
+                        location.reload();
+                    }})
+        </script>
+    @endif
+
 
 
 

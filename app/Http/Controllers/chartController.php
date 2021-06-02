@@ -193,16 +193,6 @@ class chartController extends Controller
         return $total_avoirs_monthly;
     }
 
-    // function chiffre_affaire_euro()
-    // {
-    //     $user = auth()->user();
-    //     $total_facture_monthly = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Payée')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
-    //     $total_avoir_monthly = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Remboursé')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
-
-    // }
-
-
-
     public function chartdollar()
     {
         $user = auth()->user();
@@ -543,51 +533,348 @@ class chartController extends Controller
         return $total_client_monthly;
     }
 
-    function chiffre_affaire()
-    {
-        $user = auth()->user();
-        return view('dashboard.chiffre_affaire')->with('user', $user);
-    }
     function debours()
     {
         $user = auth()->user();
         $total_debours_facture_monthly_dirham = Facture::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
         $total_debours_avoir_monthly_dirham = Avoir::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
-        dump($total_debours_facture_monthly_dirham);
-        dump($total_debours_avoir_monthly_dirham);
+        $total_debours_facture_monthly_dollar = Facture::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '($)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_debours_avoir_monthly_dollar = Avoir::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '($)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_debours_facture_monthly_euro = Facture::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_debours_avoir_monthly_euro = Avoir::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        // dump($total_debours_facture_monthly_dirham);
+        // dump($total_debours_avoir_monthly_dirham);
+        // dump($total_debours_avoir_monthly_dollar);
+        // dump($total_debours_facture_monthly_dollar);
+        // dump($total_debours_avoir_monthly_euro);
+        // dump($total_debours_facture_monthly_euro);
 
 
 
 
-        $month_array_facture_dh = array();
-        $pulse_dates_facture_dh = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+
+        $month_array_facture_dirham = array();
+        $pulse_dates_facture_dirham = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
         // dd($pulse_dates);
-        if (!empty($pulse_dates_facture_dh)) {
-            foreach ($pulse_dates_facture_dh as $unformatted_date) {
+        if (!empty($pulse_dates_facture_dirham)) {
+            foreach ($pulse_dates_facture_dirham as $unformatted_date) {
                 $date = new \DateTime($unformatted_date);
                 $month_no = $date->format('m');
                 $month_name = $date->format('M');
-                $month_array_facture_dh[$month_name] = $month_no;
+                $month_array_facture_dirham[$month_name] = $month_no;
             }
         }
-        $keys_facture_dh = array_keys($month_array_facture_dh);
-        dump($keys_facture_dh);
+        $keys_facture_dirham = array_keys($month_array_facture_dirham);
+        // dump($keys_facture_dirham);
 
 
-        $month_array_avoir_dh = array();
-        $pulse_dates_avoir_dh = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        $month_array_avoir_dirham = array();
+        $pulse_dates_avoir_dirham = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
         // dd($pulse_dates);
-        if (!empty($pulse_dates_avoir_dh)) {
-            foreach ($pulse_dates_avoir_dh as $unformatted_date) {
+        if (!empty($pulse_dates_avoir_dirham)) {
+            foreach ($pulse_dates_avoir_dirham as $unformatted_date) {
                 $date = new \DateTime($unformatted_date);
                 $month_no = $date->format('m');
                 $month_name = $date->format('M');
-                $month_array_avoir_dh[$month_name] = $month_no;
+                $month_array_avoir_dirham[$month_name] = $month_no;
             }
         }
-        $keys_avoir_dh = array_keys($month_array_avoir_dh);
-        dump($keys_avoir_dh);
+        $keys_avoir_dirham = array_keys($month_array_avoir_dirham);
+        // dump($keys_avoir_dirham);
 
-        return view('dashboard.debours')->with('user', $user)->with('total_debours_facture_monthly_dirham', $total_debours_facture_monthly_dirham)->with('total_debours_avoir_monthly_dirham', $total_debours_avoir_monthly_dirham)->with('keys_facture_dh', $keys_facture_dh)->with('keys_avoir_dh', $keys_avoir_dh);
+
+        $month_array_facture_dollar = array();
+        $pulse_dates_facture_dollar = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '($)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_dollar)) {
+            foreach ($pulse_dates_facture_dollar as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_dollar[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_dollar = array_keys($month_array_facture_dollar);
+        // dump($keys_facture_dollar);
+
+
+        $month_array_avoir_dollar = array();
+        $pulse_dates_avoir_dollar = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '($)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_dollar)) {
+            foreach ($pulse_dates_avoir_dollar as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_dollar[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_dollar = array_keys($month_array_avoir_dollar);
+        // dump($keys_avoir_dollar);
+
+
+        $month_array_facture_euro = array();
+        $pulse_dates_facture_euro = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(€)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_euro)) {
+            foreach ($pulse_dates_facture_euro as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_euro[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_euro = array_keys($month_array_facture_euro);
+        // dump($keys_facture_euro);
+
+
+        $month_array_avoir_euro = array();
+        $pulse_dates_avoir_euro = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(€)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_euro)) {
+            foreach ($pulse_dates_avoir_euro as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_euro[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_euro = array_keys($month_array_avoir_euro);
+        // dump($keys_avoir_euro);
+        // die();
+
+
+        return view('dashboard.debours')->with('user', $user)->with('total_debours_facture_monthly_dirham', $total_debours_facture_monthly_dirham)->with('total_debours_avoir_monthly_dirham', $total_debours_avoir_monthly_dirham)->with('keys_facture_dirham', $keys_facture_dirham)->with('keys_avoir_dirham', $keys_avoir_dirham)
+            ->with('total_debours_facture_monthly_dollar', $total_debours_facture_monthly_dollar)->with('total_debours_avoir_monthly_dollar', $total_debours_avoir_monthly_dollar)
+            ->with('keys_facture_dollar', $keys_facture_dollar)->with('keys_avoir_dollar', $keys_avoir_dollar)
+            ->with('total_debours_facture_monthly_euro', $total_debours_facture_monthly_euro)->with('total_debours_avoir_monthly_euro', $total_debours_avoir_monthly_euro)
+            ->with('keys_facture_euro', $keys_facture_euro)->with('keys_avoir_euro', $keys_avoir_euro);
+    }
+
+
+
+    function chiffre_affaire()
+    {
+        $user = auth()->user();
+        $total_facture_monthly_dirham = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_avoir_monthly_dirham = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_facture_monthly_euro = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_avoir_monthly_euro = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_facture_monthly_dollar = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '($)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_avoir_monthly_dollar = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '($)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        // dump($total_facture_monthly_dirham);
+        // dump($total_avoir_monthly_dirham);
+        // dump($total_facture_monthly_euro);
+        // dump($total_avoir_monthly_euro);
+        // dump($total_facture_monthly_dollar);
+        // dump($total_avoir_monthly_dollar);
+
+        $month_array_facture_dirham = array();
+        $pulse_dates_facture_dirham = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_dirham)) {
+            foreach ($pulse_dates_facture_dirham as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_dirham[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_dirham = array_keys($month_array_facture_dirham);
+        // dump($keys_facture_dirham);
+
+
+        $month_array_avoir_dirham = array();
+        $pulse_dates_avoir_dirham = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_dirham)) {
+            foreach ($pulse_dates_avoir_dirham as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_dirham[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_dirham = array_keys($month_array_avoir_dirham);
+        // dump($keys_avoir_dirham);
+
+
+        $month_array_facture_euro = array();
+        $pulse_dates_facture_euro = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(€)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_euro)) {
+            foreach ($pulse_dates_facture_euro as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_euro[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_euro = array_keys($month_array_facture_euro);
+        // dump($keys_facture_euro);
+
+
+        $month_array_avoir_euro = array();
+        $pulse_dates_avoir_euro = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '(€)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_euro)) {
+            foreach ($pulse_dates_avoir_euro as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_euro[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_euro = array_keys($month_array_avoir_euro);
+        // dump($keys_avoir_euro);
+
+        $month_array_facture_dollar = array();
+        $pulse_dates_facture_dollar = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '($)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_dollar)) {
+            foreach ($pulse_dates_facture_dollar as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_dollar[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_dollar = array_keys($month_array_facture_dollar);
+        // dump($keys_facture_dollar);
+
+
+        $month_array_avoir_dollar = array();
+        $pulse_dates_avoir_dollar = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('devis', '($)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_dollar)) {
+            foreach ($pulse_dates_avoir_dollar as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_dollar[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_dollar = array_keys($month_array_avoir_dollar);
+        // dump($keys_avoir_dollar);
+
+        // die();
+        return view('dashboard.chiffre_affaire')->with('total_facture_monthly_dirham', $total_facture_monthly_dirham)->with('total_avoir_monthly_dirham', $total_avoir_monthly_dirham)
+            ->with('total_facture_monthly_euro', $total_facture_monthly_euro)->with('total_avoir_monthly_euro', $total_avoir_monthly_euro)
+            ->with('keys_facture_dirham', $keys_facture_dirham)->with('keys_avoir_dirham', $keys_avoir_dirham)
+            ->with('keys_facture_euro', $keys_facture_euro)->with('keys_avoir_euro', $keys_avoir_euro)
+            ->with('total_facture_monthly_dollar', $total_facture_monthly_dollar)->with('total_avoir_monthly_dollar', $total_avoir_monthly_dollar)
+            ->with('keys_facture_dollar', $keys_facture_dollar)->with('keys_avoir_dollar', $keys_avoir_dollar);
+    }
+    public function encaissement()
+    {
+        $user = auth()->user();
+        $total_facture_monthly_dirham = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Payée')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_avoir_monthly_dirham = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Remboursé')->where('devis', '(DH)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_facture_monthly_euro = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Payée')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_avoir_monthly_euro = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Remboursé')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_facture_monthly_dollar = Facture::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Payée')->where('devis', '($)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        $total_avoir_monthly_dollar = Avoir::selectRaw('SUM(total_ht_apres_remise_genf) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('etat_facture', 'Remboursé')->where('devis', '($)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
+        // dump($total_facture_monthly_dirham);
+        // dump($total_avoir_monthly_dirham);
+        // dump($total_facture_monthly_euro);
+        // dump($total_avoir_monthly_euro);
+        // dump($total_facture_monthly_dollar);
+        // dump($total_avoir_monthly_dollar);
+
+        $month_array_facture_dirham = array();
+        $pulse_dates_facture_dirham = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('etat_facture', 'Payée')->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_dirham)) {
+            foreach ($pulse_dates_facture_dirham as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_dirham[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_dirham = array_keys($month_array_facture_dirham);
+        // dump($keys_facture_dirham);
+
+
+        $month_array_avoir_dirham = array();
+        $pulse_dates_avoir_dirham = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('etat_facture', 'Remboursé')->where('devis', '(DH)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_dirham)) {
+            foreach ($pulse_dates_avoir_dirham as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_dirham[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_dirham = array_keys($month_array_avoir_dirham);
+        // dump($keys_avoir_dirham);
+
+
+        $month_array_facture_euro = array();
+        $pulse_dates_facture_euro = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('etat_facture', 'Payée')->where('devis', '(€)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_euro)) {
+            foreach ($pulse_dates_facture_euro as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_euro[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_euro = array_keys($month_array_facture_euro);
+        // dump($keys_facture_euro);
+
+
+        $month_array_avoir_euro = array();
+        $pulse_dates_avoir_euro = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('etat_facture', 'Remboursé')->where('devis', '(€)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_euro)) {
+            foreach ($pulse_dates_avoir_euro as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_euro[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_euro = array_keys($month_array_avoir_euro);
+        // dump($keys_avoir_euro);
+
+        $month_array_facture_dollar = array();
+        $pulse_dates_facture_dollar = Facture::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('etat_facture', 'Payée')->where('devis', '($)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_facture_dollar)) {
+            foreach ($pulse_dates_facture_dollar as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_facture_dollar[$month_name] = $month_no;
+            }
+        }
+        $keys_facture_dollar = array_keys($month_array_facture_dollar);
+        // dump($keys_facture_dollar);
+
+
+        $month_array_avoir_dollar = array();
+        $pulse_dates_avoir_dollar = Avoir::orderBy('created_at', 'ASC')->whereYear('created_at', $this->myYear())->where('etat_facture', 'Remboursé')->where('devis', '($)')->where('user_id', $user->id)->pluck('created_at');
+        // dd($pulse_dates);
+        if (!empty($pulse_dates_avoir_dollar)) {
+            foreach ($pulse_dates_avoir_dollar as $unformatted_date) {
+                $date = new \DateTime($unformatted_date);
+                $month_no = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array_avoir_dollar[$month_name] = $month_no;
+            }
+        }
+        $keys_avoir_dollar = array_keys($month_array_avoir_dollar);
+        // dump($keys_avoir_dollar);
+
+        // die();
+        return view('dashboard.encaissement')->with('total_facture_monthly_dirham', $total_facture_monthly_dirham)->with('total_avoir_monthly_dirham', $total_avoir_monthly_dirham)
+            ->with('total_facture_monthly_euro', $total_facture_monthly_euro)->with('total_avoir_monthly_euro', $total_avoir_monthly_euro)
+            ->with('keys_facture_dirham', $keys_facture_dirham)->with('keys_avoir_dirham', $keys_avoir_dirham)
+            ->with('keys_facture_euro', $keys_facture_euro)->with('keys_avoir_euro', $keys_avoir_euro)
+            ->with('total_facture_monthly_dollar', $total_facture_monthly_dollar)->with('total_avoir_monthly_dollar', $total_avoir_monthly_dollar)
+            ->with('keys_facture_dollar', $keys_facture_dollar)->with('keys_avoir_dollar', $keys_avoir_dollar);
     }
 }

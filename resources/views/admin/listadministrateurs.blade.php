@@ -2,7 +2,7 @@
 @section('header_content')
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Listes des employés</a> </h5>
 <div class="form-group has-search d-inline-flex">
-    <form action="#" method="POST">
+    <form action="{{ route('admin.search') }}" method="POST">
         @csrf
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />

@@ -1,4 +1,4 @@
-@extends('home')
+@extends('admin')
 @section('header_content')
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashapplication.chartdirham') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
 {{-- <div class="form-group has-search d-inline-flex"> --}}
@@ -19,6 +19,7 @@
     <ul class="list-inline">
         <li class="list-inline-item "><a href="{{route('dashapplication.chartdirham')}}" class="active">STATISTIQUES</a></li>
         <li class="list-inline-item"><a href="{{ route('dashapplication.chiffre_affaire') }}">CHIFFRE D'AFFAIRES</a></li>
+        <li class="list-inline-item"><a href="{{ route('dashapplication.encaissements') }}">ENCAISSEMENTS</a></li>
         <li class="list-inline-item"><a href="{{ route('dashapplication.debours') }}">DÉBOURS</a></li>
     </ul>
 </div>
@@ -39,7 +40,7 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row">
+    {{-- <div class="row">
         <div class="card col-md-12 border-0 mx-auto" >
             <div class="card-header font-weight-bold">
               CHIFFRE D'AFFAIRES PAR MOIS
@@ -49,7 +50,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">

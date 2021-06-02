@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cle;
 use App\User;
+use App\Client;
 use App\Mail\CreateNewUser;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -136,5 +138,20 @@ class AdminController extends Controller
 
         Session::flash('status_delete_utilisateur', 'Utilisateur supprimé avec succès.');
         return redirect()->route('admin');
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+
+            'q' => 'required'
+        ]);
+
+        $q = $request->q;
+        $users = User::where('name', 'like', '%' . $q . '%')
+            ->orWhere('lastname', 'like', '%' . $q . '%')
+            ->orWhere('email', 'like', '%' . $q . '%')->get();
+        return view('admin.searchuser')->with('users', $users);
     }
 }
