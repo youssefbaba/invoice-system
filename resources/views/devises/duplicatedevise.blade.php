@@ -120,7 +120,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="totalht">Total HT</label>
-                            <input type="text" name="totalhtd[]" id="totalht" class="form-control totalht" step="any"
+                            <input type="text" name="totalhtd[]" id="totalht" class="form-control totalht bg-light" step="any"
                                 readonly value="{{$article->total_ht_article}}">
                                 @error('totalhtd')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -130,7 +130,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="totalttc">Total TTC</label>
-                            <input type="text" readonly name="totalttcd[]" id="totalttc" class="form-control totalttc"
+                            <input type="text" readonly name="totalttcd[]" id="totalttc" class="form-control totalttc bg-light"
                                 step="any" value="{{$article->total_ttc_article}}">
                                 @error('totalttcd')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -358,9 +358,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-3 col-md-6">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-success form-control font-weight-bold text-weight">Dupliquer le devis </button>
+            <div class="row mt-4 col-md-6">
+                <div class="d-flex justify-content-end contain_button_submit mt-2">
+                    <a href="{{ route('devises.index') }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold " style="margin-right:-4px"></i></span> Annuler</a>
+                     <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold"><span><i class="fas fa-clone font-weight-bold"></i></span>Dupliquer le devis</button>
                 </div>
                 <div class="col-md-6">
                 </div>

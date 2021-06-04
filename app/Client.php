@@ -78,12 +78,12 @@ class Client extends Model
     }
     public function get_factures_client($id)
     {
-        return Facture::where('client_id', $id)->get();
+        return Facture::where('client_id', $id)->paginate(2);
     }
     public function get_devises_client($id)
     {
         // dd(Devi::where('id_client', $id)->get());
-        return Devi::where('client_id', $id)->get();
+        return Devi::where('client_id', $id)->paginate(2);
     }
     public function getClient_Facture_id($client_id)
     {

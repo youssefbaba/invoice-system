@@ -113,10 +113,10 @@
             </div>
         </div>
     </div>
-    
+
     <div class="d-flex justify-content-end contain_button_submit">
-        <a href="{{ route('clients.index') }}" class="btn addclient_retour "><span><i class="fas fa-undo" style="background-color: #3E81C8"></i></span> Annuler</a>
-        <button type="submit" id="addclient_sumbit_button"><span><i  class="fas fa-user-plus"  style="background-color: #13438A"></i></span>Ajouter un client</button>
+        <a href="{{ route('clients.index') }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-4px"></i></span> Annuler</a>
+        <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold"><span><i  class="fas fa-user-plus font-weight-bold"></i></span>Créer le client</button>
     </div>
 
 

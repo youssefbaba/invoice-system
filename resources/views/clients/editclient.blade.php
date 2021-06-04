@@ -1,4 +1,9 @@
 @extends('home')
+<style>
+    .contain_button_submit span {
+        background-color:
+    }
+</style>
 @section('header_content')
 <h2 id="grand_title_addclient " style="color: white" class="text-uppercase">Modifier {{$clients->nom_client}}&nbsp;{{$clients->prenom_client}}</h2>
 @endsection
@@ -115,8 +120,8 @@
         </div>
     </div>
     <div class="d-flex justify-content-end contain_button_submit">
-        <a  href="{{ route('clients.index') }}" id="addclient_sumbit_button" style="background-color: #3E81C8;text-decoration:none"><span><i class="fas fa-undo" style="background-color: #3E81C8"></i></span>Annuler</a>
-        <button type="submit" id="addclient_sumbit_button"><span><i class="fas fa-user-plus" style="background-color: #13438A"></i></span>Modifier le client</button>
+        <a href="{{ route('clients.index') }}" class="btn addclient_retour  btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-6px"></i></span> Annuler</a>
+        <button type="submit" id="addclient_sumbit_button" class=" btn btn-warning rounded font-weight-bold"><span><i class="far fa-edit font-weight-bold" style="color:#212529"></i></span>Modifier le client</button>
     </div>
 </form>
 @endsection

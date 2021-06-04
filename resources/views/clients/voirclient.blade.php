@@ -1,4 +1,28 @@
 @extends('home')
+<style>
+    nav ul li a {
+        margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
+    }
+    .pagination li.active{
+        border-bottom: 0px;
+        font-weight: bold;
+    }
+    a.page-link{
+        margin: 0px;
+    }
+    .pagination{
+        margin-bottom:-20px;
+        margin-top:12px;
+
+    }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8!important;
+    }
+
+</style>
 @section('header_content')
 {{--  hnaya ssayfat m3a view clients li howa ghir client wa7ad o ssayfat user   --}}
 <h2 class="text-white d-inline ml-4 text-uppercase">{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</</h2>
@@ -55,7 +79,7 @@
                                 <form action="{{ route('recherche_client') }}" method="post">
                                 @csrf
                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                    <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2 mt-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                    <button type="submit" class=" btn p-1 border-2 btn-outline-secondary  rounded ml-2 mt-2">
                                     {{$motcle['mot_cle']}}
                                     </button>
                                 </form>
@@ -119,6 +143,7 @@
              {{-- {{dd($clients->get_facture_client($clients->id))}} --}}
             @if ($clients->get_facture_client($clients->id)->count() > 0)
             <h2>Factures: <sub>({{$clients->get_facture_client($clients->id)->count()}})</sub></h2>
+            <div class="col-8  d-flex justify-content-start mb-4">{{ $clients->get_factures_client($clients->id)->links() }}</div>
                 @foreach ($clients->get_factures_client($clients->id) as  $facture)
                     @php
                     $devis = $facture->devis
@@ -155,7 +180,7 @@
                                                 <form action="#" method="post">
                                                 @csrf
                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                    <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2 mt-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-primary  rounded ml-2 mt-2">
                                                     {{$motcle['mot_cle']}}
                                                     </button>
                                                 </form>
@@ -269,6 +294,7 @@
             {{-- hnaya 3andna 3 devis F , F , P --}}
             @if ($clients->get_devise_client($clients->id)->count() > 0)
             <h2>Devise: <sub>({{$clients->get_devise_client($clients->id)->count()}})</sub></h2>
+            <div class="col-8  d-flex justify-content-start mb-4">{{ $clients->get_devises_client($clients->id)->links() }}</div>
                 @foreach ($clients->get_devises_client($clients->id) as $item => $devise)
                 @php
                 $devis = $devise->devis
@@ -305,7 +331,7 @@
                                                 <form action="{{ route('recherche_devi') }}" method="post">
                                                 @csrf
                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                    <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2 mt-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-primary  rounded ml-2 mt-2" >
                                                     {{$motcle['mot_cle']}}
                                                     </button>
                                                 </form>

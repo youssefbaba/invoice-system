@@ -4,15 +4,23 @@
 
     nav ul li a {
         margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
     }
     .active{
         border-bottom: 0px;
+
     }
     .pagination{
         margin-bottom: -20px;
         margin-top: 12px;
 
     }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8 !important;
+    }
+
 </style>
 {{--  hnaya mssayfat wasst view clients et cles et user --}}
 @if ($clients === [])
@@ -43,7 +51,7 @@
 <div class="contain_inside p-3">
 
     <div class="container-fluid pt-2 mb-4">
-            <a href="{{route('clients.create')}}" class="p-2 border" style="background-color: #4DBCED"
+            <a href="{{route('clients.create')}}" class="p-2 btn-primary rounded"
             id="ajouter_client">Ajouter un client</a>
         @if ($clients->count() > 0)
         <div class="row ">
@@ -71,8 +79,7 @@
                                 @csrf
                                 <input type="hidden" class="form-control" value="{{$motcle['mot_cle']}}" id="search"
                                     name="q" />
-                                <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"
-                                    style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                <button type="submit" class=" btn btn-outline-primary p-1 ml-2">
                                     {{$motcle['mot_cle']}}
                                 </button>
                             </form>
@@ -117,15 +124,15 @@
             <div class="modal-content">
                 <div class="modal-header bg-danger">
                     <h5 class="modal-title text-white" id="exampleModalLabel">Supprimer Ce Client</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="font-weight-bold text-white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     Voulez-vous vraiment supprimer ce client !!!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-ligh text-secondary" data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>

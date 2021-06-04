@@ -14,7 +14,7 @@
                     @endif
                     <li><a href="{{route('clients.index')}}" ><i class="fas fa-user"></i><span class="second">&nbsp;&nbsp;Clients</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
                     <li><a href="{{route('devises.index')}}"><i class="fas fa-calculator"></i><span class="second">&nbsp;&nbsp;Devis</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
-                    <li><a href="{{route('factures.index')}}" ><i class="fas fa-receipt"></i><span class="second">&nbsp;&nbsp;Factures</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
+                    <li><a href="{{route('factures.index')}}" ><i class="fas fa-file-invoice-dollar"></i><span class="second">&nbsp;&nbsp;Factures</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
                     <li><a href="{{route('avoirs.index')}}" ><i class="fas fa-shopping-cart"></i><span class="second">&nbsp;&nbsp;Avoirs</span><span><i class="fas fa-chevron-right"></i></span></a></li><hr>
 
                     @if(Auth::user()->role === 0)

@@ -1,6 +1,11 @@
 @extends('home')
 <style>
 
+    nav ul li a {
+        margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
+    }
     .pagination li.active{
         border-bottom: 0px;
     }
@@ -10,7 +15,10 @@
     .pagination{
         margin-bottom:-20px;
         margin-top:12px;
-
+    }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8 !important;
     }
 </style>
 @section('header_content')
@@ -49,7 +57,7 @@
     {{-- start container li fih les cards dyal les devis  --}}
     <div class="container-fluid  pt-2 m-3 ">
 
-                <a href="{{route('devises.create')}}" class="p-2 border" style="background-color: #4DBCED;" id="ajouter_client">Ajouter un devis</a>
+                <a href="{{route('devises.create')}}" class="p-2 btn-primary rounded"id="ajouter_client">Ajouter un devis</a>
                 {{-- hnaya ila kano 3andna les devis deja m2ajautine --}}
                @if ($devises->count() > 0)
                     <div class="row">
@@ -92,7 +100,7 @@
                                                         <form action="{{ route('recherche_devi') }}" method="post">
                                                          @csrf
                                                             <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                            <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                            <button type="submit" class=" btn p-1  btn-outline-primary  rounded ml-2"  >
                                                             {{$motcle['mot_cle']}}
                                                             </button>
                                                         </form>
@@ -194,14 +202,14 @@
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Supprimer  Ce Devis</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     Voulez-vous vraiment supprimer ce devis !!!!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-ligh text-secondary" data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>

@@ -115,21 +115,13 @@
 /*start submit button*/
 
 .contain_button_submit #addclient_sumbit_button{
-    border: none;
-    background-color:#13438A;
     font-family: 'Josefin Sans', sans-serif;
     padding: 10px 30px;
-    color: white;
     margin: 0 20px 50px 20px;
-    margin-left:2px;
     font-size: 15px;
+    line-height: inherit;
 }
 a.addclient_retour{
-    color: white;
-    border: none;
-    color:wih;
-    border-radius: 0px;
-    background-color:#3E81C8;
     font-family: 'Josefin Sans', sans-serif;
     padding: 10px 30px;
     margin: 0 20px 50px 20px;
@@ -137,13 +129,13 @@ a.addclient_retour{
     line-height: inherit;
 }
 a.addclient_retour:focus{
-    border: 1px solid #000;
+    border: 1px solid red;
     border-radius: 3px;
-    box-shadow:none;
     color:white;
 }
 a.addclient_retour:hover{
     color:white;
+    background-color: #df4759;
 }
 .editclient_retour{
     color: white;
@@ -169,7 +161,7 @@ a.addclient_retour:hover{
 
 .contain_button_submit span
 {
-    background-color: #275DAD;
+    /* background-color: #275DAD; */
     font-size: 15px;
     color: white;
     margin-right: 10px;

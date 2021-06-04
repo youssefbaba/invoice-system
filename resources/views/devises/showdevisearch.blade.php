@@ -81,7 +81,7 @@
                                                                 <form action="{{ route('recherche_devi') }}" method="post">
                                                                  @csrf
                                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                                    <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                                    <button type="submit" class=" btn p-1 btn-outline-primary rounded ml-2"  >
                                                                     {{$motcle['mot_cle']}}
                                                                     </button>
                                                                 </form>

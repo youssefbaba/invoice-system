@@ -49,7 +49,7 @@
                 @if ($devise->etat_devis == 'Provisoire')
                 @if ($devise->client_id != null)
                 <a href="{{route('devises.editdevis',['devi_id'=>$devise->id,'client_id'=>$devise->client_id])}}"
-                    id="finalise_edit"><i class="fas fa-pencil-alt"></i>
+                    id="finalise_edit" style="background-color:#1976D2"><i class="fas fa-pencil-alt" ></i>
                     <p id="hover_editfacture">Modifier</p>
                 </a>
                 @else
@@ -61,13 +61,13 @@
                 @else
                 @endif
                 @if ($devise->client_id != null)
+                <a href="{{route('devise.generpdf',$devise->id)}}" class="bg-dark text-white" id="finalise_download"><i
+                    class="fas fa-download"></i>
+                    <p id="hover_download">Télecharger</p>
+               </a>
                 <a href="{{route('create_email_devi',['devi_id'=>$devise->id,'client_id'=>$devise->client_id])}}"
                     class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
                     <p id="hover_email">Envoyer par email</p>
-                </a>
-                <a href="{{route('devise.generpdf',$devise->id)}}" class="bg-dark text-white" id="finalise_download"><i
-                        class="fas fa-download"></i>
-                    <p id="hover_download">Télecharger</p>
                 </a>
                 @else
                 @endif
@@ -82,14 +82,14 @@
                             <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer Devis</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true " class="text-white">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 Voulez-vous vraiment supprimer ce devis !!!
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-ligh text-secondary" data-dismiss="modal">Annuler</button>
                                 <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                             </div>
                         </div>
@@ -264,7 +264,7 @@
                             <form action="{{ route('recherche_devi') }}" method="post">
                                 @csrf
                                 <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2">
                                 {{$motcle['mot_cle']}}
                                 </button>
                             </form>
