@@ -10,32 +10,32 @@
         @csrf
         <div class="form-row">
           <div class="col-md-6 mb-3">
-            <label for="adresse" class="font-weight-bold">Adresse</label>
+            <label for="adresse" >Adresse</label>
             <input type="text" name="adresse"  id="adresse" placeholder="Adresse"  class="form-control col-12 mb-4" required>
           </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="societe" class="font-weight-bold">Nom de société</label>
+              <label for="societe" >Nom de société</label>
               <input type="text" name="societe" id="societe" placeholder="Nom de société"  class="form-control col-12 mb-4" required>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="postal" class="font-weight-bold">Code_postal</label>
+              <label for="postal" >Code_postal</label>
               <input type="text" name="postal" id="postal" placeholder="Code_postal"  class="form-control col-12 mb-4" required>
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="ville" class="font-weight-bold">Ville</label>
+              <label for="ville" >Ville</label>
               <input type="text" name="ville" id="ville" placeholder="Ville" class=" form-control col-12 mb-4" required>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="pays" class="font-weight-bold">Pays</label>
+              <label for="pays" >Pays</label>
               <select name="pays" id="pays" class="form-control col-12 mb-4" required>
                 <option>Selectionner Votre Pays</option>
                 <option value="maroc">Morocco</option>
@@ -45,7 +45,7 @@
         </div>
         <div class="form-row">
             <div class="col-md-6 mb-3">
-              <label for="phone" class="font-weight-bold">Numéro de telephone</label>
+              <label for="phone" >Numéro de telephone</label>
               <input type="text" name="phone" id="phone" placeholder="Numéro de telephone" class="form-control col-12 mb-4">
             </div>
         </div>

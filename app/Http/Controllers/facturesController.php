@@ -25,7 +25,7 @@ class facturesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $factures = Facture::where('user_id', $user->id)->get();
+        $factures = Facture::where('user_id', $user->id)->paginate(3);
         $cle = Cle::all();
         return \view('factures.showfactures')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
     }
@@ -432,7 +432,7 @@ class facturesController extends Controller
     public function factureprovi()
     {
         $user = auth()->user();
-        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Provisoire']])->get();
+        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Provisoire']])->paginate(3);
         $cles = Cle::all();
         return \view('factures.showfactureprovi')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }
@@ -448,7 +448,7 @@ class facturesController extends Controller
     {
         $user = auth()->user();
         // $factures = Facture::where([['user_id',$user->id],['etat_facture','Finalisé']])->orWhere('etat_facture','Payée')->get();
-        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Finalisé']])->get();
+        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Finalisé']])->paginate(3);
         $cles = Cle::all();
         return \view('factures.showfacturefinalise')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }
@@ -464,7 +464,7 @@ class facturesController extends Controller
     public function facturepaye()
     {
         $user = auth()->user();
-        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Payée']])->get();
+        $factures = Facture::where([['user_id', $user->id], ['etat_facture', 'Payée']])->paginate(3);
         $cles = Cle::all();
         return \view('factures.showfacturepaye')->with('factures', $factures)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }

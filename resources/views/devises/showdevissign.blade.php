@@ -1,4 +1,17 @@
 @extends('home')
+<style>
+    .pagination li.active{
+        border-bottom: 0px;
+    }
+    a.page-link{
+        margin: 0px;
+    }
+    .pagination{
+        margin-bottom:-20px;
+        margin-top:12px;
+
+    }
+</style>
 @section('header_content')
 <h5 class="text-white d-inline ml-2 text-uppercase"><a href="{{route('devises.showsigne')}}" style="color: white;text-decoration: none">Liste des devis <sub>({{$devises->count()}})</sub></a> </h5>
 <div class="form-group has-search d-inline-flex">
@@ -33,11 +46,12 @@
                 <a href="{{route('devises.create')}}" class="p-2 border " style="background-color: #4DBCED;" id="ajouter_client">Ajouter un devis</a>
                @if ($devises->count() > 0)
                     <div class="row">
+                        <div class="col-8  d-flex justify-content-start mb-4">{{ $devises->links() }}</div>
                     @foreach ($devises as $devis)
                                          @php
                                             $devise = $devis->devis
                                         @endphp
-                                <div class="col-md-8 mt-3">
+                                <div class="col-md-8 mb-3">
                                     <div class="card client_display bg-light">
                                         <div class="card-body">
                                             <div class="row">

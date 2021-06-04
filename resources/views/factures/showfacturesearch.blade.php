@@ -2,9 +2,11 @@
 @section('header_content')
 
 @if($factures_cles_clients === [])
-<h5 class="text-white d-inline ml-2 text-uppercase">liste des factures recherchés <sub>(0)</sub> </h5>
+<h5 class="text-white d-inline ml-2 text-uppercase">
+    <a href="#" style="color: white;text-decoration: none;">liste des factures recherchés <sub>(0)</sub></a></h5>
 @else
-<h5 class="text-white d-inline ml-2 text-uppercase">liste des factures recherchés <sub>({{$factures_cles_clients->count()}})</sub> </h5>
+<h5 class="text-white d-inline ml-2 text-uppercase">
+    <a href="#" style="color: white;text-decoration: none;">liste des factures recherchés <sub>({{$factures_cles_clients->count()}})</sub></a></h5>
 @endif
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}

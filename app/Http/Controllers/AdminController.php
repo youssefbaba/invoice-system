@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Cle;
+
 use App\User;
-use App\Client;
 use App\Mail\CreateNewUser;
-use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,31 +21,11 @@ class AdminController extends Controller
         // $this->middleware(['is.admin','verified']);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $users = User::all();
-        $useradmin = User::where('role', 1)->get();
-        $listuser = User::where('role', 0)->get();
-        return view('admin.listall')->with('users', $users)->with('useradmin', $useradmin)->with('listuser', $listuser);
-    }
-    public function listadmin()
-    {
-        $users = User::all();
-        $useradmin = User::where('role', 1)->get();
-        $listuser = User::where('role', 0)->get();
-        return view('admin.listadministrateurs')->with('users', $users)->with('useradmin', $useradmin)->with('listuser', $listuser);
-    }
+
     public function listuser()
     {
-        $users = User::all();
-        $useradmin = User::where('role', 1)->get();
-        $listuser = User::where('role', 0)->get();
-        return view('admin.listusers')->with('users', $users)->with('useradmin', $useradmin)->with('listuser', $listuser);
+        $users = User::paginate(5);
+        return view('admin.listusers')->with('users', $users);
     }
     /**
      * Show the form for creating a new resource.
@@ -76,7 +54,7 @@ class AdminController extends Controller
         $user->email = $request->email;
         $user->save();
         Mail::to($request->email)->send(new CreateNewUser($user, $request->password));
-        Session::flash('status_add_utilisateur', 'Utilisateur créé avec succès.');
+        Session::flash('status_add_utilisateur', 'Employé  créé avec succès.');
         return redirect()->route('admin');
     }
     protected function guard()
@@ -116,7 +94,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $user = User::findOrfail($id);
         $user->role = 1;
@@ -136,7 +114,7 @@ class AdminController extends Controller
         $user = User::findOrfail($user_id);
         $user->delete();
 
-        Session::flash('status_delete_utilisateur', 'Utilisateur supprimé avec succès.');
+        Session::flash('status_delete_utilisateur', 'Employé supprimé avec succès.');
         return redirect()->route('admin');
     }
 

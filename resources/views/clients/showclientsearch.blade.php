@@ -3,9 +3,9 @@
 
 {{--  hnaya mssayfat wasst view clients et cles et user --}}
 @if ($clients_cles === [])
-<h5 class="text-white ml-4 d-inline text-uppercase">liste des clients recherchés <sub>(0)</sub></h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="#" style="color: white;text-decoration: none">liste des clients recherchés<sub>(0)</sub></a></h5>
 @else
-<h5 class="text-white ml-4 d-inline text-uppercase">liste des clients recherchés <sub>({{$clients_cles->count()}})</sub></h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="#" style="color: white;text-decoration: none">liste des clients recherchés<sub>({{$clients_cles->count()}})</sub></a></h5>
 @endif
 
 

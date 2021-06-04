@@ -6,14 +6,12 @@ use App\Cle;
 use App\Devi;
 use App\Client;
 use App\Article;
-use Carbon\Carbon;
-use App\Mail\EnvoiMail;
+
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\devisRequest;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\factureRequest;
 use App\Mail\EnvoiMailDevi;
 use Illuminate\Support\Facades\Session;
 
@@ -27,7 +25,7 @@ class devisesController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $devises = Devi::where('user_id', $user->id)->get();
+        $devises = Devi::where('user_id', $user->id)->paginate(3);
         // dd($devises);
         $cle = Cle::all();
         return view('devises.showdevises')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
@@ -329,7 +327,7 @@ class devisesController extends Controller
     public function showprovi()
     {
         $user = auth()->user();
-        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Provisoire']])->get();
+        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Provisoire']])->paginate(3);
         // dd($devises);
         $cle = Cle::all();
         return \view('devises.showdeviprovi')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
@@ -337,21 +335,21 @@ class devisesController extends Controller
     public function showfinalise()
     {
         $user = auth()->user();
-        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Finalisé']])->get();
+        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Finalisé']])->paginate(3);
         $cle = Cle::all();
         return \view('devises.showdevisfinalise')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
     }
     public function showrefuse()
     {
         $user = auth()->user();
-        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Refusés']])->get();
+        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Refusés']])->paginate(3);
         $cle = Cle::all();
         return \view('devises.showdevisrefuse')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
     }
     public function showsigne()
     {
         $user = auth()->user();
-        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Signés']])->get();
+        $devises = Devi::where([['user_id', $user->id], ['etat_devis', 'Signés']])->paginate(3);
         $cle = Cle::all();
         return \view('devises.showdevissign')->with('devises', $devises)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
     }

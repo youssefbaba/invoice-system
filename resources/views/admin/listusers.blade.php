@@ -1,6 +1,19 @@
 @extends('admin')
+<style>
+    .pagination li.active{
+        border-bottom: 0px;
+    }
+    a.page-link{
+        margin: 0px;
+    }
+    .pagination{
+        margin-bottom:-20px;
+        margin-top:12px;
+
+    }
+</style>
 @section('header_content')
-<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Listes des employés</a> </h5>
+<h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('admin') }}" style="color: white;text-decoration: none">Listes des employés<sub>({{$users->count()}})</sub></a> </h5>
 <div class="form-group has-search d-inline-flex">
     <form action="{{ route('admin.search') }}" method="POST">
         @csrf
@@ -25,19 +38,7 @@
 
             <div class="row d-flex justify-content-between">
                 <div class="ml-3">
-                    <ul class="nav nav-tabs">
-                        <a  href="{{ route('admin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Tous <span class="badge badge-light">{{$users->count()}}</span>
-                          </a>
-                          <a   href="{{ route('admin.listadmin') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Administrateurs <span class="badge badge-light">{{$useradmin->count()}}</span>
-                          </a>
-                          <a href="{{ route('admin.listuser') }}" class="btn btn-secondary" style="border-radius: 0px;color: white;margin-right:2px">
-                            Employés <span class="badge badge-light">{{$listuser->count()}}</span>
-                          </a>
-                      </ul>
                 </div>
-
                 <div >
                     <ul class="nav nav-tabs mr-3">
                         <a  href="{{ route('admin.create') }}" class="btn" style="border-radius: 0px;background-color: #4DBCED;color: white;margin-right:2px">
@@ -46,7 +47,7 @@
                       </ul>
                 </div>
             </div>
-
+            <div class="col-8  d-flex justify-content-start mb-4">{{ $users->links() }}</div>
             <div class="table">
                 <table class="table no-wrap user-table mb-0">
                   <thead>
@@ -59,7 +60,7 @@
                       <th  class="border-0 text-uppercase">Action</th>
                     </tr>
                   </thead>
-                    @foreach ($listuser as $user)
+                    @foreach ($users as $user)
                     <tbody>
                     <tr>
                         <td>{{$user->name}}</td>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Cle;
 use App\Client;
-use App\Facture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +24,7 @@ class clientsController extends Controller
         // hnaya user li authentifier
         $user = auth()->user();
         // les clients li criyahom  hadak user li authentifier
-        $clients = Client::where('user_id', $user->id)->get();
+        $clients = Client::where('user_id', $user->id)->paginate(3);
         // recuperation dyal les cles kamline
         $cle = Cle::all();
         return \view('clients.showclients')->with('clients', $clients)->with('cles', $cle)->with('user', $user);

@@ -1,4 +1,17 @@
 @extends('home')
+<style>
+    .pagination li.active{
+        border-bottom: 0px;
+    }
+    a.page-link{
+        margin: 0px;
+    }
+    .pagination{
+        margin-bottom:-20px;
+        margin-top:12px;
+
+    }
+</style>
 @section('header_content')
 <h5 class="text-white d-inline ml-4 text-uppercase"><a href="{{route('factures.finalise')}}" style="color: white;text-decoration: none">Liste des factures <sub>({{$factures->count()}})</sub></a> </h5>
 <div class="form-group has-search d-inline-flex">
@@ -31,12 +44,12 @@
                 <a href="{{route('factures.create')}}" class=" p-2 border" style="background-color: #4DBCED"  id="ajouter_client">Ajouter une facture</a>
                 @if ($factures->count() > 0)
                 <div class="row">
-
+                    <div class="col-8  d-flex justify-content-start mb-4">{{ $factures->links() }}</div>
                     @foreach ($factures as $facture)
                                         @php
                                             $devis = $facture->devis
                                         @endphp
-                                <div class="col-md-8 mt-3">
+                                <div class="col-md-8 mb-3">
                                     <div class="card client_display bg-light">
                                         <div class="card-body">
                                             <div class="row">

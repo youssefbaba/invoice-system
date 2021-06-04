@@ -1,6 +1,19 @@
 @extends('home')
 @section('header_content')
+<style>
 
+    nav ul li a {
+        margin: 0px;
+    }
+    .active{
+        border-bottom: 0px;
+    }
+    .pagination{
+        margin-bottom: -20px;
+        margin-top: 12px;
+
+    }
+</style>
 {{--  hnaya mssayfat wasst view clients et cles et user --}}
 @if ($clients === [])
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('clients.index') }}"
@@ -34,9 +47,11 @@
             id="ajouter_client">Ajouter un client</a>
         @if ($clients->count() > 0)
         <div class="row ">
+            <div class="col-8  d-flex justify-content-start mb-4">{{ $clients->links() }}</div>
             @foreach ($clients as $client)
             {{-- {{dd($client)}} --}}
-            <div class="col-md-8 mt-3">
+
+            <div class="col-md-8 mb-3">
                 <div class="card client_display bg-light">
                     <div class="card-body">
                         <div class="row">
@@ -81,6 +96,7 @@
             </div>
             @endforeach
         </div>
+
         @else
         <h2 class="font-weight-bold text-center">
             Aucun client ajouté pour le moment

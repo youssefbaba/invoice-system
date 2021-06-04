@@ -27,7 +27,7 @@ class AvoirController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $avoirs = Avoir::where('user_id', $user->id)->get();
+        $avoirs = Avoir::where('user_id', $user->id)->paginate(3);
         $cle = Cle::all();
         return \view('avoirs.showavoirs')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user)->with('cles', $cle);
     }
@@ -441,7 +441,7 @@ class AvoirController extends Controller
     public function avoirprovi()
     {
         $user = auth()->user();
-        $avoirs = Avoir::where([['user_id', $user->id], ['etat_facture', 'Provisoire']])->get();
+        $avoirs = Avoir::where([['user_id', $user->id], ['etat_facture', 'Provisoire']])->paginate(3);
         $cles = Cle::all();
         return \view('avoirs.showavoirprovi')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }
@@ -449,14 +449,14 @@ class AvoirController extends Controller
     {
         $user = auth()->user();
         // $factures = Facture::where([['user_id',$user->id],['etat_facture','Finalisé']])->orWhere('etat_facture','Payée')->get();
-        $avoirs = Avoir::where([['user_id', $user->id], ['etat_facture', 'Finalisé']])->get();
+        $avoirs = Avoir::where([['user_id', $user->id], ['etat_facture', 'Finalisé']])->paginate(3);
         $cles = Cle::all();
         return \view('avoirs.showavoirfinalise')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }
     public function avoirrembourse()
     {
         $user = auth()->user();
-        $avoirs = Avoir::where([['user_id', $user->id], ['etat_facture', 'Remboursé']])->get();
+        $avoirs = Avoir::where([['user_id', $user->id], ['etat_facture', 'Remboursé']])->paginate(3);
         $cles = Cle::all();
         return \view('avoirs.showavoirrembourse')->with('avoirs', $avoirs)->with('clients', Client::all())->with('user', $user)->with('cles', $cles);
     }

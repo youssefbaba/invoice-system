@@ -1,9 +1,21 @@
 @extends('home')
+<style>
+    .pagination li.active{
+        border-bottom: 0px;
+    }
+    a.page-link{
+        margin: 0px;
+    }
+    .pagination{
+        margin-bottom:-20px;
+        margin-top:12px;
+    }
+</style>
 @section('header_content')
 <h5 class="text-white d-inline ml-4 text-uppercase"><a href="{{route('avoirs.rembourse')}}" style="color: white;text-decoration: none">Liste des factures <sub>({{$avoirs->count()}})</sub></a> </h5>
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('recherche_facture')}}" method="POST">
+    <form action="{{route('recherche_avoir')}}" method="POST">
         @csrf
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
@@ -27,14 +39,15 @@
             <li class="list-inline-item"><a href="{{ route('avoirs.rembourse') }}" class="active">Remboursé</a></li>
         </ul>
     </div>
-    <div class="container-fluid mt-4">
+    <div class="container-fluid pt-2 m-3">
                 @if ($avoirs->count() > 0)
                 <div class="row">
+                    <div class="col-8  d-flex justify-content-start mb-4">{{ $avoirs->links() }}</div>
                     @foreach ($avoirs as $avoir)
                                         @php
                                             $devis = $avoir->devis
                                         @endphp
-                                <div class="col-md-8 mt-3">
+                                <div class="col-md-8 mb-3">
                                     <div class="card client_display bg-light">
                                         <div class="card-body">
                                             <div class="row">

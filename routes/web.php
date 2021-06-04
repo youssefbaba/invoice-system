@@ -25,9 +25,7 @@ Auth::routes();
 // Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'is.admin'])->group(function () {
-    Route::get('/admin', 'AdminController@index')->name('admin');
-    Route::get('/listadministrateurs', 'AdminController@listadmin')->name('admin.listadmin');
-    Route::get('/listutilisateurs', 'AdminController@listuser')->name('admin.listuser');
+    Route::get('/admin', 'AdminController@listuser')->name('admin');
     Route::get('editroleuser/{user_id}', 'AdminController@edit')->name('admin.edit');
     Route::put('updateroleuser/{user_id}', 'AdminController@update')->name('admin.update');
     Route::get('deleteuser/{user_id}', 'AdminController@deleteuser')->name('admin.delete');

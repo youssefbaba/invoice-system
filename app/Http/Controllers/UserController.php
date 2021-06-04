@@ -42,6 +42,7 @@ class UserController extends Controller
         $user->pays = $request->pays;
         $user->tel = $request->phone;
         $user->save();
+        Session::flash('status_finish_information_user', ' Informations a été complété avec succès.');
         return redirect()->route('clients.index');
     }
     public function createfeedback()

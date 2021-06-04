@@ -47,7 +47,7 @@
                                 <tr>
                                     <td class="font-weight-bold">Type</td>
                                     <td>@if(Auth::user()->role === 0)
-                                      Utilisateur
+                                      Employé
                                     @else
                                       Administrateur
                                     @endif</td>

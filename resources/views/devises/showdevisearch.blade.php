@@ -1,9 +1,10 @@
 @extends('home')
 @section('header_content')
 @if($devis_cles_clients === [])
-<h5 class="text-white d-inline ml-2 text-uppercase">liste des devis recherchés <sub>(0)</sub></h5>
+<h5 class="text-white d-inline ml-2 text-uppercase"><a href="#" style="color: white;text-decoration: none;">liste des devis recherchés <sub>(0)</sub></a> </h5>
 @else
-<h5 class="text-white d-inline ml-2 text-uppercase">liste des devis recherchés <sub>({{$devis_cles_clients->count()}})</sub></h5>
+<h5 class="text-white d-inline ml-2 text-uppercase">
+    <a href="#" style="color: white;text-decoration: none;"> liste des devis recherchés <sub>({{$devis_cles_clients->count()}})</sub></a></h5>
 @endif
 
 
@@ -141,7 +142,7 @@
 
 
                                                                 <li><a href="{{route('devise.generpdf',$devi_cle_client->id)}}">Telécharger</a></li>
-                                                                <li><a href="{{route('create_email_devi',['devi_id'=>$devi_cle_client->id,'client_id'=>$client->getClient_Facture_id($devi_cle_client->client_id)]>Envoyer par email</a></li>
+                                                                <li><a href="{{ route( 'create_email_devi',['devi_id'=>$devi_cle_client->id,'client_id'=>$client->getClient_Facture_id($devi_cle_client->client_id)] )}}">Envoyer par email</a></li>
                                                                 <hr>
                                                                 @if ($devi_cle_client->etat_devis=='Signés')
                                                                     <li><a href="#">créer une facture</a></li>

@@ -6,17 +6,12 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
+
 
 class CreateNewUser extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public $user;
     public $password = null;
 
@@ -35,7 +30,6 @@ class CreateNewUser extends Mailable
     {
         $subject = " Votre email et mot de passe pour l'authentification  sur l'application Fatoura";
         return $this
-            ->subject($subject)
-            ->view('email.emailforloginuser');
+            ->subject($subject)->markdown('email.emailforloginuser');
     }
 }
