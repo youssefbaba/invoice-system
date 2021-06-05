@@ -223,13 +223,18 @@
                     @if($devise->etat_devis == 'Signés')<a href="{{route('devises.showsigne')}}"  class="link-hover-focus">{{$devise->etat_devis}}</a> @endif
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Code Devis</p>
             </div>
             <div class="col-md-8">
-                <p>{{$devise->code_devis}}</p>
+                <form action="{{ route('recherche_devi') }}" method="post">
+                    @csrf
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px">{{$devise->code_devis}}</button>
+                        <input type="hidden" class="form-control"  value="{{$devise->code_devis}}" id="search" name="q" />
+
+                    </form>
             </div>
         </div>
         <div class="row">
@@ -241,7 +246,7 @@
             </div>
         </div>
 
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
 
         <div class="row">
             <div class="col-md-4">
@@ -251,7 +256,7 @@
                 <p>{{$devise->updated_at->format('Y-m-d')}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
 
         <div class="row">
             <div class="col-md-4">
@@ -308,7 +313,7 @@
                 <p style="color: red">{{$devise->getClient($devise->client_id)->societe_client}} had partie ya ima khasssni n7aydha ola n9adha ila dart partie dyal societe</p>
             </div>
         </div> --}}
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Adresse:</p>
@@ -317,7 +322,7 @@
                 <p>{{$devise->getClient($devise->client_id)->adresse_client}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Ville:</p>
@@ -326,7 +331,7 @@
                 <p>{{$devise->getClient($devise->client_id)->ville_client}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Numéro de téléphone:</p>
@@ -336,7 +341,7 @@
                     class="text-dark">{{$devise->getClient($devise->client_id)->tel_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Adresse email:</p>
@@ -346,7 +351,7 @@
                     class="text-dark">{{$devise->getClient($devise->client_id)->adresse_email_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Site internet:</p>
@@ -368,7 +373,7 @@
                 <p>{{$devise->condition_regld}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Mode de règlement:</p>
@@ -377,7 +382,7 @@
                 <p>{{$devise->mode_regld}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Intérêt de retard:</p>

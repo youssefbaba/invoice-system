@@ -242,10 +242,10 @@
     visibility: visible;
 }
 .link-hover-focus:hover{
-    color: cornflowerblue;
+    color: rgb(104, 104, 211);
     text-decoration: underline;
 }
 .link-hover-focus:focus{
-    color: cornflowerblue;
+    color: rgb(104, 104, 211);
     text-decoration: underline;
 }

@@ -1,4 +1,7 @@
 @extends('home')
+<style>
+
+</style>
 @section('header_content')
 <div class="row d-flex justify-content-lg-between justify-content-md-between justify-content-end">
     <h2 id="grand_title_addfacture" class="text-uppercase d-none d-md-block d-lg-block text-white">Avoir
@@ -63,14 +66,14 @@
                             <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer avoir</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true" class="text-white">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 Voulez-vous vraiment supprimer cette avoir!!!
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-white text-secondary" data-dismiss="modal">Annuler</button>
                                 <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                             </div>
                         </div>
@@ -118,14 +121,14 @@
                                 <div class="modal-header bg-danger text-white">
                                     <h5 class="modal-title" id="exampleModalLabel">Supprimer avoir</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true" class="text-white">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     Voulez-vous vraiment supprimer cette avoir!!!
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="button" class="btn btn-white text-secondary" data-dismiss="modal">Annuler</button>
                                 <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
 
 
@@ -150,7 +153,7 @@
                 <li><a  href="{{route('avoirs.duplicateen_facture',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}">Dupliquer en  facture</a></li>
                 @else
                 {{-- <li><a href="{{route('factures.duplicatefacture_vide',$facture->id)}}">Duplicquer la facture</a></li> --}}
-                <li><a href="#">Duplicquer en facture</a></li>
+                <li><a href="#">Dupliquer en facture</a></li>
 
                 @endif
 
@@ -161,7 +164,7 @@
 </div>
 @endsection
 @section('contenu_inside')
-<div class="contain_inside row mt-3 container" id="facture">
+<div class="contain_inside row mt-3 container" id="facture" style="padding-left: 34px;">
     <div class="col-md-6 ">
         <h4 class="font-weight-bold">Informations</h4>
         <div class="row">
@@ -173,20 +176,26 @@
                     @if($avoir->client_id== null)
                     Incompléte
                     @else
-                    @if($avoir->etat_facture == 'Provisoire')<a href="#"  class="link-hover-focus">{{$avoir->etat_facture}}</a> @endif
-                    @if($avoir->etat_facture == 'Finalisé')<a href="#"  class="link-hover-focus">{{$avoir->etat_facture}}</a> @endif
-                    @if($avoir->etat_facture == 'Remboursé')<a href="#"  class="link-hover-focus">{{$avoir->etat_facture}}</a> @endif
+                    @if($avoir->etat_facture == 'Provisoire')<a  href="{{ route('avoirs.provi') }}" class="link-hover-focus">{{$avoir->etat_facture}}</a> @endif
+                    @if($avoir->etat_facture == 'Finalisé')<a  href="{{ route('avoirs.finalise') }}"   class="link-hover-focus">{{$avoir->etat_facture}}</a> @endif
+                    @if($avoir->etat_facture == 'Remboursé')<a href="{{ route('avoirs.rembourse') }}"  class="link-hover-focus">{{$avoir->etat_facture}}</a> @endif
                     @endif
                 </p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Code Avoir:</p>
             </div>
             <div class="col-md-8">
-                <p><a href="#" class="link-hover-focus">{{$avoir->code_avoir}}</a></p>
+                <form action="{{ route('recherche_avoir') }}" method="post">
+                    @csrf
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;">{{$avoir->code_avoir}}</button>
+                        <input type="hidden" class="form-control"  value="{{$avoir->code_avoir}}" id="search" name="q" />
+
+                    </form>
+                {{-- <p><a href="#" class="link-hover-focus"></a></p> --}}
             </div>
         </div>
         <div class="row">
@@ -197,7 +206,7 @@
                 <p>{{$avoir->created_at->format('Y-m-d')}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Dernière modification le:</p>
@@ -206,7 +215,7 @@
                 <p>{{$avoir->updated_at->format('Y-m-d')}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Mot cle :</p>
@@ -219,7 +228,7 @@
                     <form action="{{ route('recherche_avoir') }}" method="post">
                      @csrf
                         <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                        <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                        <button type="submit" class=" btn p-1 btn-outline-primary rounded ml-2"  >
                         {{$motcle['mot_cle']}}
                         </button>
                     </form>
@@ -238,41 +247,9 @@
 
         <p>Finalisez votre avoir à l'aide du bouton ci-dessus pour pouvoir l'envoyer au client.
             Attention un  avoir finalisée n'est plus modifiable.</p>
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </div>
     @else
     @endif
-    @if ($avoir->etat_facture == 'Finalisé')
-    <div class="col-md-6">
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-    @else
-    @endif
-    @if ($avoir->etat_facture == 'Payée')
-    <div class="col-md-6">
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-    @else
-    @endif
-
     <div class="col-md-6">
         @if ($avoir->client_id== null)
         <h4 class="font-weight-bold text-danger">Destinataire</h4>
@@ -287,7 +264,7 @@
             </div>
         </div>
 
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Adresse:</p>
@@ -296,7 +273,7 @@
                 <p>{{$avoir->getClient($avoir->client_id)->adresse_client}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Ville:</p>
@@ -305,7 +282,7 @@
                 <p>{{$avoir->getClient($avoir->client_id)->ville_client}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Numéro de téléphone:</p>
@@ -316,7 +293,7 @@
 
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Adresse email:</p>
@@ -325,7 +302,7 @@
                 <a href="mailto:{{$avoir->getClient($avoir->client_id)->adresse_email_client}}" class="link-hover-focus">{{$avoir->getClient($avoir->client_id)->adresse_email_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Site internet:</p>
@@ -346,7 +323,7 @@
                 <p>{{$avoir->condition_reglf}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Mode de règlement:</p>
@@ -355,7 +332,7 @@
                 <p>{{$avoir->mode_reglf}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Intérêt de retard:</p>

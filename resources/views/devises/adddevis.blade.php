@@ -335,7 +335,7 @@
                         </div>
                         <div class="row">
                             <div class="d-flex justify-content-end contain_button_submit mt-2" style="padding-left: 30px; padding-top:10px;">
-                                <a href="{{ route('devises.index') }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold " style="margin-right:-4px"></i></span> Annuler</a>
+                                <a href="{{ url()->previous() }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold " style="margin-right:-4px"></i></span> Annuler</a>
                                  <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold"><span><i  class="fas fa-plus font-weight-bold "></i></span>Créer le devis</button>
                             </div>
                             <div class="col-md-6">

@@ -30,7 +30,7 @@
     <div class="container-fluid  pt-2 m-3">
                @if ($factures_cles_clients === [])
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{$status}}
+                        Pas de résultat
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -46,7 +46,7 @@
                                                 $devis = $facture_cle_client->devis
                                             @endphp
                                     <div class="col-md-8 mt-3">
-                                        <div class="card client_display bg-light">
+                                        <div class="card client_display " style="background-color: #F5F5F5">
                                             <div class="card-body">
 
                                                 <div class="row">
@@ -59,7 +59,7 @@
 
                                                             @foreach ($clients as $client)
                                                             {{-- {{dd($facture->id_client)}} --}}
-                                                            <a href="{{route('voirplus',$facture_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($facture_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture_cle_client->client_id)}}</a>
+                                                            <a href="{{route('voirplus',$facture_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($facture_cle_client->client_id)}}:{{$client->getClient_Facture_Name($facture_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture_cle_client->client_id)}}</a>
                                                             {{-- <a href="#" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($devis->id_client)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->id_client)}}</a> --}}
                                                                 @break
                                                             @endforeach

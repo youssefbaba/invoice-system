@@ -229,6 +229,7 @@ class clientsController extends Controller
         $q = $request->q;
         $clients_cles = Client::where('nom_client', 'like', '%' . $q . '%')
             ->orWhere('prenom_client', 'like', '%' . $q . '%')
+            ->orWhere('code_client', 'like', '%' . $q . '%')
             ->orWhere('adresse_email_client', 'like', '%' . $q . '%')
             ->orWhere('tel_client', 'like', '%' . $q . '%')
             ->orWhereHas('cles', function ($query) use ($q) {

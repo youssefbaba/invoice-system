@@ -25,7 +25,7 @@
 </style>
 @section('header_content')
 {{--  hnaya ssayfat m3a view clients li howa ghir client wa7ad o ssayfat user   --}}
-<h2 class="text-white d-inline ml-4 text-uppercase">{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</</h2>
+<h2 class="text-white d-inline ml-4 text-uppercase">les Informations du  Client</h2>
 @endsection
 @section('contenu_inside')
 <div class="contain_inside p-3">
@@ -38,8 +38,25 @@
             <h2>Informations</h2>
             <table>
                 <tr>
+                    <td><p class="text-muted d-inline-flex">Client:</p></td>
+                    <td><p class="d-inline-flex code"><a href="{{ route('voirplus', ['id'=>$clients->id]) }}">{{$clients->nom_client}}&nbsp;{{$clients->prenom_client}}</a></p></td>
+                </tr>
+                <tr>
                     <td><p class="text-muted d-inline-flex">Fonction:</p></td>
                     <td><p class="d-inline-flex">{{$clients->fonction_client}}</p></td>
+                </tr>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Code Client:</p></td>
+                    <td>
+                        <p class="d-inline-flex">
+                            <form action="{{ route('recherche_client') }}" method="post">
+                            @csrf
+                                <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px"> {{$clients->code_client}}</button>
+                                <input type="hidden" class="form-control"  value="{{$clients->code_client}}" id="search" name="q" />
+
+                            </form>
+                        </p>
+                    </td>
 
                 </tr>
 
@@ -136,12 +153,12 @@
 
 
 
-    <hr>
+    {{-- <hr> --}}
 
 
 
     {{-- start ghadi nbdaw nssawbo les cardes dyal les factures dyal hadak client  --}}
-    <div class="container_fluid row voir_plus">
+    <div class="container_fluid row voir_plus ">
         <div class="col-md-8">
             {{-- ila kano bbzzzffff dyal les factures dyal client --}}
              {{-- {{dd($clients->get_facture_client($clients->id))}} --}}
@@ -153,19 +170,19 @@
                     $devis = $facture->devis
                     @endphp
                 <div class="col-md-10 mt-3">
-                    <div class="card client_display bg-light  mb-4">
+                    <div class="card client_display mb-4" style="background-color: #F5F5F5">
                         <div class="card-body">
                             <div class="row">
                                 <a href="{{route('factures.voirplus',$facture->id)}}" class="card-title col-md-8 nm_client">{{$facture->code_facture}}:{{$facture->etat_facture}}</a>
                                 <span class="col-md-4 text-right options"><i
                                         class="fas fa-ellipsis-v ellipse"></i></span>
                             </div>
-                            <div class="row">
-                                <div class="col-4">
+                            <div class="row" style="margin-bottom:10px">
+                                <div class="col-6">
                                     <a href="#"
-                                        class="card-subtitle mb-2 nm_societe mr-5">{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
+                                        class="card-subtitle mb-2 nm_societe mr-5">{{$clients->code_client}}:{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
                                 </div>
-                                <div class="col-8 text-right">
+                                <div class="col-6 text-right">
                                     <i class="fas fa-calendar-week text-muted d-inline mr-2"></i>
                                     <p class="mr-3 d-inline font-weight-bold">{{$facture->created_at->format('Y-m-d')}}
                                     </p>
@@ -174,9 +191,8 @@
                                             echo $devis; @endphp</sub></p>
                                 </div>
                             </div>
-
                             <hr >
-                            <div class="row">
+                            <div class="row" style="margin-top:20px;margin-bottom:-6px">
                                 <div class="col-6">
                                     @foreach ($cles as $cle)
                                             <div class="mot_cles" style="display: flex;">
@@ -184,7 +200,7 @@
                                                 <form action="#" method="post">
                                                 @csrf
                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-secondary  rounded ml-2 mt-2">
+                                                    <button type="submit" class=" btn p-1  btn-outline-secondary  rounded ml-2 ">
                                                     {{$motcle['mot_cle']}}
                                                     </button>
                                                 </form>
@@ -256,19 +272,19 @@
                         @csrf
                         @method('DELETE')
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true" class="text-white">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 Voulez-vous vraiment supprimer cette facture!!!
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm"
+                                <button type="button" class="btn  btn-white text-secondary"
                                     data-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-sm bg-danger">Supprimer</button>
+                                <button type="submit" class="btn  bg-danger text-white">Supprimer</button>
                             </div>
                         </div>
                     </form>
@@ -304,30 +320,26 @@
                 $devis = $devise->devis
                 @endphp
                 <div class="col-md-10 mt-3">
-                    <div class="card client_display bg-light mb-4">
+                    <div class="card client_display mb-4" style="background-color: #F5F5F5">
                         <div class="card-body">
                             <div class="row">
                                 <a href="{{route('devises.voirplus',$devise->id)}}" class="card-title col-md-8 nm_client">{{$devise->code_devis}}:{{$devise->etat_devis}}</a>
                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                             </div>
                             <div class="row mb-2">
-                                <div class="col-4">
-                                    <a href="#"class="card-subtitle mb-2  nm_societe mr-5">{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
+                                <div class="col-6">
+                                    <a href="#"class="card-subtitle mb-2  nm_societe mr-5">{{$clients->code_client}}:{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
                                 </div>
 
-                                <div class="col-8 text-right">
+                                <div class="col-6 text-right">
                                     <i class="fas fa-calendar-week text-muted d-inline mr-2"></i>
                                     <p class="mr-3 d-inline font-weight-bold">{{$devise->created_at->format('Y-m-d')}}</p>
                                     <i class="fas fa-coins text-muted d-inline mr-2"></i>
                                     <p class="mr-3 d-inline font-weight-bold">{{$devise->total_ht_articlesdf}} <sub>@php echo $devis; @endphp</sub></p>
-                                    <hr>
-
-
                                 </div>
                             </div>
-
                             <hr >
-                            <div class="row">
+                            <div class="row" style="margin-top:20px;margin-bottom:-4px">
                                 <div class="col-6">
                                     @foreach ($cles as $cle)
                                             <div class="mot_cles" style="display: flex;">
@@ -335,7 +347,7 @@
                                                 <form action="{{ route('recherche_devi') }}" method="post">
                                                 @csrf
                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-secondary  rounded ml-2 mt-2" >
+                                                    <button type="submit" class=" btn p-1  btn-outline-secondary  rounded ml-2 " >
                                                     {{$motcle['mot_cle']}}
                                                     </button>
                                                 </form>
@@ -407,19 +419,19 @@
                             @csrf
                             @method('DELETE')
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header bg-danger text-white">
                                     <h5 class="modal-title" id="exampleModalLabel">Supprimer devis</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true" class="text-white">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     Voulez-vous vraiment supprimer cette devis!!!
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary btn-sm"
+                                    <button type="button" class="btn btn-white text-secondary "
                                         data-dismiss="modal">Annuler</button>
-                                    <button type="submit" class="btn btn-sm bg-danger">Supprimer</button>
+                                    <button type="submit" class="btn  bg-danger text-white">Supprimer</button>
                                 </div>
                             </div>
                         </form>

@@ -34,7 +34,7 @@
     <div class="container-fluid pt-2 m-3">
                 @if ($devis_cles_clients === [])
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{$status}}
+                         Pas de résultat
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -51,7 +51,7 @@
                                                     $devise = $devi_cle_client->devis
                                                 @endphp
                                         <div class="col-md-8 mt-3">
-                                            <div class="card client_display bg-light " >
+                                            <div class="card client_display " style="background-color: #F5F5F5">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <a href="{{route('devises.voirplus',$devi_cle_client->id)}}" class="card-title col-md-8 nm_client">{{$devi_cle_client->code_devis}}:{{$devi_cle_client->etat_devis}}</a>
@@ -62,7 +62,7 @@
                                                             {{-- {{dd($clients)}} --}}
                                                             {{-- youssef:1 reda:2 haza:3--}}
                                                                 @foreach ($clients as $client)
-                                                                    <a href="{{route('voirplus',$client->id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($devi_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devi_cle_client->client_id)}}</a>
+                                                                    <a href="{{route('voirplus',$client->id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($devi_cle_client->client_id)}}:{{$client->getClient_Facture_Name($devi_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devi_cle_client->client_id)}}</a>
                                                                     @break
                                                                 @endforeach
                                                         </div>

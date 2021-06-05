@@ -1,6 +1,11 @@
 @extends('home')
 <style>
-.pagination li.active{
+    nav ul li a {
+        margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
+    }
+    .pagination li.active{
         border-bottom: 0px;
     }
     a.page-link{
@@ -9,6 +14,10 @@
     .pagination{
         margin-bottom:-20px;
         margin-top:12px;
+    }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8 !important;
     }
 
 </style>
@@ -30,11 +39,11 @@
 @section('contenu_inside')
 <div class="contain_inside">
     <div class="etat_div">
-        <ul class="list-inline">
-            <li class="list-inline-item "><a href="{{ route('avoirs.index') }}">Toutes</a></li>
-            <li class="list-inline-item"><a href="{{route('avoirs.provi')}}">PROVISOIRES</a></li>
-            <li class="list-inline-item"><a href="{{ route('avoirs.finalise') }}" class="active">FINALISÉES</a></li>
-            <li class="list-inline-item"><a href="{{ route('avoirs.rembourse') }}">Remboursé</a></li>
+        <ul class="list-inline" style="background-color: #F5F5F5">
+            <li class="list-inline-item text-dark"><a href="{{ route('avoirs.index') }}">Toutes</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('avoirs.provi')}}">PROVISOIRES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{ route('avoirs.finalise') }}" class="active">FINALISÉES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{ route('avoirs.rembourse') }}">Remboursé</a></li>
         </ul>
     </div>
     <div class="container-fluid pt-2 m-3">
@@ -46,16 +55,18 @@
                                             $devis = $avoir->devis
                                         @endphp
                                 <div class="col-md-8 mb-3">
-                                    <div class="card client_display bg-light">
+                                    <div class="card client_display " style="background-color: #F5F5F5">
                                         <div class="card-body">
                                             <div class="row">
-                                                <a href="{{route('avoirs.voirplus',$avoir->id)}}" class="card-title col-md-8 nm_client">{{$avoir->code_avoir}}:{{$avoir->etat_facture}}</a>
+                                                {{-- <a href="{{route('avoirs.voirplus',$avoir->id)}}" class="card-title col-md-8 nm_client">{{$avoir->code_avoir}}:{{$avoir->etat_facture}}</a> --}}
+                                                <a href="{{route('avoirs.voirplus',['id'=>$avoir->id])}}" class="card-title col-md-8 nm_client">{{$avoir->code_avoir}}:{{$avoir->etat_facture}}&nbsp;&nbsp;&nbsp;&nbsp; <span  class="code-avoir">[{{$avoir->get_Code_Facture($avoir->facture_id)}}]</span> </a>
+
                                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                         @foreach ($clients as $client)
-                                                        <a href="{{route('voirplus',$avoir->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($avoir->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir->client_id)}}</a>
+                                                        <a href="{{route('voirplus',$avoir->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($avoir->client_id)}}:{{$client->getClient_Facture_Name($avoir->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir->client_id)}}</a>
                                                             @break
                                                         @endforeach
                                                 </div>
@@ -74,7 +85,7 @@
                                                         <form action="{{ route('recherche_avoir') }}" method="post">
                                                          @csrf
                                                             <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                            <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                            <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2">
                                                             {{$motcle['mot_cle']}}
                                                             </button>
                                                         </form>
@@ -119,7 +130,7 @@
                 </div>
                 @else
                     <h2 class="font-weight-bold text-center">
-                        Aucun avoir  finalisé pour le moment
+                        Aucun avoir finalisé pour le moment
                     </h2>
                 @endif
     </div>

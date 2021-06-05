@@ -41,11 +41,11 @@ nav ul li a {
 @section('contenu_inside')
 <div class="contain_inside">
     <div class="etat_div">
-        <ul class="list-inline">
-        <li class="list-inline-item "><a href="{{route('factures.index')}}">TOUTES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.provi')}}" >PROVISOIRES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.finalise')}}">FINALISÉES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.paye')}}" class="active">PAYÉES</a></li>
+        <ul class="list-inline" style="background-color: #F5F5F5">
+        <li class="list-inline-item text-dark"><a href="{{route('factures.index')}}">TOUTES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.provi')}}" >PROVISOIRES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.finalise')}}">FINALISÉES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.paye')}}" class="active">PAYÉES</a></li>
         </ul>
     </div>
     <div class="container-fluid pt-2 m-3">
@@ -57,8 +57,8 @@ nav ul li a {
                                         @php
                                             $devis = $facture->devis
                                         @endphp
-                                <div class="col-md-8 mt-3">
-                                    <div class="card client_display bg-light">
+                                <div class="col-md-8 mb-3">
+                                    <div class="card client_display " style="background-color: #F5F5F5">
                                         <div class="card-body">
                                             <div class="row">
                                                 <a href="{{route('factures.voirplus',$facture->id)}}" class="card-title col-md-8 nm_client">{{$facture->code_facture}}:{{$facture->etat_facture}}</a>
@@ -67,7 +67,7 @@ nav ul li a {
                                             <div class="row">
                                                 <div class="col-6">
                                                         @foreach ($clients as $client)
-                                                        <a href="{{route('voirplus',$facture->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($facture->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture->client_id)}}</a>
+                                                        <a href="{{route('voirplus',$facture->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($facture->client_id)}}:{{$client->getClient_Facture_Name($facture->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture->client_id)}}</a>
                                                             @break
                                                         @endforeach
                                                 </div>

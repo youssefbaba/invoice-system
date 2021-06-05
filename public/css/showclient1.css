@@ -74,8 +74,11 @@
     word-spacing: -2px;
     color: black;
   }
-  .client_display .nm_client:hover{
+  .code-avoir{
     color: rgb(104, 104, 211);
+}
+  .client_display .nm_client:hover{
+    color: rgb(104, 104, 211) !important;
   }
   .client_display .nm_societe{
     /* font-size: 12px; */
@@ -84,8 +87,16 @@
     color: black;
   }
   .client_display .nm_societe:hover{
-    color: rgb(104, 104, 211);
+    color: rgb(104, 104, 211) !important;
   }
+
+  .code-avoir:hover{
+    color: rgb(104, 104, 211);
+
+} .code-avoir1:hover{
+    color: rgb(104, 104, 211);
+}
+
   .client_display .em_client{
     font-size: 14px;
     font-family: 'Josefin Sans';
@@ -108,4 +119,12 @@
   #ajouter_client{
     text-decoration: none;
     color: white;
+  }
+  .part{
+    font-family: 'Josefin Sans';
+    word-spacing: -2px;
+    color: black;
+  }
+  .part:hover{
+      color: black;
   }

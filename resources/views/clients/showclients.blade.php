@@ -60,13 +60,13 @@
             {{-- {{dd($client)}} --}}
 
             <div class="col-md-8 mb-3">
-                <div class="card client_display bg-light">
+                <div class="card client_display " style="background-color: #F5F5F5" >
                     <div class="card-body">
                         <div class="row">
                             <a href="{{route('voirplus',$client->id)}}" class="card-title col-md-8 nm_client"><span>{{$client->code_client}}</span>:{{$client->nom_client}}&nbsp;&nbsp;&nbsp;{{$client->prenom_client}}</a>
                             <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                         </div>
-                        <h6 class="card-subtitle mb-2 text-muted nm_societe">Particulier</h6>
+                        <h6 class="card-subtitle mb-2 text-muted part">Particulier</h6>
                         <i class="far fa-envelope text-muted"></i><a href="mailto:{{$client->adresse_email_client}}"
                             class="em_client">{{$client->adresse_email_client}}</a><br>
                         <i class="fas fa-phone text-muted"></i><a href="tel:{{$client->tel_client}}"

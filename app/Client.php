@@ -56,6 +56,14 @@ class Client extends Model
             return Client::where('id', $client_id)->first()->prenom_client;
         }
     }
+    public function getClient_Facture_code($client_id)
+    {
+        if ($client_id == null) {
+            return null;
+        } else {
+            return Client::where('id', $client_id)->first()->code_client;
+        }
+    }
     public function getClient_Devi_Prenom($client_id)
     {
         if ($client_id == null) {

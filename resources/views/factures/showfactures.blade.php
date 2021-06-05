@@ -21,7 +21,7 @@
     }
 </style>
 @section('header_content')
-<h5 class="text-white d-inline ml-4 text-uppercase"><a href="{{route('factures.index')}}" style="color: white;text-decoration: none">Liste des Factures <sub>({{$factures->count()}})</sub></a> </h5>
+<h5 class="text-white d-inline ml-4 text-uppercase"><a href="{{route('factures.index')}}" style="color:white;text-decoration: none">Liste des Factures <sub>({{$factures->count()}})</sub></a> </h5>
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
     <form action="{{route('recherche_facture')}}" method="POST">
@@ -37,12 +37,12 @@
 @endsection
 @section('contenu_inside')
 <div class="contain_inside">
-    <div class="etat_div">
+    <div class="etat_div " style="background-color: #F5F5F5">
         <ul class="list-inline">
-            <li class="list-inline-item "><a href="{{route('factures.index')}}" class="active">Toutes</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.provi')}}">PROVISOIRES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.finalise')}}">FINALISÉES</a></li>
-            <li class="list-inline-item"><a href="{{route('factures.paye')}}">PAYÉES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.index')}}" class="active">Toutes</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.provi')}}">PROVISOIRES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.finalise')}}">FINALISÉES</a></li>
+            <li class="list-inline-item text-dark"><a href="{{route('factures.paye')}}">PAYÉES</a></li>
         </ul>
     </div>
     <div class="container-fluid pt-2 m-3">
@@ -56,7 +56,7 @@
                                             $devis = $facture->devis
                                         @endphp
                                 <div class="col-md-8 mb-3">
-                                    <div class="card client_display bg-light">
+                                    <div class="card client_display" style="background-color: #F5F5F5">
                                         <div class="card-body">
 
                                             <div class="row">
@@ -69,7 +69,7 @@
 
                                                         @foreach ($clients as $client)
                                                         {{-- {{dd($facture->id_client)}} --}}
-                                                        <a href="{{route('voirplus',$facture->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($facture->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture->client_id)}}</a>
+                                                        <a href="{{route('voirplus',$facture->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($facture->client_id)}}:{{$client->getClient_Facture_Name($facture->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture->client_id)}}</a>
                                                         {{-- <a href="#" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($devis->id_client)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->id_client)}}</a> --}}
                                                             @break
                                                         @endforeach

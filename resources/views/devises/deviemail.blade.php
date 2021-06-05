@@ -63,7 +63,7 @@
         </div>
         <div class="client col-md-8 ml-0">
             <div class="d-flex contain_button_submit mt-2 ">
-                <a href="{{ route('devises.index') }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold " style="margin-right:-4px"></i></span> Annuler</a>
+                <a href="{{ url()->previous() }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold " style="margin-right:-4px"></i></span> Annuler</a>
                     <button type="submit" id="addclient_sumbit_button" class=" btn rounded font-weight-bold text-white" style="background-color:#1976D2"><span><i class="fas fa-paper-plane font-weight-bold "></i></span>Envoyer</button>
             </div>
         </div>

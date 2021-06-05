@@ -25,7 +25,7 @@
     <div class="container-fluid pt-2 m-3">
                @if ($avoirs_cles_clients === [])
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{$status}}
+                        Pas de résultat
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -41,7 +41,7 @@
                                                 $devis = $avoir_cle_client->devis
                                             @endphp
                                     <div class="col-md-8 mt-3">
-                                        <div class="card client_display bg-light">
+                                        <div class="card client_display " style="background-color: #F5F5F5">
                                             <div class="card-body">
 
                                                 <div class="row">
@@ -54,7 +54,7 @@
 
                                                             @foreach ($clients as $client)
                                                             {{-- {{dd($facture->id_client)}} --}}
-                                                            <a href="{{route('voirplus',$avoir_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($avoir_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir_cle_client->client_id)}}</a>
+                                                            <a href="{{route('voirplus',$avoir_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($avoir_cle_client->client_id)}}:{{$client->getClient_Facture_Name($avoir_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir_cle_client->client_id)}}</a>
                                                             {{-- <a href="#" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($devis->id_client)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->id_client)}}</a> --}}
                                                                 @break
                                                             @endforeach
@@ -74,7 +74,7 @@
                                                             <form action="{{ route('recherche_avoir') }}" method="post">
                                                              @csrf
                                                                 <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                                <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                                <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2">
                                                                 {{$motcle['mot_cle']}}
                                                                 </button>
                                                             </form>
@@ -122,7 +122,7 @@
                                                         @endif
                                                     @break
                                                     @endforeach
-                                                        <li><a href="{{route('avoirs.duplicateen_devise',$avoir_cle_client->id)}}">Dupliquer en devis</a></li>
+                                                        <li><a href="{{route('avoir.duplicate_en_devi',$avoir_cle_client->id)}}">Dupliquer en devis</a></li>
                                                     @if($client->getClient_Facture_id($avoir_cle_client->client_id) != null)
                                                         <li><a href="{{route('avoirs.duplicateen_facture',['avoir_id'=>$avoir_cle_client->id,'client_id'=>$client->getClient_Facture_id($avoir_cle_client->client_id)])}}">Dupliquer en facture</a></li>
                                                     @else

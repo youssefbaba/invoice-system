@@ -187,13 +187,18 @@
                 </p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Code Facture:</p>
             </div>
             <div class="col-md-8">
-                <p><a href="#" class="link-hover-focus">{{$facture->code_facture}}</a></p>
+                <form action="{{ route('recherche_facture') }}" method="post">
+                    @csrf
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px">{{$facture->code_facture}}</button>
+                        <input type="hidden" class="form-control"  value="{{$facture->code_facture}}" id="search" name="q" />
+
+                    </form>
             </div>
         </div>
         <div class="row">
@@ -204,7 +209,7 @@
                 <p>{{$facture->created_at->format('Y-m-d')}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Dernière modification le:</p>
@@ -213,7 +218,7 @@
                 <p>{{$facture->updated_at->format('Y-m-d')}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Mot cle :</p>
@@ -262,7 +267,7 @@
                 <a href="{{route('voirplus',$facture->client_id)}}" class="link-hover-focus">{{$facture->getClient($facture->client_id)->nom_client}}&nbsp;{{$facture->getClient($facture->client_id)->prenom_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Adresse:</p>
@@ -271,7 +276,7 @@
                 <p>{{$facture->getClient($facture->client_id)->adresse_client}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Ville:</p>
@@ -280,7 +285,7 @@
                 <p>{{$facture->getClient($facture->client_id)->ville_client}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Numéro de téléphone:</p>
@@ -289,7 +294,7 @@
                 <a href="tel:{{$facture->getClient($facture->client_id)->tel_client}}}}" class="link-hover-focus">{{$facture->getClient($facture->client_id)->tel_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Adresse email:</p>
@@ -298,7 +303,7 @@
                 <a href="mailto:{{$facture->getClient($facture->client_id)->adresse_email_client}}" class="link-hover-focus">{{$facture->getClient($facture->client_id)->adresse_email_client}}</a>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Site internet:</p>
@@ -319,7 +324,7 @@
                 <p>{{$facture->condition_reglf}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Mode de règlement:</p>
@@ -328,7 +333,7 @@
                 <p>{{$facture->mode_reglf}}</p>
             </div>
         </div>
-        <hr style="margin: 0.5px">
+        {{-- <hr style="margin: 0.5px"> --}}
         <div class="row">
             <div class="col-md-4">
                 <p class="text-muted">Intérêt de retard:</p>
