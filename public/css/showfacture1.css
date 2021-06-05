@@ -15,10 +15,10 @@
     text-transform: uppercase;
 }
 .etat_div ul li a:hover{
-    border-bottom: 2px solid rgb(13, 255, 0);
+    border-bottom: 2px solid #5DBDF6;
 }
 .active{
-    border-bottom: 2px solid rgb(13, 255, 0);
+    border-bottom: 2px solid #5DBDF6;
     font-weight: bold;
 }
 .showprovi_retour{

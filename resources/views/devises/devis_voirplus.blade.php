@@ -17,10 +17,10 @@
 
                 @if ($devise->etat_devis == 'Finalisé')
                 @if ($devise->client_id != null)
-                <a href="{{route('devises.signe',$devise->id)}}" class="bg-info text-white" id="finalise_paye"><i
-                        class="fas fa-clipboard-check"></i>
+                <a href="{{route('devises.signe',$devise->id)}}" class="bg-info text-white" id="finalise_paye"><i class="fas fa-file-signature" style="padding:0px -2px "></i>
                     <p id="hover_paye">Marquer comme signé</p>
                 </a>
+
                 <a href="{{route('devises.refuse',$devise->id)}}" class="text-white" style="background-color:coral"
                     id="finalise_span"><i class="far fa-times-circle"></i>
                     <p id="hover_finalise">Marquer comme refusé</p>
@@ -39,7 +39,7 @@
 
                 @if ($devise->etat_devis == 'Refusés')
                 @if ($devise->client_id != null)
-                <a href="{{route('devises.finalise',$devise->id)}}" class="bg-dark text-white" id="finalise_span"><i
+                <a href="{{route('devises.finalise',$devise->id)}}" class="bg-danger text-white" id="finalise_span"><i
                         class="fas fa-backspace"></i>
                     <p id="hover_finalise">Annuler le refus</p>
                 </a>
@@ -264,7 +264,7 @@
                             <form action="{{ route('recherche_devi') }}" method="post">
                                 @csrf
                                 <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2">
+                                <button type="submit" class=" btn p-1 btn-outline-primary rounded ml-2">
                                 {{$motcle['mot_cle']}}
                                 </button>
                             </form>
@@ -284,30 +284,7 @@
     </div>
     @else
     @endif
-    @if ($devise->etat_devis == 'Finalisé')
-    <div class="col-md-6">
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-    @else
-    @endif
-    @if ($devise->etat_devis == 'Refusés')
-    <div class="col-md-6">
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-    @else
-    @endif
+
     <div class="col-md-6">
         @if ($devise->client_id == null)
         <h4 class="font-weight-bold text-danger">Destinataire</h4>

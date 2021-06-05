@@ -79,7 +79,7 @@
                                 @csrf
                                 <input type="hidden" class="form-control" value="{{$motcle['mot_cle']}}" id="search"
                                     name="q" />
-                                <button type="submit" class=" btn btn-outline-primary p-1 ml-2">
+                                <button type="submit" class=" btn btn-outline-secondary p-1 ml-2">
                                     {{$motcle['mot_cle']}}
                                 </button>
                             </form>

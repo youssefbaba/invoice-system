@@ -57,7 +57,7 @@
     {{-- start container li fih les cards dyal les devis  --}}
     <div class="container-fluid  pt-2 m-3 ">
 
-                <a href="{{route('devises.create')}}" class="p-2 btn-primary rounded"id="ajouter_client">Ajouter un devis</a>
+                <a href="{{route('devises.create')}}" class="p-2 btn-primary rounded" id="ajouter_client">Ajouter un devis</a>
                 {{-- hnaya ila kano 3andna les devis deja m2ajautine --}}
                @if ($devises->count() > 0)
                     <div class="row">
@@ -100,7 +100,7 @@
                                                         <form action="{{ route('recherche_devi') }}" method="post">
                                                          @csrf
                                                             <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                            <button type="submit" class=" btn p-1  btn-outline-primary  rounded ml-2"  >
+                                                            <button type="submit" class=" btn p-1  btn-outline-secondary  rounded ml-2"  >
                                                             {{$motcle['mot_cle']}}
                                                             </button>
                                                         </form>

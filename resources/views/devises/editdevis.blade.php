@@ -302,14 +302,15 @@
         </div>
     </div>
 </div>
-<div class="row mt-4 col-md-6">
-    <div class="d-flex justify-content-end contain_button_submit mt-2">
+<div class="row">
+    <div class="d-flex justify-content-end contain_button_submit mt-2" style="padding-left:30px;padding-top:10px;">
         <a href="{{ route('devises.index') }}" class="btn addclient_retour  btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-6px"></i></span> Annuler</a>
         <button type="submit" id="addclient_sumbit_button" class=" btn btn-warning rounded font-weight-bold"><span><i class="far fa-edit font-weight-bold" style="color:#212529"></i></span>Modifier le Devis</button>
     </div>
     <div class="col-md-6">
     </div>
 </div>
+
 </form>
 </div>
 </div>

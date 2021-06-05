@@ -1,5 +1,10 @@
 @extends('home')
 <style>
+    nav ul li a {
+        margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
+    }
     .pagination li.active{
         border-bottom: 0px;
     }
@@ -9,7 +14,10 @@
     .pagination{
         margin-bottom:-20px;
         margin-top:12px;
-
+    }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8 !important;
     }
 </style>
 @section('header_content')
@@ -38,7 +46,7 @@
         </ul>
     </div>
     <div class="container-fluid pt-2 m-3">
-                <a href="{{route('factures.create')}}" class="p-2 border " style="background-color: #4DBCED" id="ajouter_client">Ajouter une facture</a>
+                <a href="{{route('factures.create')}}" class="p-2 btn-primary rounded" id="ajouter_client">Ajouter une facture</a>
                 @if ($factures->count() > 0)
                 <div class="row">
                     {{-- {{dd($factures)}} --}}
@@ -81,7 +89,7 @@
                                                         <form action="{{ route('recherche_facture') }}" method="post">
                                                          @csrf
                                                             <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                            <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                                                            <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2"  >
                                                             {{$motcle['mot_cle']}}
                                                             </button>
                                                         </form>
@@ -160,14 +168,14 @@
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     Voulez-vous vraiment supprimer cette facture !!!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-white text-secondary" data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>

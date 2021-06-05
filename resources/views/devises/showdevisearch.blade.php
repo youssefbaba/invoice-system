@@ -81,7 +81,7 @@
                                                                 <form action="{{ route('recherche_devi') }}" method="post">
                                                                  @csrf
                                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                                    <button type="submit" class=" btn p-1 btn-outline-primary rounded ml-2"  >
+                                                                    <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2"  >
                                                                     {{$motcle['mot_cle']}}
                                                                     </button>
                                                                 </form>
@@ -199,17 +199,17 @@
             @csrf
             @method('DELETE')
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Supprimer devis</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     Voulez-vous vraiment supprimer cette devis!!!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-white text-secondary" data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>

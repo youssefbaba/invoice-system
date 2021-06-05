@@ -36,95 +36,99 @@
     <div class="container-fluid row voir_plus ">
         <div class="col-md-6 ">
             <h2>Informations</h2>
-            <div>
-                <p class="text-muted d-inline-flex">Fonction:</p>
-                <p class="d-inline-flex">{{$clients->fonction_client}}</p>
-            </div>
-            <hr>
-            <div>
-                <p class="text-muted d-inline-flex">Adresse email:</p>
-                <a class="link-hover-focus" href="mailto:{{$clients->adresse_email_client}}">{{$clients->adresse_email_client}}</a>
-            </div>
-            <hr>
-            <div>
-                <p class="text-muted d-inline-flex">Numéro de téléphone:</p>
-                <a class="link-hover-focus" href="tel:{{$clients->tel_client}}">{{$clients->tel_client}}</a>
-            </div>
-            <hr>
-            {{-- <div>
-                <p class="text-muted d-inline-flex">Société:</p>
-                <a href="#" style="color: red">{{$clients->societe_client}} (mzl madart  had partie  dyal société)</a>
-            </div> --}}
-            <div>
-                <p class="text-muted d-inline-flex">Adresse:</p>
-                <p class="d-inline-flex">{{$clients->adresse_client}}</p>
-            </div>
-             <hr>
-             <div>
-                <p class="text-muted d-inline-flex">Ville:</p>
-                <p class="d-inline-flex">{{$clients->ville_client}}</p>
-            </div>
-            <hr>
-            <div>
-                <p class="text-muted d-inline-flex">Langue:</p>
-                <p class="d-inline-flex">{{$clients->langue_client}}</p>
-            </div>
-            <hr>
-            <div style="display: flex">
-                <p class="text-muted" style="margin-top: 12px" >Mot clés:</p>
-                <p>
-                    @foreach ($cles as $cle)
-                            <div class="mot_cles" style="display: flex;">
-                                @foreach ($clients->get_cles_client($clients->id) as $item => $motcle)
-                                <form action="{{ route('recherche_client') }}" method="post">
-                                @csrf
-                                    <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                    <button type="submit" class=" btn p-1 border-2 btn-outline-secondary  rounded ml-2 mt-2">
-                                    {{$motcle['mot_cle']}}
-                                    </button>
-                                </form>
+            <table>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Fonction:</p></td>
+                    <td><p class="d-inline-flex">{{$clients->fonction_client}}</p></td>
+
+                </tr>
+
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Adresse email:</p></td>
+                    <td><p><a class="link-hover-focus" href="mailto:{{$clients->adresse_email_client}}">{{$clients->adresse_email_client}}</a></p></td>
+
+                </tr>
+
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Numéro de téléphone:</p></td>
+                    <td><p><a class="link-hover-focus" href="tel:{{$clients->tel_client}}">{{$clients->tel_client}}</a></p></td>
+
+                </tr>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Adresse:</p></td>
+                    <td><p class="d-inline-flex">{{$clients->adresse_client}}</p></td>
+
+                </tr>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Ville:</p></td>
+                    <td><p class="d-inline-flex">{{$clients->ville_client}}</p></td>
+
+                </tr>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Langue:</p></td>
+                    <td><p class="d-inline-flex">{{$clients->langue_client}}</p></td>
+
+                </tr>
+                <tr>
+                    <td><p class="text-muted" style="margin-top: 12px" >Mot clés:</p></td>
+                    <td>
+                            <p>
+                                @foreach ($cles as $cle)
+                                        <div class="mot_cles" style="display: flex;">
+                                            @foreach ($clients->get_cles_client($clients->id) as $item => $motcle)
+                                            <form action="{{ route('recherche_client') }}" method="post">
+                                            @csrf
+                                                <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
+                                                <button type="submit" class=" btn p-1 border-2 btn-outline-primary  rounded mr-2 mt-2">
+                                                {{$motcle['mot_cle']}}
+                                                </button>
+                                            </form>
+                                            @endforeach
+                                        </div>
+                                        @break
                                 @endforeach
-                            </div>
-                            @break
-                    @endforeach
-                </p>
-            {{-- </form> --}}
-            </div>
-            <hr>
-            <div>
-                <p class="text-muted d-inline-flex">Note:</p>
-                <p class="d-inline-flex">{{$clients->note_client}}</p>
-            </div>
+                            </p>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Note:</p></td>
+                    <td><p class="d-inline-flex">{{$clients->note_client}}</p></td>
+                </tr>
+              </table>
         </div>
 
         <div class="col-md-6 ">
             <h2>Activités</h2>
-            <div>
-                <p class="text-muted d-inline-flex">Création:</p>
-                <p class="d-inline-flex">{{$clients->created_at->format('Y-m-d')}}</p>
-                <hr>
-                <p class="text-muted d-inline-flex">Dernière modification :</p>
-                <p class="d-inline-flex">{{$clients->updated_at->format('Y-m-d')}}</p>
-                <hr>
-                @if ($clients->get_facture_client($clients->id)->count() > 0)
-                <h6 class="d-inline-flex ">Factures :</h6>
-                <p class="d-inline-flex ">{{$clients->get_facture_client($clients->id)->count()}}</p>
-                <hr>
-                @else
-                <h6 class="d-inline-flex ">Factures :</h6>
-                <p class="d-inline-flex ">0</p>
-                <hr>
-                @endif
-                @if($clients->get_devise_client($clients->id)->count() > 0)
-                <h6 class="d-inline-flex ">Devises :</h6>
-                <p class="d-inline-flex ">{{$clients->get_devise_client($clients->id)->count()}}</p>
-                <hr>
-                @else
-                <h6 class="d-inline-flex ">Devises :</h6>
-                <p class="d-inline-flex ">0</p>
-                <hr>
-                @endif
-            </div>
+            <table>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Création:</p></td>
+                    <td><p class="d-inline-flex">{{$clients->created_at->format('Y-m-d')}}</p></td>
+                </tr>
+                <tr>
+                    <td><p class="text-muted d-inline-flex">Dernière modification :</p></td>
+                    <td><p class="d-inline-flex">{{$clients->updated_at->format('Y-m-d')}}</p></td>
+                </tr>
+                <tr>
+                    @if ($clients->get_facture_client($clients->id)->count() > 0)
+                    <td><p><h6 class="d-inline-flex ">Factures :</h6></p></td>
+                    <td><p class="d-inline-flex ">{{$clients->get_facture_client($clients->id)->count()}}</p></td>
+                    @else
+                    <td><p><h6 class="d-inline-flex ">Factures :</h6></p></td>
+                    <td><p class="d-inline-flex ">0</p></td>
+                    @endif
+                </tr>
+                <tr>
+                    @if($clients->get_devise_client($clients->id)->count() > 0)
+                    <td><p><h6 class="d-inline-flex ">Devises :</h6></p></td>
+                    <td><p class="d-inline-flex ">{{$clients->get_devise_client($clients->id)->count()}}</p></td>
+                    @else
+                    <td><p><h6 class="d-inline-flex ">Devises :</h6></p></td>
+                    <td><p class="d-inline-flex ">0</p></td>
+                    @endif
+                </tr>
+            </table>
         </div>
     </div>
     {{-- End dyal container li fih les infos dyal client --}}
@@ -180,7 +184,7 @@
                                                 <form action="#" method="post">
                                                 @csrf
                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-primary  rounded ml-2 mt-2">
+                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-secondary  rounded ml-2 mt-2">
                                                     {{$motcle['mot_cle']}}
                                                     </button>
                                                 </form>
@@ -331,7 +335,7 @@
                                                 <form action="{{ route('recherche_devi') }}" method="post">
                                                 @csrf
                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-primary  rounded ml-2 mt-2" >
+                                                    <button type="submit" class=" btn p-1 border-2 btn-outline-secondary  rounded ml-2 mt-2" >
                                                     {{$motcle['mot_cle']}}
                                                     </button>
                                                 </form>

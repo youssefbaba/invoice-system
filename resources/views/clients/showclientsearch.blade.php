@@ -62,7 +62,7 @@
                                            <form action="{{ route('recherche_client') }}" method="post">
                                             @csrf
                                                <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                                               <button type="submit" class=" btn p-1 btn-outline-primary rounded ml-2" >
+                                               <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2" >
                                                {{$motcle['mot_cle']}}
                                                </button>
                                            </form>

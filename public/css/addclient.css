@@ -117,14 +117,14 @@
 .contain_button_submit #addclient_sumbit_button{
     font-family: 'Josefin Sans', sans-serif;
     padding: 10px 30px;
-    margin: 0 20px 50px 20px;
+    margin: 0 20px 50px 0px;
     font-size: 15px;
     line-height: inherit;
 }
 a.addclient_retour{
     font-family: 'Josefin Sans', sans-serif;
     padding: 10px 30px;
-    margin: 0 20px 50px 20px;
+    margin: 0 20px 50px 0px;
     font-size: 15px;
     line-height: inherit;
 }
@@ -145,7 +145,7 @@ a.addclient_retour:hover{
     background-color:red;
     font-family: 'Josefin Sans', sans-serif;
     padding: 10px 30px;
-    margin: 0 20px 50px 20px;
+    margin: 0 20px 50px 0px;
     font-size: 15px;
     line-height: inherit;
 }

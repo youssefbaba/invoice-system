@@ -1,5 +1,10 @@
 @extends('home')
 <style>
+    nav ul li a {
+        margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
+    }
     .pagination li.active{
         border-bottom: 0px;
     }
@@ -9,7 +14,10 @@
     .pagination{
         margin-bottom:-20px;
         margin-top:12px;
-
+    }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8 !important;
     }
 </style>
 @section('header_content')
@@ -44,7 +52,7 @@
     </div>
     <div class="container-fluid pt-2 m-3">
 
-                <a href="{{route('devises.create')}}" class="p-2 border" style="background-color: #4DBCED;" id="ajouter_client">Ajouter un devis</a>
+                <a href="{{route('devises.create')}}" class="p-2 btn-primary rounded"  id="ajouter_client">Ajouter un devis</a>
                @if ($devises->count() > 0)
                     <div class="row">
                         <div class="col-8  d-flex justify-content-start mb-4">{{ $devises->links() }}</div>
@@ -165,14 +173,14 @@
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Supprimer devis</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class=" text-white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Voulez-vous vraiment supprimer cette devis!!!
+                    Voulez-vous vraiment supprimer ce devis!!!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-ligh text-secondary"  data-dismiss="modal">Annuler</button>
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </div>
             </div>

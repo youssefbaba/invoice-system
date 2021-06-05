@@ -1,7 +1,7 @@
 @extends('home')
 @section('header_content')
 <div class="row d-flex justify-content-lg-between justify-content-md-between justify-content-end">
-    <h2 id="grand_title_addfacture" class="text-uppercase d-none d-md-block d-lg-block text-white">Facture
+    <h2 id="grand_title_addfacture" class="text-uppercase d-none d-md-block d-lg-block text-white ml-10">Facture
         &nbsp;{{$facture->etat_facture}}</h2>
     <div class="voirplus_display">
         <div>
@@ -12,7 +12,7 @@
                         id="finalise_span"><i class="far fa-check-circle"></i>
                         <p id="hover_finalise">Finaliser</p>
                     </a>
-                    <a href="{{route('factures.editfacture',['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}" id="finalise_edit"><i class="fas fa-pencil-alt"></i>
+                    <a href="{{route('factures.editfacture',['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}" id="finalise_edit" style="background-color: #1976D2"><i class="fas fa-pencil-alt"></i>
                         <p id="hover_editfacture">Modifier</p>
                     </a>
                 @else
@@ -29,8 +29,8 @@
                 @if ($facture->etat_facture == 'Payée')
                 @if ($facture->client_id
                 != null)
-                <a href="{{route('facture.anulle_paiement',$facture->id)}}" class="bg-warning text-white"
-                    id="finalise_paye"><i class="fas fa-not-equal"></i>
+                <a href="{{route('facture.anulle_paiement',$facture->id)}}" class="bg-danger text-white"
+                    id="finalise_paye"><i class="fas fa-backspace"></i>
                     <p id="hover_paye">Annuler le paiment</p>
                 </a>
                 @else
@@ -47,18 +47,13 @@
                 </a>
                 @else
                 @endif
-
-                @if ($facture->etat_facture != 'Provisoire')
-                <a href="{{route('create_email_facture', ['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}" class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
-                    <p id="hover_email">Envoyer par email</p>
-                </a>
-                @else
-                @endif
-
                 @if ($facture->client_id!= null)
                 <a href="{{route('facture.generpdff',$facture->id)}}" class="bg-dark text-white"
                     id="finalise_download"><i class="fas fa-download"></i>
                     <p id="hover_download">Télecharger</p>
+                </a>
+                <a href="{{route('create_email_facture', ['facture_id'=>$facture->id,'client_id'=>$facture->client_id])}}" class="bg-dark text-white" id="finalise_email"><i class="far fa-envelope"></i>
+                    <p id="hover_email">Envoyer par email</p>
                 </a>
                 @else
                 @endif
@@ -74,14 +69,14 @@
                             <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true" class="text-white">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 Voulez-vous vraiment supprimer cette facture!!!
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-white text-secondary" data-dismiss="modal">Annuler</button>
                                 <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                             </div>
                         </div>
@@ -129,14 +124,14 @@
                                 <div class="modal-header bg-danger text-white">
                                     <h5 class="modal-title" id="exampleModalLabel">Supprimer facture</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true" class="text-white">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     Voulez-vous vraiment supprimer cette facture!!!
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="button" class="btn btn-white text-secondary" data-dismiss="modal">Annuler</button>
                                     <a class="btn btn-danger btn-ok" style="background-color: #bb2124 !important;border-radius: 0.25rem;">Supprimer</a>
                                 </div>
                             </div>
@@ -172,7 +167,7 @@
 </div>
 @endsection
 @section('contenu_inside')
-<div class="contain_inside row mt-3 container" id="facture">
+<div class="contain_inside row mt-3 container" id="facture" style="padding-left: 34px;">
     <div class="col-md-6 ">
         <h4 class="font-weight-bold">Informations</h4>
         <div class="row">
@@ -231,7 +226,7 @@
                     <form action="{{ route('recherche_facture') }}" method="post">
                      @csrf
                         <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
-                        <button type="submit" class=" btn p-1 border-2 mot_cles_link text-white rounded ml-2"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
+                        <button type="submit" class=" btn p-1 btn-outline-primary rounded ml-2"  >
                         {{$motcle['mot_cle']}}
                         </button>
                     </form>
@@ -250,41 +245,9 @@
 
         <p>Finalisez votre facture à l'aide du bouton ci-dessus pour pouvoir l'envoyer au client.
             Attention une facture finalisée n'est plus modifiable.</p>
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </div>
     @else
     @endif
-    @if ($facture->etat_facture == 'Finalisé')
-    <div class="col-md-6">
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-    @else
-    @endif
-    @if ($facture->etat_facture == 'Payée')
-    <div class="col-md-6">
-        <h4 class="font-weight-bold">Documents liée</h4>
-        <h6 class="text-center text-muted ">aucun document lié</h6>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    </div>
-    @else
-    @endif
-
     <div class="col-md-6">
         @if ($facture->client_id
         == null)
