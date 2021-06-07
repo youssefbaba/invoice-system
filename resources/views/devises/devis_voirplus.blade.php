@@ -231,7 +231,7 @@
             <div class="col-md-8">
                 <form action="{{ route('recherche_devi') }}" method="post">
                     @csrf
-                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px">{{$devise->code_devis}}</button>
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;">{{$devise->code_devis}}</button>
                         <input type="hidden" class="form-control"  value="{{$devise->code_devis}}" id="search" name="q" />
 
                     </form>

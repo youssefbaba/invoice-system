@@ -188,7 +188,7 @@
             <div class="col-md-8">
                 <form action="{{ route('recherche_avoir') }}" method="post">
                     @csrf
-                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px">{{$avoir->code_avoir}}</button>
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;">{{$avoir->code_avoir}}</button>
                         <input type="hidden" class="form-control"  value="{{$avoir->code_avoir}}" id="search" name="q" />
 
                     </form>

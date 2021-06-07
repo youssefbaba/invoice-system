@@ -1,4 +1,18 @@
 @extends('admin')
+<style>
+    .table-hover th
+    {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #ADB6D8;
+        color: black;
+    }
+    .table-hover tr:nth-child(2n-1)
+    {
+       background-color: #f2f2f2;;
+    }
+</style>
 @section('header_content')
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashapplication.chartdirham') }}"
         style="color: white;text-decoration: none">Dashboard</a> </h5>
@@ -33,7 +47,8 @@
                             $compteur = 0
                         @endphp
                         <tr>
-                            <td>{{$keys_facture_dirham[$i]}}</td>
+
+                            <td>{{Carbon\Carbon::parse($keys_facture_dirham[$i])->format('m/Y') }}</td>
                             <td>{{$total_debours_facture_monthly_dirham[$i]}}&nbsp;DH</td>
                             @for($j = 0; $j<count($keys_avoir_dirham); $j++)
                                 @if($keys_facture_dirham[$i]===$keys_avoir_dirham[$j])
@@ -65,7 +80,8 @@
                             $compteur = 0
                         @endphp
                         <tr>
-                            <td>{{$keys_facture_dollar[$i]}}</td>
+
+                            <td>{{Carbon\Carbon::parse($keys_facture_dollar[$i])->format('m/Y') }}</td>
                             <td>{{$total_debours_facture_monthly_dollar[$i]}}&nbsp;$</td>
                             @for($j = 0; $j<count($keys_avoir_dollar); $j++)
                                 @if($keys_facture_dollar[$i]===$keys_avoir_dollar[$j])
@@ -96,7 +112,8 @@
                             $compteur = 0
                         @endphp
                         <tr>
-                        <td>{{$keys_facture_euro[$i]}}</td>
+
+                        <td>{{Carbon\Carbon::parse($keys_facture_euro[$i])->format('m/Y') }}</td>
                         <td>{{$total_debours_facture_monthly_euro[$i]}}&nbsp;€</td>
                         @for($j = 0; $j<count($keys_avoir_euro); $j++)
                             @if($keys_facture_euro[$i]===$keys_avoir_euro[$j])

@@ -195,7 +195,7 @@
             <div class="col-md-8">
                 <form action="{{ route('recherche_facture') }}" method="post">
                     @csrf
-                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px">{{$facture->code_facture}}</button>
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;">{{$facture->code_facture}}</button>
                         <input type="hidden" class="form-control"  value="{{$facture->code_facture}}" id="search" name="q" />
 
                     </form>
