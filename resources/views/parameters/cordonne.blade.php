@@ -1,6 +1,6 @@
 @extends('layouts.apppara')
 @section('contenu_inside')
-    <div class="container-fluid">
+    <div class="container-fluid " style="margin-bottom: 40px">
             <h3 class="text-dark font-weight-bold mt-2">Coordonnées</h3>
             <form method="POST" action="{{route('parametre.update',$user->id)}}" class="mt-3" enctype="multipart/form-data">
                 @csrf
@@ -99,7 +99,14 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Enregister" class="btn btn-success btn-lg mt-4 font-weight-bold">
+                <div class="row">
+                    <div class="d-flex justify-content-end contain_button_submit mt-2" style="padding-left:30px;padding-top:10px;">
+                        <a href="{{ url()->previous() }}" class="btn addclient_retour  btn-danger rounded font-weight-bold mr-2 btn-sm" style="margin-left: -14px"><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-2px"></i></span> Annuler</a>
+                        <button type="submit" id="addclient_sumbit_button" class=" btn btn-warning rounded font-weight-bold ml-2 btn-sm"><span><i class="far fa-edit font-weight-bold" style="color:#212529"></i></span>Modifier les coordonnées</button>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
             </form>
     </div>
 @endsection

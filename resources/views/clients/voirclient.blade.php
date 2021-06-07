@@ -159,12 +159,12 @@
 
     {{-- start ghadi nbdaw nssawbo les cardes dyal les factures dyal hadak client  --}}
     <div class="container_fluid row voir_plus ">
-        <div class="col-md-8">
+        <div class="col-md-10">
             {{-- ila kano bbzzzffff dyal les factures dyal client --}}
              {{-- {{dd($clients->get_facture_client($clients->id))}} --}}
             @if ($clients->get_facture_client($clients->id)->count() > 0)
             <h2>Factures: <sub>({{$clients->get_facture_client($clients->id)->count()}})</sub></h2>
-            <div class="col-8  d-flex justify-content-start mb-4">{{ $clients->get_factures_client($clients->id)->links() }}</div>
+            <div class="col-8 d-flex justify-content-start mb-4">{{ $clients->get_factures_client($clients->id)->links() }}</div>
                 @foreach ($clients->get_factures_client($clients->id) as  $facture)
                     @php
                     $devis = $facture->devis
@@ -193,7 +193,7 @@
                             </div>
                             <hr >
                             <div class="row" style="margin-top:20px;margin-bottom:-6px">
-                                <div class="col-6">
+                                <div class="col-12">
                                     @foreach ($cles as $cle)
                                             <div class="mot_cles" style="display: flex;">
                                                 @foreach ($cle->getCleFacture($facture->id) as $item => $motcle)
@@ -208,10 +208,6 @@
                                             </div>
                                             @break
                                     @endforeach
-
-                                </div>
-                                <div class="col-6">
-
                                 </div>
                             </div>
 
@@ -310,7 +306,7 @@
 
     {{-- start ghadi nssawbo les cardes dyal les devises pour ce client --}}
     <div class="container_fluid row voir_plus">
-        <div class="col-md-8">
+        <div class="col-md-10">
             {{-- hnaya 3andna 3 devis F , F , P --}}
             @if ($clients->get_devise_client($clients->id)->count() > 0)
             <h2>Devise: <sub>({{$clients->get_devise_client($clients->id)->count()}})</sub></h2>

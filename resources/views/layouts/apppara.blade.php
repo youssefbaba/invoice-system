@@ -12,19 +12,26 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style_para.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cordonne.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/addclient.css') }}" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <style>
+        .list-group-item:hover{
+          background-color: #5DBDF6 !important;
+        }
+
+    </style>
 </head>
 <body >
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
-            <div class=" border-right" id="sidebar-wrapper" style="background-color:#093073">
-              <div class="sidebar-heading font-weight-bold" style="color: white"><a href="{{ route('parametre') }}" style="color: white"><i class="fas fa-cog">&nbsp;Paramètres</i></a> </div>
+            <div class=" border-right" id="sidebar-wrapper" style="background-color:#034B88">
+              <div class="sidebar-heading font-weight-bold sidbar" style="color: white"><a href="{{ route('parametre') }}" style="color: white"><i class="fas fa-cog">&nbsp;Paramètres</i></a> </div>
               <div class="list-group list-group-flush">
-                <a href="{{route('parametre')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><i class="fa fa-address-card">&nbsp;Coordonnées</i> </a>
-                <a href="{{route('parametre.compte')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><i class="fas fa-user">&nbsp;Compte</i></a>
-                <a href="{{route('parametre.delete')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><i class="fas fa-user-times">&nbsp;Supprimer mon compte</i></a>
-                <a href="{{route('dashboard')}}" class="list-group-item list-group-item-action" style="background-color:#093073;color:white"><span style="float: right"><i class="fas fa-arrow-left"></i></span><span>Retour</span></a>
+                <a href="{{route('parametre')}}" class="list-group-item list-group-item-action " style="background-color:#034B88;color:white"><i class="fa fa-address-card">&nbsp;Coordonnées</i> </a>
+                <a href="{{route('parametre.compte')}}" class="list-group-item list-group-item-action " style="background-color:#034B88;color:white"><i class="fas fa-user">&nbsp;Compte</i></a>
+                <a href="{{route('parametre.delete')}}" class="list-group-item list-group-item-action " style="background-color:#034B88;color:white"><i class="fas fa-user-times">&nbsp;Supprimer mon compte</i></a>
+                <a href="{{route('dashboard')}}" class="list-group-item list-group-item-action " style="background-color:#034B88;color:white"><span style="float: right"><i class="fas fa-arrow-left"></i></span><span>Retour</span></a>
               </div>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -32,7 +39,7 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
 
-              <nav class="navbar navbar-expand-lg navbar-light  border-bottom" style="background-color: #093073;">
+              <nav class="navbar navbar-expand-lg navbar-light  border-bottom" style="background-color:#005FAA;">
                 <button class="btn btn-primary" id="menu-toggle" >≡</button>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

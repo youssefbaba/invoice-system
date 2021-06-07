@@ -134,12 +134,14 @@ class parametreController extends Controller
         if (Hash::check($request->pass_actuel, $user->password)) {
             if ($user->email == $request->adresse_email) {
                 $user->password = Hash::make($request->passnew);
+                $user->change_mot_de_passe == $request->change_mot_de_passe;
                 $user->save();
                 Session::flash('status_update_mot_passe', 'Mot de pass modifié avec succes');
                 return redirect()->route('clients.index');
             } else {
                 $user->email = $request->adresse_email;
                 $user->password = Hash::make($request->passnew);
+                $user->change_mot_de_passe == $request->change_mot_de_passe;
                 $user->save();
                 Session::flash('status_update_mot_passe', 'Modification effectuer avec succes mais notice vous devez confirmer votre nouvelle adresse email');
                 return redirect()->back();

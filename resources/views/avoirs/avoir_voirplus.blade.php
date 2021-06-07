@@ -1,7 +1,4 @@
 @extends('home')
-<style>
-
-</style>
 @section('header_content')
 <div class="row d-flex justify-content-lg-between justify-content-md-between justify-content-end">
     <h2 id="grand_title_addfacture" class="text-uppercase d-none d-md-block d-lg-block text-white">Avoir
@@ -15,12 +12,12 @@
                         id="finalise_span"><i class="far fa-check-circle"></i>
                         <p id="hover_finalise">Finaliser</p>
                     </a>
-                    <a href="{{route('avoirs.editavoir',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}" id="finalise_edit"><i class="fas fa-pencil-alt"></i>
+                    <a href="{{route('avoirs.editavoir',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}" id="finalise_edit" style="background-color: #1976D2"><i class="fas fa-pencil-alt"></i>
                         <p id="hover_editfacture">Modifier</p>
                     </a>
                 @else
 
-                    <a href="#" id="finalise_edit"><i
+                    <a href="#" id="finalise_edit" ><i
                         class="fas fa-pencil-alt"></i>
                     <p id="hover_editfacture">Modifier</p>
                     </a>
@@ -29,8 +26,8 @@
                 @endif
                 @if ($avoir->etat_facture == 'Remboursé')
                 @if ($avoir->client_id!= null)
-                <a href="{{route('avoir.anulle_remboursement',$avoir->id)}}" class="bg-warning text-white"
-                    id="finalise_paye"><i class="fas fa-not-equal"></i>
+                <a href="{{route('avoir.anulle_remboursement',$avoir->id)}}" class="bg-danger text-white"
+                    id="finalise_paye"><i class="fas fa-backspace"></i>
                     <p id="hover_paye">Annuler le remboursement</p>
                 </a>
                 @else
@@ -39,7 +36,7 @@
                 @endif
                 @if ($avoir->etat_facture == 'Finalisé')
                 <a href="{{route('avoir.change.remboursé',$avoir->id)}}" class="bg-success text-white"
-                    id="finalise_commepaye"><i class="fas fa-euro-sign"></i>
+                    id="finalise_commepaye"><i class="fas fa-file-invoice-dollar"></i>
                 <p id="hover_commepaye">Marquer comme remboursé</p>
                 </a>
                 @else
@@ -66,7 +63,7 @@
                             <div class="modal-header bg-danger text-white">
                                 <h5 class="modal-title" id="exampleModalLabel">Supprimer avoir</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" class="text-white">&times;</span>
+                                    <span aria-hidden="true"  class="text-white">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -153,7 +150,7 @@
                 <li><a  href="{{route('avoirs.duplicateen_facture',['avoir_id'=>$avoir->id,'client_id'=>$avoir->client_id])}}">Dupliquer en  facture</a></li>
                 @else
                 {{-- <li><a href="{{route('factures.duplicatefacture_vide',$facture->id)}}">Duplicquer la facture</a></li> --}}
-                <li><a href="#">Dupliquer en facture</a></li>
+                <li><a href="#">Duplicquer en facture</a></li>
 
                 @endif
 
@@ -191,11 +188,10 @@
             <div class="col-md-8">
                 <form action="{{ route('recherche_avoir') }}" method="post">
                     @csrf
-                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;">{{$avoir->code_avoir}}</button>
+                        <button type="submit" class="border-0 p-0 rounded code " style="background-color: white;margin-top:-10px">{{$avoir->code_avoir}}</button>
                         <input type="hidden" class="form-control"  value="{{$avoir->code_avoir}}" id="search" name="q" />
 
                     </form>
-                {{-- <p><a href="#" class="link-hover-focus"></a></p> --}}
             </div>
         </div>
         <div class="row">

@@ -544,10 +544,11 @@ class chartController extends Controller
         $total_debours_avoir_monthly_euro = Avoir::selectRaw('SUM(total_debours) as som, MONTH(created_at) as borrowMonth')->groupBy('borrowMonth')->where('devis', '(€)')->where('user_id', $user->id)->whereYear('created_at', $this->myYear())->orderBy('borrowMonth', 'asc')->pluck('som');
         // dump($total_debours_facture_monthly_dirham);
         // dump($total_debours_avoir_monthly_dirham);
-        // dump($total_debours_avoir_monthly_dollar);
         // dump($total_debours_facture_monthly_dollar);
-        // dump($total_debours_avoir_monthly_euro);
+        // dump($total_debours_avoir_monthly_dollar);
         // dump($total_debours_facture_monthly_euro);
+        // dump($total_debours_avoir_monthly_euro);
+
 
 
 

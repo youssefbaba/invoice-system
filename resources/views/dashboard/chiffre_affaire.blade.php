@@ -1,4 +1,20 @@
 @extends('home')
+<style>
+    .table-hover th
+    {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #ADB6D8;
+        color: black;
+    }
+    .table-hover tr:nth-child(2n-1)
+    {
+       background-color: #f2f2f2;;
+    }
+
+
+</style>
 @section('header_content')
 <h5 class="text-white ml-4 d-inline text-uppercase"><a href="{{ route('dashboard') }}" style="color: white;text-decoration: none">Dashboard</a> </h5>
 {{-- <div class="form-group has-search d-inline-flex"> --}}
@@ -16,7 +32,7 @@
 @endsection
 @section('contenu_inside')
 <div class="etat_div">
-    <ul class="list-inline">
+    <ul class="list-inline" style="background-color: #F5F5F5">
         <li class="list-inline-item "><a href="{{route('dashboard')}}">STATISTIQUES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}" class="active">CHIFFRE D'AFFAIRES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.encaissements') }}">ENCAISSEMENTS</a></li>
@@ -44,7 +60,7 @@
                                 $compteur = 0
                             @endphp
                             <tr>
-                                <td>{{$keys_facture_dirham[$i]}}</td>
+                                <td>{{Carbon\Carbon::parse($keys_facture_dirham[$i])->format('m/Y') }}</td>
                                 <td>{{$total_facture_monthly_dirham[$i]}}&nbsp;DH</td>
                                 @for($j = 0; $j<count($keys_avoir_dirham); $j++)
                                     @if($keys_facture_dirham[$i]===$keys_avoir_dirham[$j])
@@ -74,7 +90,7 @@
                                 $compteur = 0
                             @endphp
                             <tr>
-                                <td>{{$keys_facture_dollar[$i]}}</td>
+                                <td>{{Carbon\Carbon::parse($keys_facture_dollar[$i])->format('m/Y') }}</td>
                                 <td>{{$total_facture_monthly_dollar[$i]}}&nbsp;$</td>
                                 @for($j = 0; $j<count($keys_avoir_dollar); $j++)
                                     @if($keys_facture_dollar[$i]===$keys_avoir_dollar[$j])
@@ -104,7 +120,7 @@
                                 $compteur = 0
                             @endphp
                             <tr>
-                            <td>{{$keys_facture_euro[$i]}}</td>
+                            <td>{{Carbon\Carbon::parse($keys_facture_euro[$i])->format('m/Y') }}</td>
                             <td>{{$total_facture_monthly_euro[$i]}}&nbsp;€</td>
                             @for($j = 0; $j<count($keys_avoir_euro); $j++)
                                 @if($keys_facture_euro[$i]===$keys_avoir_euro[$j])

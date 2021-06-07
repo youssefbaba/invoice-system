@@ -16,7 +16,7 @@
 @endsection
 @section('contenu_inside')
 <div class="etat_div">
-    <ul class="list-inline">
+    <ul class="list-inline" style="background-color: #F5F5F5">
         <li class="list-inline-item "><a href="{{route('dashboard')}}" class="active">STATISTIQUES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.chiffre_affaire') }}">CHIFFRE D'AFFAIRES</a></li>
         <li class="list-inline-item"><a href="{{ route('dash.encaissements') }}">ENCAISSEMENTS</a></li>

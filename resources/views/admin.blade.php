@@ -1,4 +1,19 @@
 @extends('layouts.app')
+<style>
+    body{
+        line-height: 1rem;
+        font-weight: 400;
+
+    }
+    html{
+        line-height: 1rem;
+        font-weight: 400;
+    }
+    *{
+        line-height: 1rem;
+        font-weight: 400;
+    }
+</style>
 @section('content')
                 <div id="contain_image_sidebar d-inline">
                 <a href="{{route('user')}}"><img src="{{asset('uploads/avatars/'.Auth::user()->avatar)}}" alt="avatar_image" style="width:50px;height:50px;border-radius:50%;margin-left:15%"><span class="text-light ml-1">&nbsp;Administrateur</span></a>

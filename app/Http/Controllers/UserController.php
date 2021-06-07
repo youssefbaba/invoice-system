@@ -34,8 +34,10 @@ class UserController extends Controller
     }
     public function store(Request $request, $user_id)
     {
+        // dd($request);
         $user = User::findOrfail($user_id);
         $user->adresse = $request->adresse;
+        $user->complete = $request->complete;
         $user->name_company = $request->societe;
         $user->codepostal = $request->postal;
         $user->ville = $request->ville;
@@ -43,7 +45,13 @@ class UserController extends Controller
         $user->tel = $request->phone;
         $user->save();
         Session::flash('status_finish_information_user', ' Informations a été complété avec succès.');
-        return redirect()->route('clients.index');
+        if ($user->change_mot_de_passe == 0) {
+            return redirect()->route('parametre.compte');
+        }else{
+            return redirect()->route('clients.index');
+        }
+
+
     }
     public function createfeedback()
     {

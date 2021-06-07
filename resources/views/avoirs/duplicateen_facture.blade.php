@@ -423,7 +423,7 @@
             <div class="row">
                 <div class="d-flex justify-content-end contain_button_submit mt-2" style="padding-left: 30px;padding-top: 10px;">
                     <a href="{{ url()->previous() }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold " style="margin-right:-4px"></i></span> Annuler</a>
-                     <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold"><span><i class="fas fa-clone font-weight-bold"></i></span>Dupliquer en devis</button>
+                     <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold"><span><i class="fas fa-clone font-weight-bold"></i></span>Dupliquer en facture</button>
                 </div>
                 <div class="col-md-6">
                 </div>

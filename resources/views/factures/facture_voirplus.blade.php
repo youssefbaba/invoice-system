@@ -41,8 +41,8 @@
 
 
                 @if ($facture->etat_facture == 'Finalisé')
-                <a href="{{route('facture.change.payé',$facture->id)}}" class="bg-success text-white"
-                    id="finalise_commepaye"><i class="fas fa-tags"></i>
+                <a  {{route('facture.change.payé',$facture->id)}}" class="bg-success text-white"
+                    id="finalise_commepaye"><i class="fas fa-file-invoice-dollar" style="width: 16px;padding-left: 2px;"></i>
                     <p id="hover_commepaye">Marquer comme payée</p>
                 </a>
                 @else

@@ -49,7 +49,12 @@
               <input type="text" name="phone" id="phone" placeholder="Numéro de telephone" class="form-control col-12 mb-4">
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Enregistrer</button>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <input type="hidden" name="complete" id="complete" value="1" >
+            </div>
+        </div>
+        <button class="btn text-white" type="submit"  style="background-color: #1976D2;margin-top:-40px">Enregistrer</button>
     </form>
 </div>
 

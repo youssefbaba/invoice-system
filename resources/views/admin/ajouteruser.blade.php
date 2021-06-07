@@ -46,11 +46,9 @@
               <input id="password" type="password" class="form-control @error('password')@enderror col-12 mb-4 " name="password" placeholder="Mot de pass" value="{{Str::random(3).''.rand( 10000, 99999 )}}"  autocomplete="new-password" required>
             </div>
         </div>
-        <div class="client col-md-8">
-            <div class="form-group">
-                <a type="button" class="btn btn-danger" href="{{ route('admin') }}" >Annuler</a>
-                <button class="btn btn-primary" type="submit">Ajouter</button>
-            </div>
+        <div class="d-flex justify-content-start contain_button_submit" style="margin-left: 14px">
+            <a href="{{ url()->previous() }}" class="btn addclient_retour btn-danger rounded font-weight-bold "><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-4px"></i></span> Annuler</a>
+            <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold "><span><i  class="fas fa-user-plus font-weight-bold"></i></span>Créer un employé</button>
         </div>
 
 

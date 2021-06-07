@@ -43,7 +43,14 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Supprimer mon compte" class="btn btn-danger btn-lg mt-4 font-weight-bold">
+                <div class="row">
+                    <div class="d-flex justify-content-end contain_button_submit mt-2" style="padding-left:30px;padding-top:10px;">
+                        <a href="{{ url()->previous() }}" class="btn addclient_retour  btn-danger rounded  text-dark font-weight-bold mr-2 btn-sm" style="margin-left: -14px"><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-2px"></i></span> Annuler</a>
+                        <button type="submit" id="addclient_sumbit_button" class=" btn btn-danger rounded font-weight-bold ml-2 btn-sm"><span><i class="far fa-trash-alt" style="margin-right:3px"></i></span>Supprimer mon compte</button>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
             </form>
     </div>
 @endsection

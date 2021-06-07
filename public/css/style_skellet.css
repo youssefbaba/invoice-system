@@ -22,8 +22,8 @@ body {
   }
   .sidebar #nav_sidebar a{
     display: block;
-    padding: 15px 10px 5px 10px;
-    font-size: 17px;
+    padding: 15px 10px 15px 10px;
+    font-size: 15px;
     font-family: 'josefin sans';
     text-decoration: none;
     color: white;
@@ -55,6 +55,7 @@ body {
   .sidebar #nav_sidebar a .second{
     margin-left: 5px;
     font-size: 15px;
+
   }
   .sidebar #nav_sidebar a span:last-of-type{
       float: right;
@@ -65,7 +66,7 @@ body {
   .sidebar #contain_image_sidebar{
     height: 50px;
     width: 100%;
-    background-color:#005FAA;
+    /* background-color:#005FAA !important; */
   }
   .sidebar img{
       width: 100%;

@@ -36,13 +36,26 @@ class LoginController extends Controller
     {
         switch (Auth::user()->role) {
             case 1:
-                $this->redirectTo = "admin";
-                return $this->redirectTo;
-                break;
+                if (Auth::user()->complete == 1) {
+                    $this->redirectTo = "admin";
+                    return $this->redirectTo;
+                    break;
+                }else{
+                    $this->redirectTo = "user/finishinformation";
+                    return $this->redirectTo;
+                    break;
+                }
+
             case 0:
-                $this->redirectTo = RouteServiceProvider::HOME;
-                return $this->redirectTo;
-                break;
+                if (Auth::user()->complete == 1) {
+                    $this->redirectTo = RouteServiceProvider::HOME;
+                    return $this->redirectTo;
+                    break;
+                }else{
+                    $this->redirectTo = "user/finishinformation";;
+                    return $this->redirectTo;
+                    break;
+                }
             default:
                 $this->redirectTo  = "login";
                 return $this->redirectTo;

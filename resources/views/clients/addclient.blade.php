@@ -115,8 +115,8 @@
     </div>
 
     <div class="d-flex justify-content-end contain_button_submit">
-        <a href="{{ url()->previous() }}" class="btn addclient_retour btn-danger rounded font-weight-bold"><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-4px"></i></span> Annuler</a>
-        <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold"><span><i  class="fas fa-user-plus font-weight-bold"></i></span>Créer le client</button>
+        <a href="{{ url()->previous() }}" class="btn addclient_retour btn-danger rounded font-weight-bold "><span><i class="fas fa-backspace font-weight-bold" style="margin-right:-4px"></i></span> Annuler</a>
+        <button type="submit" id="addclient_sumbit_button" class=" btn btn-success rounded font-weight-bold "><span><i  class="fas fa-user-plus font-weight-bold"></i></span>Créer le client</button>
     </div>
 
 

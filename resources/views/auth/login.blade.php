@@ -77,6 +77,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                         @enderror
+
                         <input type="submit" value="Connecter" class="col-12 mb-1">
                     </div>
                     <div class="row souvenir px-5">
