@@ -54,7 +54,7 @@
                                             <div class="card client_display " style="background-color: #F5F5F5">
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <a href="{{route('devises.voirplus',$devi_cle_client->id)}}" class="card-title col-md-8 nm_client">{{$devi_cle_client->code_devis}}:{{$devi_cle_client->etat_devis}}</a>
+                                                        <a href="{{route('devises.voirplus',$devi_cle_client->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-calculator text-muted" style="margin-right: 10px"></i>{{$devi_cle_client->code_devis}}:{{$devi_cle_client->etat_devis}}</a>
                                                         <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                                     </div>
                                                     <div class="row">
@@ -62,7 +62,7 @@
                                                             {{-- {{dd($clients)}} --}}
                                                             {{-- youssef:1 reda:2 haza:3--}}
                                                                 @foreach ($clients as $client)
-                                                                    <a href="{{route('voirplus',$client->id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($devi_cle_client->client_id)}}:{{$client->getClient_Facture_Name($devi_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devi_cle_client->client_id)}}</a>
+                                                                    <a href="{{route('voirplus',$client->id)}}" class="card-subtitle mb-2 nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px"></i>{{$client->getClient_Facture_code($devi_cle_client->client_id)}}:{{$client->getClient_Facture_Name($devi_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devi_cle_client->client_id)}}</a>
                                                                     @break
                                                                 @endforeach
                                                         </div>

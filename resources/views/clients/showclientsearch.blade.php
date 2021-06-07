@@ -49,12 +49,12 @@
                             <div class="card client_display " style="background-color: #F5F5F5">
                                 <div class="card-body">
                                     <div class="row">
-                                        <a href="{{route('voirplus',$client_cle->id)}}" class="card-title col-md-8 nm_client">{{$client_cle->code_client}}{{$client_cle->nom_client}}&nbsp;&nbsp;&nbsp;{{$client_cle->prenom_client}}</a>
+                                        <a href="{{route('voirplus',$client_cle->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-user text-muted" style="margin-right: 12px"></i>{{$client_cle->code_client}}{{$client_cle->nom_client}}&nbsp;&nbsp;&nbsp;{{$client_cle->prenom_client}}</a>
                                         <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                     </div>
-                                    <h6 class="card-subtitle mb-2 text-muted part">Particulier</h6>
-                                    <i class="far fa-envelope text-muted"></i><a href="mailto:{{$client_cle->adresse_email_client}}" class="em_client">{{$client_cle->adresse_email_client}}</a><br>
-                                    <i class="fas fa-phone text-muted"></i><a href="tel:{{$client_cle->tel_client}}" class="em_client">{{$client_cle->tel_client}}</a>
+                                    <h6 class="card-subtitle mb-2 text-muted part" style="color: rgb(104, 104, 211) !important;">Particulier</h6>
+                                    <i class="far fa-envelope text-muted mb-2"></i><a href="mailto:{{$client_cle->adresse_email_client}}" class="em_client mb-2">{{$client_cle->adresse_email_client}}</a><br>
+                                    <i class="fas fa-phone text-muted mb-2"></i><a href="tel:{{$client_cle->tel_client}}" class="em_client mb-2">{{$client_cle->tel_client}}</a>
                                     <hr>
                                     @foreach ($cles as $cle)
                                        <div class="mot_cles" style="display: flex;">

@@ -52,10 +52,10 @@ nav ul li a {
     </div>
     <div class="container-fluid pt-2 m-3">
 
-                <a href="{{route('devises.create')}}" class="p-2 btn-primary rounded" id="ajouter_client">Ajouter un devis</a>
+                <a href="{{route('devises.create')}}" class="p-2 btn-primary rounded" id="ajouter_client"><i class="fas fa-plus" style="margin-right:4px"></i>Ajouter un devis</a>
                @if ($devises->count() > 0)
                     <div class="row">
-                        <div class="col-8  d-flex justify-content-start mb-4">{{ $devises->links() }}</div>
+                        <div class="col-8  d-flex justify-content-start mb-4 mt-2">{{ $devises->links() }}</div>
                     @foreach ($devises as $devis)
                                          @php
                                             $devise = $devis->devis
@@ -64,13 +64,13 @@ nav ul li a {
                                     <div class="card client_display" style="background-color: #F5F5F5">
                                         <div class="card-body">
                                             <div class="row">
-                                                <a href="{{route('devises.voirplus',$devis->id)}}" class="card-title col-md-8 nm_client">{{$devis->code_devis}}:{{$devis->etat_devis}}</a>
+                                                <a href="{{route('devises.voirplus',$devis->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-calculator text-muted" style="margin-right: 10px"></i>{{$devis->code_devis}}:{{$devis->etat_devis}}</a>
                                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
                                                         @foreach ($clients as $client)
-                                                            <a href="{{route('voirplus',$devis->client_id)}}"href="{{route('voirplus',$devis->client_id)}}" class="card-subtitle mb-2  nm_societe mr-5">{{$client->getClient_Facture_code($devis->client_id)}}:{{$client->getClient_Facture_Name($devis->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->client_id)}}</a>
+                                                            <a href="{{route('voirplus',$devis->client_id)}}"href="{{route('voirplus',$devis->client_id)}}" class="card-subtitle mb-2  nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px"></i>{{$client->getClient_Facture_code($devis->client_id)}}:{{$client->getClient_Facture_Name($devis->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->client_id)}}</a>
                                                             @break
                                                         @endforeach
                                                 </div>

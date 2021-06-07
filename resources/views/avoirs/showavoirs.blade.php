@@ -59,7 +59,7 @@
                                         <div class="card-body">
 
                                             <div class="row">
-                                                <a href="{{route('avoirs.voirplus',['id'=>$avoir->id])}}" class="card-title col-md-8 nm_client">{{$avoir->code_avoir}}:{{$avoir->etat_facture}}&nbsp;&nbsp;&nbsp;&nbsp; <span  class="code-avoir">[{{$avoir->get_Code_Facture($avoir->facture_id)}}]</span> </a>
+                                                <a href="{{route('avoirs.voirplus',['id'=>$avoir->id])}}" class="card-title col-md-8 nm_client"><i class="fas fa-shopping-cart text-muted" style="margin-right: 10px"></i>{{$avoir->code_avoir}}:{{$avoir->etat_facture}}&nbsp;&nbsp;&nbsp;&nbsp; <span  class="code-avoir">[{{$avoir->get_Code_Facture($avoir->facture_id)}}]</span> </a>
 
                                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                             </div>
@@ -70,7 +70,7 @@
                                                         @foreach ($clients as $client)
                                                         {{-- {{dd($facture->id_client)}} --}}
                                                         {{-- <a href="{{route('voirplus',$facture->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($facture->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture->client_id)}}</a> --}}
-                                                        <a href="{{route('voirplus',$avoir->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($avoir->client_id)}}:{{$client->getClient_Facture_Name($avoir->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir->client_id)}}</a>
+                                                        <a href="{{route('voirplus',$avoir->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px"></i>{{$client->getClient_Facture_code($avoir->client_id)}}:{{$client->getClient_Facture_Name($avoir->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir->client_id)}}</a>
 
                                                             @break
                                                         @endforeach

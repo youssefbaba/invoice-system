@@ -20,6 +20,9 @@
         background-color:#ADB6D8 !important;
         border-color: #ADB6D8 !important;
     }
+    html{
+        line-height: 1.5rem
+    }
 
 </style>
 {{--  hnaya mssayfat wasst view clients et cles et user --}}
@@ -52,10 +55,10 @@
 
     <div class="container-fluid pt-2 mb-4">
             <a href="{{route('admin.create')}}" class="p-2 btn-primary rounded"
-            id="ajouter_client">Ajouter un employé</a>
+            id="ajouter_client"><i class="fas fa-plus" style="margin-right:4px"></i>Ajouter un employé</a>
         @if ($users->count() > 0)
         <div class="row ">
-            <div class="col-8  d-flex justify-content-start mb-4">{{ $users->links() }}</div>
+            <div class="col-8  d-flex justify-content-start mb-4 mt-2">{{ $users->links() }}</div>
             @foreach ($users as $user)
             {{-- {{dd($client)}} --}}
 
@@ -63,18 +66,23 @@
                 <div class="card client_display " style="background-color: #F5F5F5" >
                     <div class="card-body">
                         <div class="row">
-                            <a href="{{ route('admin.show', ['user_id'=>$user->id])}}" class="card-title col-md-8 nm_client">{{$user->name}}&nbsp;&nbsp;&nbsp;{{$user->lastname}}</a>
+                            <a href="{{ route('admin.show', ['user_id'=>$user->id])}}" class="card-title col-md-8 nm_client  mb-2"><i class="fas fa-user text-muted" style="margin-right:12px"></i>{{$user->name}}&nbsp;&nbsp;&nbsp;{{$user->lastname}}</a>
                             <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                         </div>
                         @if($user->role === 0)
-                             <h6 class="card-subtitle mb-2  part">Employé</h6>
+                             <h6 class="card-subtitle mb-1 mt-1  part " style="margin-left:40px;color: rgb(104, 104, 211) !important;">Employé</h6>
                         @else
-                            <h6 class="card-subtitle mb-2  part">Administrateur</h6>
+                            <h6 class="card-subtitle mb-1 mt-1  part " style="margin-left:40px;color: rgb(104, 104, 211) !important;">Administrateur</h6>
                         @endif
-                        <i class="far fa-envelope text-muted"></i><a href="mailto:{{$user->email}}"
-                            class="em_client">{{$user->email}}</a><br>
-                        <i class="fas fa-phone text-muted"></i><a href="tel:{{$user->tel}}"
-                            class="em_client">{{$user->tel}}</a>
+                        @if($user->complete === 0)
+                            <h6 class="card-subtitle mb-2 mt-1 part" style="margin-left:40px;color: rgb(104, 104, 211) !important;">Informations incomplète</h6>
+                        @else
+                            <h6 class="card-subtitle mb-2 mt-1  part" style="margin-left:40px;color: rgb(104, 104, 211) !important;">Informations complète</h6>
+                        @endif
+                        <i class="far fa-envelope text-muted mb-2"></i><a href="mailto:{{$user->email}}"
+                            class="em_client mb-2">{{$user->email}}</a><br>
+                        <i class="fas fa-phone text-muted mb-2"></i><a href="tel:{{$user->tel}}"
+                            class="em_client mb-2">{{$user->tel}}</a>
                         <hr>
                         <div class="mot_cles" style="display: flex;">
                             <a href="{{ route('admin.show', ['user_id'=>$user->id])}}" class="btn btn-success text-white mr-2"

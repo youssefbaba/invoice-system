@@ -52,10 +52,10 @@
 
     <div class="container-fluid pt-2 mb-4">
             <a href="{{route('clients.create')}}" class="p-2 btn-primary rounded"
-            id="ajouter_client">Ajouter un client</a>
+            id="ajouter_client"><i class="fas fa-plus" style="margin-right:4px"></i>Ajouter un client</a>
         @if ($clients->count() > 0)
         <div class="row ">
-            <div class="col-8  d-flex justify-content-start mb-4">{{ $clients->links() }}</div>
+            <div class="col-8  d-flex justify-content-start mb-4 mt-2">{{ $clients->links() }}</div>
             @foreach ($clients as $client)
             {{-- {{dd($client)}} --}}
 
@@ -63,14 +63,14 @@
                 <div class="card client_display " style="background-color: #F5F5F5" >
                     <div class="card-body">
                         <div class="row">
-                            <a href="{{route('voirplus',$client->id)}}" class="card-title col-md-8 nm_client"><span>{{$client->code_client}}</span>:{{$client->nom_client}}&nbsp;&nbsp;&nbsp;{{$client->prenom_client}}</a>
+                            <a href="{{route('voirplus',$client->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-user text-muted" style="margin-right: 12px"></i><span>{{$client->code_client}}</span>:{{$client->nom_client}}&nbsp;&nbsp;&nbsp;{{$client->prenom_client}}</a>
                             <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                         </div>
-                        <h6 class="card-subtitle mb-2 text-muted part">Particulier</h6>
-                        <i class="far fa-envelope text-muted"></i><a href="mailto:{{$client->adresse_email_client}}"
-                            class="em_client">{{$client->adresse_email_client}}</a><br>
-                        <i class="fas fa-phone text-muted"></i><a href="tel:{{$client->tel_client}}"
-                            class="em_client">{{$client->tel_client}}</a>
+                        <h6 class="card-subtitle mb-2 text-muted part" style="color: rgb(104, 104, 211) !important;">Particulier</h6>
+                        <i class="far fa-envelope text-muted mb-2"></i><a href="mailto:{{$client->adresse_email_client}}"
+                            class="em_client mb-2">{{$client->adresse_email_client}}</a><br>
+                        <i class="fas fa-phone text-muted mb-2"></i><a href="tel:{{$client->tel_client}}"
+                            class="em_client mb-2">{{$client->tel_client}}</a>
                         <hr>
                         @foreach ($cles as $cle)
                         <div class="mot_cles" style="display: flex;">

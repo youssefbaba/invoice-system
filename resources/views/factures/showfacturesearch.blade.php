@@ -50,7 +50,7 @@
                                             <div class="card-body">
 
                                                 <div class="row">
-                                                    <a href="{{route('factures.voirplus',$facture_cle_client->id)}}" class="card-title col-md-8 nm_client">{{$facture_cle_client->code_facture}}:{{$facture_cle_client->etat_facture}}</a>
+                                                    <a href="{{route('factures.voirplus',$facture_cle_client->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-file-invoice-dollar text-muted" style="margin-right: 10px"></i>{{$facture_cle_client->code_facture}}:{{$facture_cle_client->etat_facture}}</a>
                                                     <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                                 </div>
 
@@ -59,7 +59,7 @@
 
                                                             @foreach ($clients as $client)
                                                             {{-- {{dd($facture->id_client)}} --}}
-                                                            <a href="{{route('voirplus',$facture_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($facture_cle_client->client_id)}}:{{$client->getClient_Facture_Name($facture_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture_cle_client->client_id)}}</a>
+                                                            <a href="{{route('voirplus',$facture_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px"></i>{{$client->getClient_Facture_code($facture_cle_client->client_id)}}:{{$client->getClient_Facture_Name($facture_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($facture_cle_client->client_id)}}</a>
                                                             {{-- <a href="#" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($devis->id_client)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->id_client)}}</a> --}}
                                                                 @break
                                                             @endforeach

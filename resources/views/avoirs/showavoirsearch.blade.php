@@ -45,7 +45,7 @@
                                             <div class="card-body">
 
                                                 <div class="row">
-                                                    <a href="{{route('avoirs.voirplus',$avoir_cle_client->id)}}" class="card-title col-md-8 nm_client">{{$avoir_cle_client->code_avoir}}:{{$avoir_cle_client->etat_facture}}</a>
+                                                    <a href="{{route('avoirs.voirplus',$avoir_cle_client->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-shopping-cart text-muted" style="margin-right: 10px"></i>{{$avoir_cle_client->code_avoir}}:{{$avoir_cle_client->etat_facture}}</a>
                                                     <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                                                 </div>
 
@@ -54,7 +54,7 @@
 
                                                             @foreach ($clients as $client)
                                                             {{-- {{dd($facture->id_client)}} --}}
-                                                            <a href="{{route('voirplus',$avoir_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_code($avoir_cle_client->client_id)}}:{{$client->getClient_Facture_Name($avoir_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir_cle_client->client_id)}}</a>
+                                                            <a href="{{route('voirplus',$avoir_cle_client->client_id)}}" class="card-subtitle mb-2 nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px"></i>{{$client->getClient_Facture_code($avoir_cle_client->client_id)}}:{{$client->getClient_Facture_Name($avoir_cle_client->client_id)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($avoir_cle_client->client_id)}}</a>
                                                             {{-- <a href="#" class="card-subtitle mb-2 nm_societe mr-5">{{$client->getClient_Facture_Name($devis->id_client)}}&nbsp;&nbsp;{{$client->getClient_Facture_Prenom($devis->id_client)}}</a> --}}
                                                                 @break
                                                             @endforeach
