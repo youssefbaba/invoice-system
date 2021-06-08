@@ -36,8 +36,8 @@
 
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('admin.search')}}" method="POST">
-        @csrf
+    <form action="{{route('admin.search')}}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="search" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn" style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -62,7 +62,7 @@
             @foreach ($users as $user)
             {{-- {{dd($client)}} --}}
 
-            <div class="col-md-8 mb-3">
+            <div class="col-md-8 mb-4">
                 <div class="card client_display " style="background-color: #F5F5F5" >
                     <div class="card-body">
                         <div class="row">
@@ -70,14 +70,14 @@
                             <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                         </div>
                         @if($user->role === 0)
-                             <h6 class="card-subtitle mb-1 mt-1  part " style="margin-left:40px;color: rgb(104, 104, 211) !important;">Employé</h6>
+                             <h6 class="card-subtitle mb-1 mt-1  part " style="margin-left:40px;color: #F25C05 !important;">Employé</h6>
                         @else
-                            <h6 class="card-subtitle mb-1 mt-1  part " style="margin-left:40px;color: rgb(104, 104, 211) !important;">Administrateur</h6>
+                            <h6 class="card-subtitle mb-1 mt-1  part " style="margin-left:40px;color: #F25C05 !important;">Administrateur</h6>
                         @endif
                         @if($user->complete === 0)
-                            <h6 class="card-subtitle mb-2 mt-1 part" style="margin-left:40px;color: rgb(104, 104, 211) !important;">Informations incomplète</h6>
+                            <h6 class="card-subtitle mb-2 mt-1 part" style="margin-left:40px;color: #F25C05 !important;">Informations incomplète</h6>
                         @else
-                            <h6 class="card-subtitle mb-2 mt-1  part" style="margin-left:40px;color: rgb(104, 104, 211) !important;">Informations complète</h6>
+                            <h6 class="card-subtitle mb-2 mt-1  part" style="margin-left:40px;color: #F25C05 !important;">Informations complète</h6>
                         @endif
                         <i class="far fa-envelope text-muted mb-2"></i><a href="mailto:{{$user->email}}"
                             class="em_client mb-2">{{$user->email}}</a><br>
@@ -177,48 +177,13 @@
         @endif
     </div>
 </div>
-
-{{-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form action="" method="POST" id="deleteCategoryForm">
-            @csrf
-            @method('DELETE')
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title text-white" id="exampleModalLabel">Supprimer Ce Client</h5>
-                    <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="font-weight-bold text-white">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Voulez-vous vraiment supprimer ce client !!!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-ligh text-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div> --}}
 @endsection
-
 @section('script')
-{{-- <script>
-    function handleClickModal(id) {
-        var form = document.getElementById('deleteCategoryForm');
-        form.action = 'deleteuser/' + id
-        $('#deleteModal').modal('show');
-    }
-
-</script> --}}
 <script>
     $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     });
 </script>
-
 @endsection
 
 

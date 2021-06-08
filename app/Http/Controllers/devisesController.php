@@ -7,13 +7,16 @@ use App\Devi;
 use App\Client;
 use App\Article;
 
+use App\Mail\EnvoiMailDevi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\devisRequest;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\EnvoiMailDevi;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\Console\Input\Input;
 
 class devisesController extends Controller
 {
@@ -532,23 +535,23 @@ class devisesController extends Controller
     public function search(Request $request)
     {
         // dd($request);
+        $q = $request->q;
+        // do things with them...
+
         $user = auth()->user();
         $cle = Cle::all();
-        $request->validate([
-
-            'q' => 'required'
-        ]);
-
-        $q = $request->q;
-        $devis_cles_clients = Devi::where('etat_devis', 'like', '%' . $q . '%')
+        // $q = $request->q;
+         $devis_cles_clients = Devi::where('etat_devis', 'like', '%' . $q . '%')
             ->orWhere('code_devis', 'like', '%' . $q . '%')
             ->orWhereHas('cles', function ($query) use ($q) {
                 $query->where('mot_cle', 'like', '%' . $q . '%');
             })->orWhereHas('client', function ($query) use ($q) {
                 $query->where('nom_client', 'like', '%' . $q . '%')
                     ->orWhere('prenom_client', 'like', '%' . $q . '%');
-            })->get();
-        // dd($devis_cles_clients);
+            })->paginate(3);
+            // $devis_cles_clients = $devis_cles_clients->where('user_id',$user->id)->paginate(3);
+
+            $devis_cles_clients->appends(['q' => $q]);
         if ($devis_cles_clients->count()) {
 
             return view('devises.showdevisearch')->with('devis_cles_clients', $devis_cles_clients)->with('cles', $cle)->with('user', $user)->with('clients', Client::all());

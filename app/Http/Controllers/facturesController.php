@@ -515,10 +515,10 @@ class facturesController extends Controller
         // dd($request);
         $user = auth()->user();
         $cle = Cle::all();
-        $request->validate([
+        // $request->validate([
 
-            'q' => 'required'
-        ]);
+        //     'q' => 'required'
+        // ]);
 
         $q = $request->q;
         $factures_cles_clients = Facture::where('etat_facture', 'like', '%' . $q . '%')
@@ -528,8 +528,9 @@ class facturesController extends Controller
             })->orWhereHas('client', function ($query) use ($q) {
                 $query->where('nom_client', 'like', '%' . $q . '%')
                     ->orWhere('prenom_client', 'like', '%' . $q . '%');
-            })->get();
+            })->paginate(3);
         // dd($devis_cles_clients);
+        $factures_cles_clients->appends(['q' => $q]);
         if ($factures_cles_clients->count()) {
 
             return view('factures.showfacturesearch')->with('factures_cles_clients', $factures_cles_clients)->with('cles', $cle)->with('user', $user)->with('clients', Client::all());

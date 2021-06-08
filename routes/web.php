@@ -32,7 +32,8 @@ Route::middleware(['auth', 'is.admin'])->group(function () {
     Route::get('showuser/{user_id}', 'AdminController@show')->name('admin.show');
     Route::get('/adduser', 'AdminController@create')->name('admin.create');
     Route::post('/saveuser', 'AdminController@store')->name('admin.store');
-    Route::post('/searchuser', 'AdminController@search')->name('admin.search');
+    // Route::get('devis_search', 'devisesController@search')->name('recherche_devi');
+    Route::get('searchuser', 'AdminController@search')->name('admin.search');
 });
 Route::get('/dashboard', 'chartController@chartdirham')->name('dashboard');;
 
@@ -56,7 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //route pour voir client
     Route::get('voirplus/{id}', 'clientsController@voirplus')->name('voirplus');
 
-    Route::post('/clients_search', 'clientsController@search')->name('recherche_client');
+    Route::get('clients_search', 'clientsController@search')->name('recherche_client');
 });
 
 //create a group route for factures
@@ -78,7 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('duplicate_facture/{facture_id}/{client_id}', 'facturesController@duplicatefacture')->name('factures.duplicatefacture');
     Route::get('duplicate_facture_vide/{facture_id}', 'facturesController@duplicatefacture_vide')->name('factures.duplicatefacture_vide');
     Route::get('duplicateen_devise/{facture_id}', 'facturesController@duplicateen_devise')->name('devises.duplicateen_devise');
-    Route::post('/facture_search', 'facturesController@search')->name('recherche_facture');
+    Route::get('facture_search', 'facturesController@search')->name('recherche_facture');
     Route::get('/facture_createemail/{facture_id}/{client_id}', 'facturesController@create_email')->name('create_email_facture');
     Route::post('/facture_envoiemail', 'facturesController@store_email')->name('envoi_email_facture');
 
@@ -102,7 +103,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('showavoirfinalise', 'AvoirController@avoirfinalise')->name('avoirs.finalise');
     Route::get('showavoirrembourse', 'AvoirController@avoirrembourse')->name('avoirs.rembourse');
     Route::get('deleteavoir/{avoir_id}', 'AvoirController@deleteavoir')->name('deleteavoir');
-    Route::post('/avoir_search', 'AvoirController@search')->name('recherche_avoir');
+    Route::get('avoir_search', 'AvoirController@search')->name('recherche_avoir');
     Route::get('/avoir_createemail/{avoir_id}/{client_id}', 'AvoirController@create_email')->name('create_email_avoir');
     Route::post('/avoir_envoiemail', 'AvoirController@store_email')->name('envoi_email_avoir');
 });
@@ -129,7 +130,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('generer_pdf_devis/{id}', 'devisesController@genererpdf')->name('devise.generpdf');
     Route::get('create_devis/{id}', 'devisesController@create_devis_client')->name('create_determine_devis');
     Route::get('duplicateen_facture/{devi_id}', 'devisesController@duplicateen_facture')->name('devises.duplicateen_facture');
-    Route::post('/devis_search', 'devisesController@search')->name('recherche_devi');
+    // Route::get('devis_search/{q}', 'devisesController@search')->name('recherche_devi');
+    Route::get('devis_search', 'devisesController@search')->name('recherche_devi');
     Route::get('/devis_createemail/{devi_id}/{client_id}', 'devisesController@create_email')->name('create_email_devi');
     Route::post('/devis_envoiemail', 'devisesController@store_email')->name('envoi_email_devi');
 });

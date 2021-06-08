@@ -10,8 +10,8 @@
 @endif
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('recherche_facture')}}" method="POST">
-        @csrf
+    <form action="{{route('recherche_facture')}}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -41,11 +41,13 @@
                     @if ($factures_cles_clients->count() > 0)
                     <div class="row">
                         {{-- {{dd($factures)}} --}}
+                        <div class="col-8  d-flex justify-content-start mb-2 ">{{$factures_cles_clients ->appends(Request::all())->links()}}</div>
+
                         @foreach ($factures_cles_clients as $facture_cle_client)
                                             @php
                                                 $devis = $facture_cle_client->devis
                                             @endphp
-                                    <div class="col-md-8 mt-3">
+                                    <div class="col-md-8 mt-3 mb-2">
                                         <div class="card client_display " style="background-color: #F5F5F5">
                                             <div class="card-body">
 
@@ -76,8 +78,8 @@
                                                         @foreach ($cles as $cle)
                                                         <div class="mot_cles" style="display: flex;">
                                                             @foreach ($cle->getCleFacture($facture_cle_client->id) as $item => $motcle)
-                                                            <form action="{{ route('recherche_facture') }}" method="post">
-                                                             @csrf
+                                                            <form action="{{ route('recherche_facture') }}" method="get">
+                                                             {{-- @csrf --}}
                                                                 <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
                                                                 <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2"  >
                                                                 {{$motcle['mot_cle']}}

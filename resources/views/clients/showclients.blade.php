@@ -33,8 +33,8 @@
 
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('recherche_client')}}" method="POST">
-        @csrf
+    <form action="{{route('recherche_client')}}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="search" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn" style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -59,7 +59,7 @@
             @foreach ($clients as $client)
             {{-- {{dd($client)}} --}}
 
-            <div class="col-md-8 mb-3">
+            <div class="col-md-8 mb-4">
                 <div class="card client_display " style="background-color: #F5F5F5" >
                     <div class="card-body">
                         <div class="row">
@@ -75,8 +75,8 @@
                         @foreach ($cles as $cle)
                         <div class="mot_cles" style="display: flex;">
                             @foreach ($cle->getCleClient($client->id) as $item => $motcle)
-                            <form action="{{ route('recherche_client') }}" method="post">
-                                @csrf
+                            <form action="{{ route('recherche_client') }}" method="get">
+                                {{-- @csrf --}}
                                 <input type="hidden" class="form-control" value="{{$motcle['mot_cle']}}" id="search"
                                     name="q" />
                                 <button type="submit" class=" btn btn-outline-secondary p-1 ml-2">

@@ -1,4 +1,26 @@
 @extends('home')
+<style>
+
+    nav ul li a {
+        margin: 0px;
+        color:#8891AE !important;
+        font-weight: bold;
+    }
+    .pagination li.active{
+        border-bottom: 0px;
+    }
+    a.page-link{
+        margin: 0px;
+    }
+    .pagination{
+        margin-bottom:-20px;
+        margin-top:12px;
+    }
+    .page-item.active .page-link{
+        background-color:#ADB6D8 !important;
+        border-color: #ADB6D8 !important;
+    }
+</style>
 @section('header_content')
 @if($devis_cles_clients === [])
 <h5 class="text-white d-inline ml-2 text-uppercase"><a href="#" style="color: white;text-decoration: none;">liste des devis recherchés <sub>(0)</sub></a> </h5>
@@ -11,8 +33,8 @@
 
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('recherche_devi')}}" method="POST">
-        @csrf
+    <form action="{{route('recherche_devi')}}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -43,14 +65,16 @@
 
                         {{-- hnaya ila kano 3andna les devis deja m2ajautine --}}
                     @if ($devis_cles_clients->count() > 0)
+
                             <div class="row">
                             {{-- Start bouclage 3la les devis --}}
+                            <div class="col-8  d-flex justify-content-start mb-2 ">{{$devis_cles_clients->appends(Request::all())->links()}}</div>
                             @foreach ($devis_cles_clients as $devi_cle_client)
 {{-- {{dd($devi_cle_client->devis)}} --}}
                                                 @php
                                                     $devise = $devi_cle_client->devis
                                                 @endphp
-                                        <div class="col-md-8 mt-3">
+                                        <div class="col-md-8 mt-3 mb-2">
                                             <div class="card client_display " style="background-color: #F5F5F5">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -78,8 +102,8 @@
                                                             @foreach ($cles as $cle)
                                                             <div class="mot_cles" style="display: flex;">
                                                                 @foreach ($cle->getCleDevi($devi_cle_client->id) as $item => $motcle)
-                                                                <form action="{{ route('recherche_devi') }}" method="post">
-                                                                 @csrf
+                                                                <form action="{{ route('recherche_devi') }}" method="get">
+                                                                 {{-- @csrf --}}
                                                                     <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
                                                                     <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2"  >
                                                                     {{$motcle['mot_cle']}}

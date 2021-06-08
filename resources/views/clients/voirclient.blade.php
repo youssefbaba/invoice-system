@@ -173,14 +173,14 @@
                     <div class="card client_display mb-4" style="background-color: #F5F5F5">
                         <div class="card-body">
                             <div class="row">
-                                <a href="{{route('factures.voirplus',$facture->id)}}" class="card-title col-md-8 nm_client">{{$facture->code_facture}}:{{$facture->etat_facture}}</a>
+                                <a href="{{route('factures.voirplus',$facture->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-file-invoice-dollar text-muted" style="margin-right: 10px"></i>{{$facture->code_facture}}:{{$facture->etat_facture}}</a>
                                 <span class="col-md-4 text-right options"><i
                                         class="fas fa-ellipsis-v ellipse"></i></span>
                             </div>
                             <div class="row" style="margin-bottom:10px">
                                 <div class="col-6">
                                     <a href="#"
-                                        class="card-subtitle mb-2 nm_societe mr-5">{{$clients->code_client}}:{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
+                                        class="card-subtitle mb-2 nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px;"></i>{{$clients->code_client}}:{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
                                 </div>
                                 <div class="col-6 text-right">
                                     <i class="fas fa-calendar-week text-muted d-inline mr-2"></i>
@@ -319,12 +319,12 @@
                     <div class="card client_display mb-4" style="background-color: #F5F5F5">
                         <div class="card-body">
                             <div class="row">
-                                <a href="{{route('devises.voirplus',$devise->id)}}" class="card-title col-md-8 nm_client">{{$devise->code_devis}}:{{$devise->etat_devis}}</a>
+                                <a href="{{route('devises.voirplus',$devise->id)}}" class="card-title col-md-8 nm_client"><i class="fas fa-calculator text-muted" style="margin-right: 10px;"></i>{{$devise->code_devis}}:{{$devise->etat_devis}}</a>
                                 <span class="col-md-4 text-right options"><i class="fas fa-ellipsis-v ellipse"></i></span>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-6">
-                                    <a href="#"class="card-subtitle mb-2  nm_societe mr-5">{{$clients->code_client}}:{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
+                                    <a href="#"class="card-subtitle mb-2  nm_societe mr-5"><i class="fas fa-user text-muted" style="margin-right: 10px;"></i>{{$clients->code_client}}:{{$clients->nom_client}}&nbsp;&nbsp;{{$clients->prenom_client}}</a>
                                 </div>
 
                                 <div class="col-6 text-right">

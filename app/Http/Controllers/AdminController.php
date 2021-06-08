@@ -121,15 +121,16 @@ class AdminController extends Controller
     public function search(Request $request)
     {
         // dd($request);
-        $request->validate([
+        // $request->validate([
 
-            'q' => 'required'
-        ]);
+        //     'q' => 'required'
+        // ]);
 
         $q = $request->q;
         $users = User::where('name', 'like', '%' . $q . '%')
             ->orWhere('lastname', 'like', '%' . $q . '%')
-            ->orWhere('email', 'like', '%' . $q . '%')->get();
+            ->orWhere('email', 'like', '%' . $q . '%')->paginate(3);
+        $users->appends(['q' => $q]);
         return view('admin.searchuser')->with('users', $users);
     }
 }

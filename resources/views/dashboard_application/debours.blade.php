@@ -28,7 +28,7 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 ml-4">
+        <div class="col-md-8 ml-4 mt-4">
             <table class="table table-hover">
                 <thead>
                     <tr>

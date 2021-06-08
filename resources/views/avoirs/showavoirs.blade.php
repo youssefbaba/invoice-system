@@ -24,8 +24,8 @@
 <h5 class="text-white d-inline ml-4 text-uppercase"><a href="{{route('avoirs.index')}}" style="color: white;text-decoration: none">Liste des Avoirs <sub>({{$avoirs->count()}})</sub></a> </h5>
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{ route('recherche_avoir') }}" method="POST">
-        @csrf
+    <form action="{{ route('recherche_avoir') }}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -54,7 +54,7 @@
                                         @php
                                             $devis = $avoir->devis
                                         @endphp
-                                <div class="col-md-8 mb-3">
+                                <div class="col-md-8 mb-4">
                                     <div class="card client_display " style="background-color: #F5F5F5">
                                         <div class="card-body">
 
@@ -87,8 +87,8 @@
                                                     @foreach ($cles as $cle)
                                                     <div class="mot_cles" style="display: flex;">
                                                         @foreach ($cle->getCleAvoir($avoir->id) as $item => $motcle)
-                                                        <form action="{{ route('recherche_avoir') }}" method="post">
-                                                         @csrf
+                                                        <form action="{{ route('recherche_avoir') }}" method="get">
+                                                         {{-- @csrf --}}
                                                             <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
                                                             <button type="submit" class=" btn btn-outline-secondary  rounded ml-2 "  >
                                                             {{$motcle['mot_cle']}}

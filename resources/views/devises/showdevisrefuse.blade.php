@@ -25,8 +25,8 @@
 <h5 class="text-white d-inline ml-2 text-uppercase"><a href="{{route('devises.showrefuse')}}" style="color: white;text-decoration: none">Liste des devis <sub>({{$devises->count()}})</sub></a>  </h5>
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('recherche_devi')}}" method="POST">
-        @csrf
+    <form action="{{route('recherche_devi')}}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -61,7 +61,7 @@
                                          @php
                                             $devise = $devis->devis
                                         @endphp
-                                <div class="col-md-8 mb-3">
+                                <div class="col-md-8 mb-4">
                                     <div class="card client_display " style="background-color: #F5F5F5">
                                         <div class="card-body">
                                             <div class="row">
@@ -86,8 +86,8 @@
                                                     @foreach ($cles as $cle)
                                                     <div class="mot_cles" style="display: flex;">
                                                         @foreach ($cle->getCleDevi($devis->id) as $item => $motcle)
-                                                        <form action="{{ route('recherche_devi') }}" method="post">
-                                                         @csrf
+                                                        <form action="{{ route('recherche_devi') }}" method="get">
+                                                         {{-- @csrf --}}
                                                             <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
                                                             <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2"  >
                                                             {{$motcle['mot_cle']}}

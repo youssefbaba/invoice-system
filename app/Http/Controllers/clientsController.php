@@ -221,10 +221,10 @@ class clientsController extends Controller
         // dd($request);
         $user = auth()->user();
         $cle = Cle::all();
-        $request->validate([
+        // $request->validate([
 
-            'q' => 'required'
-        ]);
+        //     'q' => 'required'
+        // ]);
 
         $q = $request->q;
         $clients_cles = Client::where('nom_client', 'like', '%' . $q . '%')
@@ -234,8 +234,9 @@ class clientsController extends Controller
             ->orWhere('tel_client', 'like', '%' . $q . '%')
             ->orWhereHas('cles', function ($query) use ($q) {
                 $query->where('mot_cle', 'like', '%' . $q . '%');
-            })->get();
+            })->paginate(3);
         // dd($clients_cles);
+        $clients_cles->appends(['q' => $q]);
         if ($clients_cles->count()) {
 
             return view('clients.showclientsearch')->with('clients_cles', $clients_cles)->with('cles', $cle)->with('user', $user);

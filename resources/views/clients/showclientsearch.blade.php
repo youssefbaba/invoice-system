@@ -11,8 +11,8 @@
 
 <div class="form-group has-search d-inline-flex">
     {{--  hnaya 3andi moteur du recherche li kaydir recherche 3la les client --}}
-    <form action="{{route('recherche_client')}}" method="POST">
-        @csrf
+    <form action="{{route('recherche_client')}}" method="get">
+        {{-- @csrf --}}
         <div class="input-group ">
             <input type="text" class="form-control" placeholder="Search" id="search" name="q" />
             <button type="submit" class="btn"  style="background-color: white;border-radius: 0px 0.25rem 0.25rem 0;">
@@ -43,9 +43,11 @@
         @if ($clients_cles->count() > 0)
         {{-- {{dd($clients_cles)}} --}}
         <div class="row">
+            <div class="col-8  d-flex justify-content-start mb-2 ">{{$clients_cles->appends(Request::all())->links()}}</div>
+
             @foreach ($clients_cles as $client_cle)
             {{-- {{dd($client)}} --}}
-                        <div class="col-md-8 mt-3">
+                        <div class="col-md-8 mt-3 mb-2">
                             <div class="card client_display " style="background-color: #F5F5F5">
                                 <div class="card-body">
                                     <div class="row">
@@ -59,8 +61,8 @@
                                     @foreach ($cles as $cle)
                                        <div class="mot_cles" style="display: flex;">
                                            @foreach ($cle->getCleClient($client_cle->id) as $item => $motcle)
-                                           <form action="{{ route('recherche_client') }}" method="post">
-                                            @csrf
+                                           <form action="{{ route('recherche_client') }}" method="get">
+                                            {{-- @csrf --}}
                                                <input type="hidden" class="form-control"  value="{{$motcle['mot_cle']}}" id="search" name="q" />
                                                <button type="submit" class=" btn p-1 btn-outline-secondary rounded ml-2" >
                                                {{$motcle['mot_cle']}}
