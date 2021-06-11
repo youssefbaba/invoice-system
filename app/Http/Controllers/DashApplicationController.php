@@ -45,7 +45,7 @@ class DashApplicationController extends Controller
             ->addData('Total Factures', [12, 73, 21, 93, 52, 59])
             ->addData('Nombre Factures', [70, 12, 77, 9, 55, 90])
             ->setColors(['#ffc63b', '#ff6384'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
 
 
@@ -59,7 +59,7 @@ class DashApplicationController extends Controller
             ->addData('Total Devis', [6, 29, 3, 43, 10, 63])
             ->addData('Nombre Devis', [7, 53, 8, 15, 6, 48])
             ->setColors(['#70C6FE', '#26E7A6'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_avoirs = (new LarapexChart)->horizontalBarChart()
             // ->addData('Total Avoirs', $this->avoirs_euro()->toArray())
@@ -71,7 +71,7 @@ class DashApplicationController extends Controller
             ->addData('Total Avoirs', [6, 26, 3, 43, 10, 22])
             ->addData('Nombre Avoirs', [7, 22, 81, 21, 63, 12])
             ->setColors(['#FFC107', '#D32F2F'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
 
         $chart_clients = (new LarapexChart)->donutChart()
@@ -80,12 +80,12 @@ class DashApplicationController extends Controller
 
 
             ->addData([20, 24, 30, 24, 12, 87])
-            ->setLabels(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setLabels(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
 
         $chart_chiffre_affaire = (new LarapexChart)->areaChart()
             ->addData('chiffre affaire', [40, 93, 35, 42, 18, 82])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June'])
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'])
             ->setGrid();
 
 
@@ -201,7 +201,7 @@ class DashApplicationController extends Controller
             ->addData('Total Factures', [12, 23, 42, 12, 81, 28])
             ->addData('Nombre Factures', [26, 91, 77, 15, 35, 55])
             ->setColors(['#ffc63b', '#ff6384'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
 
 
@@ -214,7 +214,7 @@ class DashApplicationController extends Controller
             ->addData('Total Devis', [61, 45, 32, 33, 20, 78])
             ->addData('Nombre Devis', [71, 22, 83, 53, 32, 31])
             ->setColors(['#70C6FE', '#26E7A6'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_avoirs = (new LarapexChart)->horizontalBarChart()
             // ->addData('Total Avoirs', $this->avoirs_dollar()->toArray())
@@ -226,7 +226,7 @@ class DashApplicationController extends Controller
             ->addData('Total Avoirs', [64, 42, 34, 53, 12, 47])
             ->addData('Nombre Avoirs', [72, 23, 8, 43, 16, 33])
             ->setColors(['#FFC107', '#D32F2F'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_clients = (new LarapexChart)->donutChart()
             // ->addData($this->nombreclients()->toArray())
@@ -234,11 +234,11 @@ class DashApplicationController extends Controller
 
 
             ->addData([22, 21, 10, 34, 21, 42])
-            ->setLabels(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setLabels(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_chiffre_affaire = (new LarapexChart)->areaChart()
             ->addData('chiffre affaire', [20, 23, 65, 32, 68, 22])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June'])
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'])
             ->setGrid();
 
 
@@ -357,7 +357,7 @@ class DashApplicationController extends Controller
             ->addData('Total Factures', [73, 23, 63, 5, 71, 10])
             ->addData('Nombre Factures', [12, 02, 72, 42, 31, 52])
             ->setColors(['#ffc63b', '#ff6384'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
 
 
@@ -371,7 +371,7 @@ class DashApplicationController extends Controller
             ->addData('Total Devis', [83, 62, 11, 52, 21, 51])
             ->addData('Nombre Devis', [21, 82, 24, 23, 03, 90])
             ->setColors(['#70C6FE', '#26E7A6'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_clients = (new LarapexChart)->donutChart()
             // ->addData($this->nombreclients()->toArray())
@@ -379,7 +379,7 @@ class DashApplicationController extends Controller
 
 
             ->addData([22, 64, 10, 42, 21, 12])
-            ->setLabels(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setLabels(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_avoirs = (new LarapexChart)->horizontalBarChart()
             // ->addData('Total Avoirs', $this->avoirs_dirham()->toArray())
@@ -391,11 +391,11 @@ class DashApplicationController extends Controller
             ->addData('Total Avoirs ', [12, 23, 98, 53, 42, 13])
             ->addData('Nombre Avoirs', [63, 33, 53, 22, 35, 90])
             ->setColors(['#FFC107', '#D32F2F'])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin']);
 
         $chart_chiffre_affaire = (new LarapexChart)->areaChart()
             ->addData('chiffre affaire', [45, 12, 53, 90, 12, 52])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June'])
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'])
             ->setGrid();
 
         return view('dashboard_application.chartsdirham')->with('chart_factures', $chart_factures)->with('chart_devis', $chart_devis)->with('chart_clients', $chart_clients)->with('chart_avoirs', $chart_avoirs)->with('chart_chiffre_affaire', $chart_chiffre_affaire);
@@ -865,5 +865,4 @@ class DashApplicationController extends Controller
             ->with('total_facture_monthly_dollar', $total_facture_monthly_dollar)->with('total_avoir_monthly_dollar', $total_avoir_monthly_dollar)
             ->with('keys_facture_dollar', $keys_facture_dollar)->with('keys_avoir_dollar', $keys_avoir_dollar);
     }
-
 }

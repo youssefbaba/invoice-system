@@ -429,7 +429,7 @@
                         <textarea name="text_pied" cols="30" rows="3" class="form-control"
                             placeholder="Pied de page (visible sur la facture)">{{$facture->pied_pagef}}</textarea>
                             @error('text_pied')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">Doit être rempli</div>
                             @enderror
                     </div>
                     <div class="col-md-6">

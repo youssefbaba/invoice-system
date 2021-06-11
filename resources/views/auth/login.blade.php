@@ -68,13 +68,13 @@
                         <input id="email" type="email" class="@error('email') is-invalid @enderror col-12 mb-4" name="email" value="{{ old('email') }}" placeholder="Email d'utilisateur" required autocomplete="email" autofocus>
                         @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>Votre email ou mot de passe est incorrect</strong>
                                         </span>
                         @enderror
                         <input id="password" type="password" class="@error('password') is-invalid @enderror col-12 mb-4" name="password" placeholder="Mot de pass" required autocomplete="current-password">
                         @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>Votre email ou mot de passe est incorrect</strong>
                                         </span>
                         @enderror
 

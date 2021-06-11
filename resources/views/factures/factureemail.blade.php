@@ -25,11 +25,9 @@
         <div class="client col-md-8">
             <div class="form-group">
                 <label for="objet_email">Objet</label>
-                <input type="text" class="form-control @error('objet_email') is-invalid @enderror bg-white" id="objet_email" name="objet_email" value="Votre&nbsp;Facture&nbsp;{{$facture->code_facture}}" required>
+                <input type="text" class="form-control @error('objet_email') is-invalid @enderror bg-white" id="objet_email" name="objet_email" value="Votre&nbsp;Facture&nbsp;{{$facture->code_facture}}" >
                 @error('objet_email')
-                <div class="invalid-feedback">
-                   {{$errors->first('objet_email')}}
-                </div>
+                <p class="text-danger eror" >doit être rempli(e)</p>
                 @enderror
             </div>
         </div>

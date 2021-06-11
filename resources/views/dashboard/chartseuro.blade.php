@@ -54,7 +54,7 @@
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              TOTAL FACTURES ET NOMBRE FACTURES PAR MOIS
+              TOTAL MONTANT FACTURES ET NOMBRE FACTURES PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_factures->container()}}
@@ -64,7 +64,7 @@
 
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold ">
-              TOTAL DEVIS ET NOMBRE DEVIS PAR MOIS
+                TOTAL MONTANT DEVIS ET NOMBRE DEVIS PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_devis->container()}}
@@ -76,7 +76,7 @@
     <div class="row">
         <div class="card col-md-6 border-0" >
             <div class="card-header font-weight-bold">
-                TOTAL AVOIRS ET NOMBRE AVOIRS PAR MOIS
+                TOTAL MONTANT AVOIRS ET NOMBRE AVOIRS PAR MOIS
             </div>
             <div class="card-body">
                 {{$chart_avoirs->container()}}

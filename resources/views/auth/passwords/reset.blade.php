@@ -17,7 +17,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" style="background-image: url(../img/bigbackground.png); #B0C4DE;height: 600px;">
     <div class="row justify-content-center mt-5" >
         <div class="col-md-8 mt-5">
             <div class="card">

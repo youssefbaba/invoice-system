@@ -32,7 +32,7 @@
                         </div>
                         <div class="client col-md-8">
                             <div class="form-group">
-                                <label for="devis">Choisir Le Devis</label>
+                                <label for="devis">Choisir Le Devise</label>
                                 <select name="devis" id="devis" class="form-control">
                                     <option value="(DH)">Dirham Marocain(DH)</option>
                                     <option value="($)">Dollar($)</option>
@@ -96,7 +96,7 @@
                                     <div class="form-group">
                                         <label for="prixht">Prix HT</label>
                                         <input type="number" name="prixht[]" id="prixht" class="form-control prixht"
-                                            min="0" step="any">
+                                            min="0" step="any" >
                                             @error('prixht')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -117,7 +117,7 @@
                                     <div class="form-group">
                                         <label for="totalht">Total HT</label>
                                         <input type="text" name="totalht[]" id="totalht" class="form-control totalht"
-                                            step="any" readonly>
+                                            step="any" readonly style="background-color: white">
                                             @error('totalht')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -127,7 +127,7 @@
                                     <div class="form-group">
                                         <label for="totalttc">Total TTC</label>
                                         <input type="text" name="totalttc[]" id="totalttc"
-                                            class="form-control totalttc" step="any" readonly>
+                                            class="form-control totalttc" step="any" readonly style="background-color: white">
                                             @error('totalttc')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -331,8 +331,8 @@
                                 <div class="col-md-6 form-group">
                                     <textarea name="text_intro"  cols="30" rows="3" class="form-control" placeholder="Texte d'introduction (visible sur la facture)"></textarea>
                                     @error('text_intro')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
+                                            <div class="alert alert-danger">Doit être rempli</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
                                 </div>
@@ -373,7 +373,7 @@
                                         </select>
                                     </div>
                                     @error('motcle')
-                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            <div class="alert alert-danger">Doit être rempli</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
